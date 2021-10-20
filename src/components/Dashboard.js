@@ -1,11 +1,11 @@
 import "./style/Dashboard.css";
 import "./style/Topbar.css";
-import { Link, useHistory } from "react-router-dom";
+import './style/Card.css';
+import { useHistory } from "react-router-dom";
 import { logout } from "../utils/authentication";
 import React, {useEffect, useState} from 'react';
 import CreateTask from '../modals/CreateTask'
 import Card from './Card';
-import './style/Card.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Dashboard = () => {
