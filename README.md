@@ -1,6 +1,6 @@
 # Aplikasi kelompok A5 - Nomdo
 
-# Sprint 1
+# Sprint 1 - Revisi 01
 
 # Project ini telah menggunakan:
 
