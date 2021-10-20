@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
+
+.main-bar {
+  height: 92vh;
+  text-align: left;
+  border-right: 2px solid #C4C4C4;
+}
+
+.option-bar {
+  text-decoration: none!important;
+  font-size: medium;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  padding-top: 15px;
+  height: 5%;
+  width: 70%;
+  margin: auto;
+}

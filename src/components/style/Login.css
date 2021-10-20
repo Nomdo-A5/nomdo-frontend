@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
+
+.body{
+  background: url('background.jpg');
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-size: cover;
+}
+
+.form{
+  margin-top: 0 auto;
+  background-color:white;
+  width: 300px;
+  height: 360px;
+  border-radius: 10px;
+  border: 0px solid;
+  border-style: outset;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  font-family: 'Roboto', sans-serif;
+}
+
+.judullogin{
+  margin-top: 20px;
+}
+
+.form-group{
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+}
+
+.form-control{
+  margin: 0 auto;
+  width: 100%;
+  height: 25px;
+  border: 1px solid;
+  border-color: #c4c4c4;
+}
+
+.main-form-fill {
+  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-login{
+  width: 150px;
+  height: 30px;
+  background-color: #F8B732;
+  border: 0px solid;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  padding-top: 4px;
+  margin-bottom: 10px;
+  border-radius: 50px 50px 50px 50px;
+}
+
+.button-google {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.btnlogin:hover {
+  background-color: #ffb007
+}
+
+.btnlogin:active {
+  background-color: #ffb007;
+  transform: translateY(4px);
+}
+
+.button-google{
+  background-color: #dddddd;
+  width: 150px;
+  height: 30px;
+  border-radius: 50px 50px 50px 50px;
+  font-family: 'Roboto', sans-serif;
+  border: 0px solid;
+  font-size: 10px;
+  color:#0E25FC;
+}
+
+.btn1login:hover {
+  background-color: #c5c4c4
+}
+  
+.btn1login:active {
+  background-color: #c5c4c4;
+  transform: translateY(4px);
+}
+
+.forgotlogin{
+  text-align: right;
+  width: 100%;
+  font-size: 12px;
+  font-family:'Roboto', sans-serif ;
+  text-decoration: none;
+  color: black;
+  margin-bottom: 15px;
+}
+
+.linklogin{
+  font-size: 10px;
+  font-family:'Roboto', sans-serif ;
+  margin-bottom: 10px;
+  margin-top: 20px; 
+}
+
+.gambarlogin{
+  width: 15px;
+}
+
+.labellogo{
+  font-size: 15px;
+  font-family:'Roboto', sans-serif ;
+  margin-bottom: 5px;
+}

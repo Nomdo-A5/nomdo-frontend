@@ -1,0 +1,18 @@
+# Aplikasi kelompok A5 - Nomdo
+
+# Sprint 1
+
+# Project ini telah menggunakan:
+
+1. Autentikasi Login Username dan Password
+2. CRUD Workspace pada halaman Dashboard
+3. CRUD Board pada halaman Board
+4. Logout
+
+*Data session dan CRUD disimpan dalam Local Storage.
+
+# Beberapa Framework dan Plugin yang digunakan:
+
+1. React Bootstrap
+2. React Icons
+3. Sweet Alert

@@ -1,0 +1,110 @@
+.workspace-title {
+    display: flex;
+    justify-content: center;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    text-decoration: none;
+}
+
+.workspace-upper-topbar {
+    background-color: white;
+}
+
+.workspace-downer-topbar {
+    background-color: white;
+}
+
+.workspace-content {
+    background-color: white;
+    position: absolute;
+    height: 75%;
+    width: 85%;
+}
+
+.workspace-title {
+    background-color: white;
+    padding-bottom: 20px;
+}
+
+.workspace-boxes {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    height: 8vh;
+    width: 70%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.workspace-boxes-dashboard {
+    text-decoration: none;
+    box-sizing: border-box;
+    background-color: white;
+    width: 19%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #C4C4C4;
+    border-left: 2px solid #C4C4C4;
+    border-right: 2px solid #C4C4C4;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.workspace-boxes-board {
+    text-decoration: none;
+    box-sizing: border-box;
+    width: 19%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #C4C4C4;
+    border-left: 2px solid #C4C4C4;
+    border-right: 2px solid #C4C4C4;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.workspace-boxes-member {
+    text-decoration: none;
+    box-sizing: border-box;
+    width: 19%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #C4C4C4;
+    border-left: 2px solid #C4C4C4;
+    border-right: 2px solid #C4C4C4;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.workspace-boxes-balance {
+    text-decoration: none;
+    box-sizing: border-box;
+    width: 19%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #C4C4C4;
+    border-left: 2px solid #C4C4C4;
+    border-right: 2px solid #C4C4C4;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.workspace-boxes-setting {
+    text-decoration: none;
+    box-sizing: border-box;
+    width: 19%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #C4C4C4;
+    border-left: 2px solid #C4C4C4;
+    border-right: 2px solid #C4C4C4;
+    border-radius: 10px 10px 0px 0px;
+}

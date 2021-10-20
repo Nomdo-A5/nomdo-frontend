@@ -1,0 +1,20 @@
+.main-div-structure-profile {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.layout-sidebar-topbar-profile {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
+.sidebar {
+    background-color: white;
+    width: 15%;
+}
+
+.topbar-profile {
+    width: 85%;
+}

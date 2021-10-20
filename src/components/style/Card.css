@@ -1,0 +1,62 @@
+.header{
+    width: 100%;
+    background-color : #E9EEF6;
+    padding-top: 50px;
+  }
+  
+.card-container{
+    height: 300px;
+    width: 300px;
+    box-shadow: 0px 3px 50px #A5A5A5;
+  }
+
+  .card-wrapper{
+    margin: 0 auto;
+    width: 30%; 
+    height: 70px; 
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid #1f1e1e;
+    border-left: 2px solid #1f1e1e;
+    border-right: 2px solid #1f1e1e;
+    border-bottom: 2px solid #1f1e1e;
+    border-radius: 20px 20px 20px 20px;
+  }
+  
+  .task-holder{
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    display : flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 20px 20px 20px 20px;
+  }
+  
+  .card-header{
+    text-align: left;
+    max-width: 120px;
+    height: 30px;
+    padding: 1px 1px !important;
+    text-align: center;
+    background-color: white;
+    border-radius: 20px 20px 20px 20px;
+  }
+  
+  .card-description {
+    margin-left: 20px;
+    text-align: left;
+  }
+
+  .task-container{
+    display: flex;
+    flex-wrap: wrap;
+    height: 62vh;
+    width: 100%;
+    padding: 40px;
+  }
+
+  .container-add-box {
+    padding-top: 10px;
+    border-top: 2px solid #C4C4C4;
+  }

@@ -1,0 +1,65 @@
+.workspace-upper-topbar {
+    background-color: white;
+}
+
+.workspace-downer-topbar {
+    background-color: white;
+}
+
+.workspace-content {
+    background-color: white;
+    position: absolute;
+    height: 75%;
+    width: 85%;
+}
+
+.workspace-title {
+    display: flex;
+    justify-content: center;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    text-decoration: none;
+}
+
+.workspace-boxes-profile {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    height: 8vh;
+    width: 28%;
+    margin: 0 auto;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.workspace-boxes-user-profile {
+    text-decoration: none;
+    box-sizing: border-box;
+    background-color: white;
+    width: 47.5%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #C4C4C4;
+    border-left: 2px solid #C4C4C4;
+    border-right: 2px solid #C4C4C4;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.workspace-boxes-user-setting {
+    text-decoration: none;
+    box-sizing: border-box;
+    background-color: white;
+    width: 47.5%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #C4C4C4;
+    border-left: 2px solid #C4C4C4;
+    border-right: 2px solid #C4C4C4;
+    border-radius: 10px 10px 0px 0px;
+}
