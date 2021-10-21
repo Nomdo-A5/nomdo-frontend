@@ -1,5 +1,5 @@
 import "./App.css";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import Register from "./components/Register";
 import Structure from "./components/Structure";
 import Structure_Profile from "./components/Structure_Profile";
