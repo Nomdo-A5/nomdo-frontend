@@ -1,5 +1,5 @@
 import React from "react";
-import './Login.css';
+import '../login/Login.css';
 import Nav from "../Nav";
 import { useHistory } from "react-router-dom";
 import Swal from 'sweetalert2';
@@ -7,7 +7,7 @@ import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";
 import { Form, Input, Button, Checkbox, Card } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-
+import { loginAuth } from "../../utils/authentication";
 
 const Login = () => {
   const [password, setPassword] = React.useState("");
@@ -28,8 +28,17 @@ const Login = () => {
         password: values.password
       })
         .then((response) => {
-          console.log(response);
-          history.push("/Dashboard");
+          if(response.data.status_code == 200){
+            loginAuth({
+              token: response.data.access_token,
+            });
+            console.log(response);
+            history.push("/Dashboard");
+          }
+          else{
+            console.log("Login failed");
+          }
+          
         }, (error) => {
           console.log(error);
         });
@@ -79,10 +88,6 @@ const Login = () => {
             />
           </Form.Item>
           <Form.Item>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-
             <a className="login-form-forgot" href="">
               Forgot password
             </a>

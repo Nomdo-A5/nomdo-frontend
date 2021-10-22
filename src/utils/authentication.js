@@ -1,14 +1,23 @@
-export const loginAuth = (user) => {
-    localStorage.setItem("USER", user);
+export const loginAuth = (token) => {
+    localStorage.setItem("Token", token);
 };
   
 export const logout = () => {
-    localStorage.removeItem("USER");
+    localStorage.removeItem("Token");
 };
   
 export const isLogin = () => {
-    if (localStorage.getItem("USER")) {
+    if (localStorage.getItem("Token")) {
         return true;
     }
     return false;
 };
+
+export const getToken = () => {
+    if(isLogin){
+        return localStorage.getItem("Token");
+    }
+    else{
+        return "undefined";
+    }
+}

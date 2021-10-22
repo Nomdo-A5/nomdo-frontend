@@ -1,4 +1,4 @@
-import Sidebar from "./Sidebar";
+import Sidebar from "./sidebar/Sidebar";
 import Topbar_Profile from "./Topbar_Profile";
 import Nav from "./Nav";
 import "./style/Structure_Profile.css";

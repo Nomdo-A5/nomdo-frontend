@@ -2,16 +2,16 @@
   Routing Page
 */
 
-import Login from "./Login/Login";
+import Login from "./login/Login";
 import Structure from "./Structure";
 import Structure_Profile from "./Structure_Profile";
-
+import Register from "./register/Register";
 export const APP_ROUTE = [
   {
     name: "Login",
     path: "/",
     exact: true,
-    component: Login,
+    component: Register,
     restricted: true,
   },
   {
