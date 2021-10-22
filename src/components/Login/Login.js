@@ -1,5 +1,5 @@
 import React from "react";
-import '../login/Login.css';
+import './Login.css';
 import Nav from "../Nav";
 import { useHistory } from "react-router-dom";
 import Swal from 'sweetalert2';
