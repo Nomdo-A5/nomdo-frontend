@@ -5,6 +5,9 @@ import {
   Button,
   Card
 } from 'antd';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
+import { BASE_API_URL } from '../../constants/urls';
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -38,10 +41,30 @@ const tailFormItemLayout = {
 
 const Register = () => {
   const [form] = Form.useForm();
+  const history = useHistory()
+  
 
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    axios.post(BASE_API_URL + 'register', {
+      name : values.username,
+      email: values.email,
+      password: values.password,
+      password_confirmation: values.confirm
+    })
+      .then((response) => {
+        if (response.data.status_code === 200) {
+          console.log(response);
+          history.push("/");
+        }
+        else {
+          console.log("Login failed");
+        }
+
+      }, (error) => {
+        console.log(error);
+      });
   };
+  
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
 
   return (
@@ -128,7 +151,10 @@ const Register = () => {
           <Form.Item {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">
               Sign up
-            </Button>
+            </Button> or Signin  
+            <Link to={"/"}>
+                <a href=""> here</a>
+              </Link>
           </Form.Item>
         </Form>
       </Card>

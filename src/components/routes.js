@@ -11,6 +11,13 @@ export const APP_ROUTE = [
     name: "Login",
     path: "/",
     exact: true,
+    component: Login,
+    restricted: true,
+  },
+  {
+    name: "Register",
+    path: "/register",
+    exact: true,
     component: Register,
     restricted: true,
   },

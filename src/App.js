@@ -4,7 +4,6 @@ import Register from "./components/register/Register";
 import Structure from "./components/Structure";
 import Structure_Profile from "./components/Structure_Profile";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { createBrowserHistory } from "history";
 import { APP_ROUTE } from "./components/routes";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
