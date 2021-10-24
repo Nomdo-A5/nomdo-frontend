@@ -5,13 +5,14 @@ import { useHistory } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";
-import { Form, Input, Button, Checkbox, Card } from 'antd';
+import { Form, Input, Button,Card } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { loginAuth } from "../../utils/authentication";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-  const [password, setPassword] = React.useState("");
-  const [email, setEmail] = React.useState("");
+  const [password] = React.useState("");
+  const [email] = React.useState("");
   const [error, setError] = React.useState(false);
   const history = useHistory()
 
@@ -22,26 +23,24 @@ const Login = () => {
     return () => { };
   }, [email, password]);
 
-  const onFinish = (values) => {    
-      axios.post(BASE_API_URL + 'login', {
-        email: values.email,
-        password: values.password
-      })
-        .then((response) => {
-          if(response.data.status_code == 200){
-            loginAuth({
-              token: response.data.access_token,
-            });
-            console.log(response);
-            history.push("/Dashboard");
-          }
-          else{
-            console.log("Login failed");
-          }
-          
-        }, (error) => {
-          console.log(error);
-        });
+  const onFinish = (values) => {
+    axios.post(BASE_API_URL + 'login', {
+      email: values.email,
+      password: values.password
+    })
+      .then((response) => {
+        if (response.data.status_code === 200) {
+          loginAuth(response.data.access_token);
+          console.log(response);
+          history.push("/Dashboard");
+        }
+        else {
+          console.log("Login failed");
+        }
+
+      }, (error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -50,56 +49,58 @@ const Login = () => {
       <div className="body" style={{
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)'
-    }}>
-      <Card title="Signin" bordered>
-        <Form
-        title = "Sigin"
-          name="normal_login"
-          className="login-form"
-          initialValues={{
-            remember: true,
-          }}
-          onFinish={onFinish}
-        >
-          <Form.Item
-            name="email"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your Email!',
-              },
-            ]}
+      }}>
+        <Card title="Signin" bordered>
+          <Form
+            title="Sigin"
+            name="normal_login"
+            className="login-form"
+            initialValues={{
+              remember: true,
+            }}
+            onFinish={onFinish}
           >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
-          </Form.Item>
-          <Form.Item
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your Password!',
-              },
-            ]}
-          >
-            <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Password"
-            />
-          </Form.Item>
-          <Form.Item>
-            <a className="login-form-forgot" href="">
-              Forgot password
-            </a>
-          </Form.Item>
+            <Form.Item
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your Email!',
+                },
+              ]}
+            >
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your Password!',
+                },
+              ]}
+            >
+              <Input
+                prefix={<LockOutlined className="site-form-item-icon" />}
+                type="password"
+                placeholder="Password"
+              />
+            </Form.Item>
+            <Form.Item>
+              <a className="login-form-forgot">
+                Forgot password
+              </a>
+            </Form.Item>
 
-          <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
-              Log in
-            </Button>
-            Or <a href="">register now!</a>
-          </Form.Item>
-        </Form>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" className="login-form-button">
+                Log in
+              </Button>
+              Or <Link to={"./register"}>
+                <a>register now!</a>
+              </Link>
+            </Form.Item>
+          </Form>
         </Card>
       </div>
       <div className="error-alet">

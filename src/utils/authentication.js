@@ -1,4 +1,5 @@
 export const loginAuth = (token) => {
+    console.log(token);
     localStorage.setItem("Token", token);
 };
   
