@@ -41,7 +41,7 @@ const Sidebar = () => {
         <Menu.Item key="home">Home</Menu.Item>
         <Menu.Item key="workspace">Workspace</Menu.Item>
         {workspace.map(w => (
-          <SubMenu key="sub3" title={w.workspace_name}>
+          <SubMenu key={w.id} title={w.workspace_name}>
             <Menu.Item key="9">Dashboard</Menu.Item>
             <Menu.Item key="10">Board</Menu.Item>
             <Menu.Item key="11">Money Report</Menu.Item>
