@@ -2,8 +2,12 @@ import Sidebar from "./sidebar/Sidebar";
 import Topbar from "./Topbar";
 import Nav from "./Nav";
 import "./style/Structure.css";
+
+import { FloatingButton } from "./floatingButton/FloatingButton";
+
 import Task from "./task/Task";
 import Board from "./board/Board";
+
 
 
 function Structure() {
@@ -15,13 +19,14 @@ function Structure() {
                     <Sidebar />
                 </div>
             </div>*/
-
+      
             <div>
             //kalau mau coba component disinii
-            <Board />
+            <FloatingButton />
+            //<Board />
             </div>
         /*</div>*/
-        
+
     );
 }
 
