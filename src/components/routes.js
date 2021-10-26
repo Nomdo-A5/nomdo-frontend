@@ -2,7 +2,7 @@
   Routing Page
 */
 
-import Login from "./login/Login";
+import Login from "./Login/Login";
 import Structure from "./Structure";
 import Structure_Profile from "./Structure_Profile";
 import Register from "./register/Register";

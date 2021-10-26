@@ -2,7 +2,6 @@ import React from "react";
 import './Login.css';
 import Nav from "../Nav";
 import { useHistory } from "react-router-dom";
-import Swal from 'sweetalert2';
 import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";
 import { Form, Input, Button,Card } from 'antd';
@@ -50,7 +49,7 @@ const Login = () => {
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)'
       }}>
-        <Card title="Signin" bordered>
+        <Card title="Signin" bordered className="login-card">
           <Form
             title="Sigin"
             name="normal_login"
@@ -96,23 +95,17 @@ const Login = () => {
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Log in
               </Button>
-              Or <Link to={"./register"}>
-                <a>register now!</a>
-              </Link>
+              <div className="dont-have-text">
+                Don't have an account yet?
+                <div className="register-text">
+                  <Link to={"./register"}>
+                    <a>Register now!</a>
+                  </Link>
+                </div>
+              </div>
             </Form.Item>
           </Form>
         </Card>
-      </div>
-      <div className="error-alet">
-        {error &&
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Email atau Password salah!',
-          }).then(function () {
-            window.location = "/";
-          })
-        }
       </div>
     </div>
   );
