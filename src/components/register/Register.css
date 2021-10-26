@@ -1,5 +1,33 @@
+.sign-up-button {
+  width: 100%;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.register-card {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.register-form-button {
+  width: 100%;
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.already-have-text {
+  padding-top: 20px;
+  font-size: small;
+}
+
+.sign-in-text {
+  font-size: small;
+}
+
+--------
+
 .bodyregis{
-  background: url('background.jpg');
+  /*background: url('background.jpg');*/
   background-repeat: no-repeat;
   padding: 0;
   margin: 0;
