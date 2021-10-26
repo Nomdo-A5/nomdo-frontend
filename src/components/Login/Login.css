@@ -1,3 +1,7 @@
+.login-card {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
 .login-form {
     max-width: 300px;
 }
@@ -12,4 +16,14 @@
 
 .login-form-button {
     width: 100%;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.dont-have-text {
+    padding-top: 20px;
+    font-size: small;
+}
+
+.register-text {
+    font-size: small;
 }

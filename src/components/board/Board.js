@@ -1,9 +1,9 @@
 import React from 'react'
 import { Card, Row, Col, Button } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons'
-import './Task.css';
+import './Board.css';
 
-export default function Task(props) {
+export default function Board(props) {
 
     return (
         <div>
@@ -16,12 +16,12 @@ export default function Task(props) {
                     boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
                     backgroundColor: "#F6F6F6"
                 }}
-                title="Title"
+                title="Ini Board ya"
             >
                 <Row>
                     <div className="task-description">
                         <Col>
-                            Deskripsi Task
+                            Belum jadi
                         </Col>
                     </div>
                 </Row>

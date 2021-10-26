@@ -1,0 +1,28 @@
+.task-description {
+}
+
+.clock-and-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.clock-logo{
+    font-size: large;
+}
+
+.date-expired {
+    padding-left: 10px;
+    padding-top: 7px;
+}
+
+.task-button {
+    width: 360px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.task-button-dismiss {
+    margin-left: 10px;
+}
