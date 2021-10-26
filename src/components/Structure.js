@@ -2,7 +2,7 @@ import Sidebar from "./sidebar/Sidebar";
 import Topbar from "./Topbar";
 import Nav from "./Nav";
 import "./style/Structure.css";
-import Task from "./task/Task";
+import { FloatingButton } from "./floatingButton/FloatingButton";
 
 
 function Structure() {
@@ -21,7 +21,7 @@ function Structure() {
 
         //kalau mau coba component disini
         <div>
-            <Task />
+            <FloatingButton />
         </div>
         
     );
