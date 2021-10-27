@@ -1,0 +1,110 @@
+.task-description {
+}
+
+.name-and-logo {
+    display: flex;
+    flex-direction: row;
+}
+
+.report-name-and-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.report-logo{
+    font-size: large;
+}
+
+.report-name {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 5px;
+}
+
+.form-input-report-name {
+    width: 250px;
+    padding-left: 10px;
+}
+
+--
+
+.income-name-and-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.income-logo{
+    font-size: large;
+}
+
+.income-name {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 5px;
+}
+
+.form-input-income-name {
+    width: 250px;
+    padding-left: 10px;
+}
+
+--
+
+.outcome-name-and-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.outcome-logo{
+    font-size: large;
+}
+
+.outcome-name {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 5px;
+}
+
+.form-input-outcome-name {
+    width: 250px;
+    padding-left: 10px;
+}
+
+--
+
+.description-name-and-logo {
+    display: flex;
+    flex-direction: row;
+}
+
+.description-name-and-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding-left: 18px;
+}
+
+.description-name {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 5px;
+}
+
+.form-input-description-name {
+    width: 250px;
+    padding-left: 10px;
+}
+
+.task-button-add {
+    width: 360px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
