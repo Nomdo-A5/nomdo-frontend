@@ -7,6 +7,8 @@ import { FloatingButton } from "./floatingButton/FloatingButton";
 
 import Task from "./task/Task";
 import Board from "./board/Board";
+import Workspace from "./workspace/Workspace";
+import MoneyReport from "./moneyreport/MoneyReport";
 
 
 
@@ -22,8 +24,9 @@ function Structure() {
       
             <div>
             //kalau mau coba component disinii
-            <FloatingButton />
-            //<Board />
+            <Board />
+            <Workspace />
+            <MoneyReport />
             </div>
         /*</div>*/
 
