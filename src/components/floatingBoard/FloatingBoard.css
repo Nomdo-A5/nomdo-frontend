@@ -58,21 +58,6 @@
     padding-left: 8px;
 }
 
-.member-and-logo {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.member-logo {
-    font-size: large;
-}
-
-.member-text {
-    padding-left: 10px;
-    padding-top: 7px;
-}
-
 .task-button-dismiss {
     margin-left: 10px;
 }

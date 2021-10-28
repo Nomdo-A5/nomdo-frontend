@@ -67,21 +67,6 @@ export const FloatingBoard = () => {
                         </div>
                     </Col>
                 </Row>
-                <Row wrap={false}>                    
-                    <Col flex="none">
-                        <div className="member-and-logo">
-                            <div className="member-logo">
-                                <BsPeople/>
-                            </div>
-                            <div className="member-text">
-                                Add Member
-                            </div>
-                            <div className="add-logo">
-                                <GrAddCircle/>
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
             </div>
           </Modal>
         </>

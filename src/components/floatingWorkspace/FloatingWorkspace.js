@@ -55,28 +55,13 @@ export const FloatingWorkspace = () => {
                     <div className="balance-name-and-logo">
                         <div className="balance-name-and-input">
                             <div className="balance-name">
-                                Available Balance
+                                Description
                             </div>
                             <div className="form-input-balance-name">
-                                <Input placeholder="Available Balance" style={{ borderRadius:"10px 10px 10px 10px"}}/>
+                                <Input placeholder="Description" style={{ borderRadius:"10px 10px 10px 10px"}}/>
                             </div>
                         </div>
                     </div>
-                </Row>
-                <Row wrap={false}>                    
-                    <Col flex="none">
-                        <div className="member-and-logo">
-                            <div className="member-logo">
-                                <BsPeople/>
-                            </div>
-                            <div className="member-text">
-                                Add Member
-                            </div>
-                            <div className="add-logo">
-                                <GrAddCircle/>
-                            </div>
-                        </div>
-                    </Col>
                 </Row>
             </div>
           </Modal>
