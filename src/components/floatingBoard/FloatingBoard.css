@@ -72,3 +72,14 @@
     padding-left: 10px;
     padding-top: 7px;
 }
+
+.task-button-dismiss {
+    margin-left: 10px;
+}
+
+.task-button-add {
+    width: 360px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+}

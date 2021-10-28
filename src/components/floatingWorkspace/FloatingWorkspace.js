@@ -1,25 +1,41 @@
 import React from 'react'
-import { Card, Row, Col, Button, Input } from 'antd';
+import { Button, Tooltip, Modal } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import Draggable from 'react-draggable';
+import { useState } from 'react';
+
+import { Card, Row, Col, Input } from 'antd';
 import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
-import './Workspace.css';
+import '../floatingWorkspace/FloatingWorkspace.css';
 
-export default function Workspace(props) {
+export const FloatingWorkspace = () => {
+    
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
     return (
-        <div>
-            <Card
-                style={{
-                    width: "360px",
-                    height: "310px",
-                    borderRadius: "16px",
-                    marginRight: "24px",
-                    boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
-                    backgroundColor: "#F6F6F6"
-                }}
-                title="New Workspace"
-            >
+        <>
+          <Button type="primary" onClick={showModal}>
+            Modal Workspace
+          </Button>
+          <Modal title="New Workspace" visible={isModalVisible} 
+            okText="Add" onOk={handleOk} onCancel={handleCancel}
+            style={{ textAlign: "center" }} width={340}>
+            
+            <div>
                 <Row>
                     <div className="workspace-name-and-logo">
                         <div className="workspace-logo">
@@ -62,12 +78,8 @@ export default function Workspace(props) {
                         </div>
                     </Col>
                 </Row>
-                <Row wrap={false}>
-                    <div className="task-button-add">
-                        <Button type="success" style={{ background: "#C9EBE6", borderColor: "#657673", width: "100px", borderRadius: "25px 25px 25px 25px" }}>Add</Button>
-                    </div>
-                </Row>
-            </Card>
-        </div>
-    );
-}
+            </div>
+          </Modal>
+        </>
+      );
+    }

@@ -3,7 +3,10 @@ import Topbar from "./Topbar";
 import Nav from "./Nav";
 import "./style/Structure.css";
 
-import { FloatingButton } from "./floatingButton/FloatingButton";
+import { FloatingBoard } from "./floatingBoard/FloatingBoard";
+import { FloatingWorkspace } from "./floatingWorkspace/FloatingWorkspace";
+import { FloatingMoneyReport } from "./floatingMoneyReport/FloatingMoneyReport";
+import { JoinWorkspace } from "./joinWorkspace/JoinWorkspace";
 
 import Task from "./task/Task";
 import Board from "./board/Board";
@@ -24,9 +27,10 @@ function Structure() {
       
             <div>
             //kalau mau coba component disinii
-            <Board />
-            <Workspace />
-            <MoneyReport />
+            <FloatingBoard />
+            <FloatingWorkspace />
+            <FloatingMoneyReport />
+            <JoinWorkspace />
             </div>
         /*</div>*/
 
