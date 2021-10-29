@@ -1,50 +1,49 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap");
-
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .nav {
-  height: 8vh;
-  border-bottom: 2px solid #C4C4C4;
+    height: 8vh;
+    border-bottom: 2px solid #C4C4C4;
 }
 
 .nav-title {
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  display: flex;
-  text-decoration: none;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    text-decoration: none;
 }
 
 p {
-  font-family: "Roboto Condensad";
-  font-size: 16px;
-  font-weight: 300;
+    font-family: "Roboto Condensad";
+    font-size: 16px;
+    font-weight: 300;
 }
 
 .nav-desc {
-  height: 8vh;
-  width: 100%;
-  margin: auto;
-  display: flex;
-  flex-direction: row;
+    height: 8vh;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
 }
 
-.nav-desc-logo{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  width: 15%;
+.nav-desc-logo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 15%;
 }
 
 .nav-profile {
-  text-decoration: none;
-  text-align: right;
-  width: 80%;
-  margin: auto;
-  background-color: white;
+    text-decoration: none;
+    text-align: right;
+    width: 80%;
+    margin: auto;
+    background-color: white;
 }

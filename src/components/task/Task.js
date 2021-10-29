@@ -13,15 +13,16 @@ export default function Task(props) {
                     height: "192px",
                     borderRadius: "16px",
                     marginRight: "24px",
+                    marginTop: "50px",
                     boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
                     backgroundColor: "#F6F6F6"
                 }}
-                title="Title"
+                title={props.task_name}
             >
                 <Row>
                     <div className="task-description">
                         <Col>
-                            Deskripsi Task
+                            {props.task_description}
                         </Col>
                     </div>
                 </Row>
@@ -35,7 +36,7 @@ export default function Task(props) {
                                 <ClockCircleOutlined/>
                             </div>
                             <div className="date-expired">
-                                Deadline Date
+                                {props.due_date}
                             </div>
                         </div>
                     </Col>
