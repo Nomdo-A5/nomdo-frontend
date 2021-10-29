@@ -6,6 +6,7 @@ import Login from "./Login/Login";
 import Structure from "./Structure";
 import Structure_Profile from "./Structure_Profile";
 import Register from "./register/Register";
+import { Home } from "../pages/home/Home";
 export const APP_ROUTE = [
   {
     name: "Login",
@@ -22,10 +23,10 @@ export const APP_ROUTE = [
     restricted: true,
   },
   {
-    name: "Dashboard",
-    path: "/Dashboard",
+    name: "Home",
+    path: "/home",
     exact: true,
-    component: Structure,
+    component: Home,
     private: true,
   },
   {
