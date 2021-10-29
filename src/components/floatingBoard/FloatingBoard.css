@@ -1,66 +1,61 @@
-.task-description {
-}
-
-.board-name-and-logo {
+.workspace-name-and-logo {
     display: flex;
     flex-direction: row;
 }
 
-.board-name-and-input {
+.workspace-name-and-input {
     display: flex;
     flex-direction: column;
     justify-content: left;
 }
 
-.board-logo{
+.workspace-logo{
     font-size: large;
 }
 
-.board-name {
+.workspace-name {
     text-align: left;
     padding-left: 10px;
     padding-top: 7px;
     padding-bottom: 5px;
 }
 
-.form-input-board-name {
+.form-input-workspace-name {
     width: 250px;
     padding-left: 10px;
 }
 
-.task-and-logo {
+.balance-name-and-logo {
     display: flex;
     flex-direction: row;
-    justify-content: center;
 }
 
-.task-logo {
+.balance-name-and-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding-left: 18px;
+}
+
+.balance-logo{
     font-size: large;
 }
 
-.task-text {
+.balance-name {
+    text-align: left;
     padding-left: 10px;
     padding-top: 7px;
+    padding-bottom: 5px;
+}
+
+.form-input-balance-name {
+    width: 250px;
+    padding-left: 10px;
 }
 
 .add-logo {
     font-size: large;
     padding-left: 8px;
-}
-
-.member-and-logo {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.member-logo {
-    font-size: large;
-}
-
-.member-text {
-    padding-left: 10px;
-    padding-top: 7px;
 }
 
 .task-button-dismiss {

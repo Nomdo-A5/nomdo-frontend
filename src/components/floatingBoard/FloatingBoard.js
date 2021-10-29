@@ -1,25 +1,42 @@
 import React from 'react'
-import { Card, Row, Col, Button, Input } from 'antd';
+import { Button, Tooltip, Modal } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import Draggable from 'react-draggable';
+import { useState } from 'react';
+
+import { Card, Row, Col, Input } from 'antd';
 import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
-import './Board.css';
+import '../floatingBoard/FloatingBoard.css';
 
-export default function Board(props) {
+export const FloatingBoard = () => {
+    
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
     return (
-        <div>
-            <Card
-                style={{
-                    width: "360px",
-                    height: "280px",
-                    borderRadius: "16px",
-                    marginRight: "24px",
-                    boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
-                    backgroundColor: "#F6F6F6"
-                }}
-                title="New Board"
-            >
+        <>
+          <Button type="primary" onClick={showModal}>
+            Modal Board
+          </Button>
+          <Modal title="New Board" visible={isModalVisible} 
+            onOk={handleOk} onCancel={handleCancel}
+            style={{ textAlign: "center" }}
+            okText="Add" width={340}>
+            
+            <div>
                 <Row>
                     <div className="board-name-and-logo">
                         <div className="board-logo">
@@ -50,27 +67,8 @@ export default function Board(props) {
                         </div>
                     </Col>
                 </Row>
-                <Row wrap={false}>                    
-                    <Col flex="none">
-                        <div className="member-and-logo">
-                            <div className="member-logo">
-                                <BsPeople/>
-                            </div>
-                            <div className="member-text">
-                                Add Member
-                            </div>
-                            <div className="add-logo">
-                                <GrAddCircle/>
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
-                <Row wrap={false}>
-                    <div className="task-button-add">
-                        <Button type="success" style={{ background: "#C9EBE6", borderColor: "#657673", width: "100px", borderRadius: "25px 25px 25px 25px" }}>Add</Button>
-                    </div>
-                </Row>
-            </Card>
-        </div>
-    );
-}
+            </div>
+          </Modal>
+        </>
+      );
+    }

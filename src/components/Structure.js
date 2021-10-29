@@ -9,6 +9,18 @@ import { useState, useEffect } from "react";
 import { BASE_API_URL } from "../constants/urls";
 import axios from "axios";
 import { getToken } from "../utils/authentication";
+import "./style/Structure.css";
+
+import { FloatingBoard } from "./floatingBoard/FloatingBoard";
+import { FloatingWorkspace } from "./floatingWorkspace/FloatingWorkspace";
+import { FloatingMoneyReport } from "./floatingMoneyReport/FloatingMoneyReport";
+import { JoinWorkspace } from "./joinWorkspace/JoinWorkspace";
+
+import Task from "./task/Task";
+import Board from "./board/Board";
+import Workspace from "./workspace/Workspace";
+import MoneyReport from "./moneyreport/MoneyReport";
+
 
 function Structure() {
     
@@ -21,10 +33,15 @@ function Structure() {
         //         </div>
         //     </div>
 
-        //kalau mau coba component disinii
-        <div>
-           <div>            
+        <div>      
+            <div>
+            //kalau mau coba component disinii
             <FloatingButton />
+            <FloatingBoard />
+            <FloatingWorkspace />
+            <FloatingMoneyReport />
+            <JoinWorkspace />
+
             </div>
         </div>
         
