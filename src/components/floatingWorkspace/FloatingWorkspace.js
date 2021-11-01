@@ -58,7 +58,7 @@ export const FloatingWorkspace = () => {
                                 Description
                             </div>
                             <div className="form-input-balance-name">
-                                <Input placeholder="Description" style={{ borderRadius:"10px 10px 10px 10px"}}/>
+                                <Input placeholder="Description" style={{ rows: "14", cols: "10", wrap: "soft", height: "80px", borderRadius:"10px 10px 10px 10px" }}/>
                             </div>
                         </div>
                     </div>

@@ -6,6 +6,12 @@
 }
 
 .nav {
+    background-color: white;
+    z-index: 1;
+    position: sticky;
+    width: 100%;
+    top: 0;
+    left: 0;
     height: 8vh;
     border-bottom: 2px solid #C4C4C4;
 }
