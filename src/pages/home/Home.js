@@ -7,6 +7,13 @@ import axios from "axios";
 import { getToken } from '../../utils/authentication';
 
 import { Layout, Space } from "antd";
+import "./Home.css";
+
+import { FloatingButton } from "../../components/floatingButton/FloatingButton";
+import { FloatingBoard } from "../../components/floatingBoard/FloatingBoard";
+import { FloatingWorkspace } from "../../components/floatingWorkspace/FloatingWorkspace";
+import { FloatingMoneyReport } from "../../components/floatingMoneyReport/FloatingMoneyReport";
+import { JoinWorkspace } from "../../components/joinWorkspace/JoinWorkspace";
 
 export const Home = () =>{
     
@@ -33,6 +40,9 @@ export const Home = () =>{
             <Layout>
                 <Sider>
                     <Sidebar />
+                    <div className="floating-button-component">
+                        <FloatingButton />
+                    </div>
                 </Sider>
                 <Layout >
                     <Space wrap style={{ backgroundColor: "#FFFFFF" }}>
