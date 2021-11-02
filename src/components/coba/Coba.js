@@ -1,13 +1,8 @@
-import React from 'react'
-import { Button, Modal } from 'antd';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Button, Modal, Form, Input, Radio } from 'antd';
 
-import { Input, Form } from 'antd';
-import { MailOutlined } from '@ant-design/icons'
 import '../floatingWorkspace/FloatingWorkspace.css';
-import { BASE_API_URL } from "../../constants/urls";
-import axios from "axios";
-import { getToken } from "../../utils/authentication";
+import { MailOutlined} from '@ant-design/icons'
 
 
 const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
@@ -77,33 +72,19 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
                             </div>
                         </div>
                     </div>
+
                 </Form.Item>
+
             </Form>
         </Modal>
     );
 };
 
-export const FloatingWorkspace = () => {
+const Coba = () => {
     const [visible, setVisible] = useState(false);
-    const [workspace_name, setWorkspaceName] = useState([]);
-    const [workspace_description, setWorkspaceDescription] = useState([]);
 
-
-    const onCreate = async(values) => {
+    const onCreate = (values) => {
         console.log('Received values of form: ', values);
-        
-        const token = getToken();
-        const response = await axios.post(BASE_API_URL + 'workspace', {
-            workspace_name: values.workspace_name,
-            workspace_description: values.workspace_description
-        },
-        {            
-            headers: {
-            'Authorization': `Bearer ${token}`
-          },
-        });
-        console.log(response);
-
         setVisible(false);
     };
 
@@ -115,7 +96,7 @@ export const FloatingWorkspace = () => {
                     setVisible(true);
                 }}
             >
-                Floating Workspace
+                New Collection
             </Button>
             <CollectionCreateForm
                 visible={visible}
@@ -127,3 +108,5 @@ export const FloatingWorkspace = () => {
         </div>
     );
 };
+
+export default Coba

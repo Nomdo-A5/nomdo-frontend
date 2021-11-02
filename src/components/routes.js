@@ -23,6 +23,13 @@ export const APP_ROUTE = [
     restricted: true,
   },
   {
+    name: "Dashboard",
+    path: "/dashboard",
+    exact: true,
+    component: Structure,
+    private: true,
+  },
+  {
     name: "Home",
     path: "/home",
     exact: true,

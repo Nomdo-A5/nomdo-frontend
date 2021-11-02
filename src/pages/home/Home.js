@@ -8,6 +8,7 @@ import { getToken } from '../../utils/authentication';
 
 import { Layout, Space } from "antd";
 
+import { FloatingWorkspace } from '../../components/floatingWorkspace/FloatingWorkspace';
 export const Home = () =>{
     
     const { Header, Content, Sider } = Layout;
@@ -35,6 +36,7 @@ export const Home = () =>{
                     <Sidebar />
                 </Sider>
                 <Layout >
+                    <FloatingWorkspace />
                     <Space wrap style={{ backgroundColor: "#FFFFFF" }}>
                         {task.map(t => (
                             <Task task_id={t.id} task_name={t.task_name} task_description={t.task_description} />
