@@ -9,6 +9,15 @@ import { getToken } from '../../utils/authentication';
 import { Layout, Space } from "antd";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { FloatingWorkspace } from '../../components/floatingWorkspace/FloatingWorkspace';
+
+import "./Home.css";
+
+import { FloatingButton } from "../../components/floatingButton/FloatingButton";
+import { FloatingBoard } from "../../components/floatingBoard/FloatingBoard";
+import { FloatingWorkspace } from "../../components/floatingWorkspace/FloatingWorkspace";
+import { FloatingMoneyReport } from "../../components/floatingMoneyReport/FloatingMoneyReport";
+import { JoinWorkspace } from "../../components/joinWorkspace/JoinWorkspace";
+
 export const Home = () =>{
     
     const { Header, Content, Sider } = Layout;
@@ -49,6 +58,10 @@ export const Home = () =>{
             <Layout>
                 <Sider>
                     <Sidebar/>
+                    <Sidebar />
+                    <div className="floating-button-component">
+                        <FloatingButton />
+                    </div>
                 </Sider>
                 <Layout >                    
                     <FloatingWorkspace />

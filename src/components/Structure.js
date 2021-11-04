@@ -16,6 +16,7 @@ import { FloatingWorkspace } from "./floatingWorkspace/FloatingWorkspace";
 import { FloatingMoneyReport } from "./floatingMoneyReport/FloatingMoneyReport";
 import { JoinWorkspace } from "./joinWorkspace/JoinWorkspace";
 import Coba from "./coba/Coba";
+
 import Board from "./board/Board";
 import Workspace from "./workspace/Workspace";
 import MoneyReport from "./moneyreport/MoneyReport";

@@ -4,7 +4,10 @@ import { NotificationOutlined } from '@ant-design/icons';
 import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";
 import { getToken, isLogin } from "../../utils/authentication";
+
 import { WorkspaceContext } from "../../context/WorkspaceContext";
+
+import "./Sidebar.css";
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
@@ -17,6 +20,8 @@ const Sidebar = () => {
       height: '100vh',
       position: 'fixed',
       left: 0,
+      top: '8vh',
+      backgroundColor: 'white',
     }}>
       <Menu
         mode="inline"
