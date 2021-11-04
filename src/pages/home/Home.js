@@ -7,12 +7,29 @@ import axios from "axios";
 import { getToken } from '../../utils/authentication';
 
 import { Layout, Space } from "antd";
-
+import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { FloatingWorkspace } from '../../components/floatingWorkspace/FloatingWorkspace';
 export const Home = () =>{
     
     const { Header, Content, Sider } = Layout;
     const [task, setTask] = useState([]);
+    const [workspace, setWorkspace] = useState([]);  
+
+    useEffect(() => {
+        //GetWorkspace()
+        GetTask()
+      }, [])    
+
+    // const GetWorkspace = async () => {
+    //     const token = getToken();
+    //     const response = await axios.get(BASE_API_URL + 'workspace', {
+    //       headers: {
+    //         'Authorization': `Bearer ${token}`
+    //       }
+    //     });
+    //     setWorkspace(response.data.workspace);
+    //     console.log(response);
+    // };
 
     const GetTask = async () => {
         const token = getToken();
@@ -25,26 +42,27 @@ export const Home = () =>{
         console.log(response);
     };
 
-    useEffect(() => {
-        GetTask()
-    }, [])
     return (
-        <div>
+        <WorkspaceContextProvider>
+            <div>
             <Nav />
             <Layout>
                 <Sider>
-                    <Sidebar />
+                    <Sidebar/>
                 </Sider>
-                <Layout >
+                <Layout >                    
                     <FloatingWorkspace />
                     <Space wrap style={{ backgroundColor: "#FFFFFF" }}>
                         {task.map(t => (
-                            <Task task_id={t.id} task_name={t.task_name} task_description={t.task_description} />
+                            <Task key={t.id} task_id={t.id} task_name={t.task_name} task_description={t.task_description} />
                         ))}
                     </Space>
                 </Layout>
             </Layout>
-        </div>
+            </div>
+        </WorkspaceContextProvider>
+            
+        
 
     )
 }

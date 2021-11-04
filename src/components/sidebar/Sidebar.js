@@ -1,30 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useContext } from "react";
 import { Layout, Menu } from 'antd';
 import { NotificationOutlined } from '@ant-design/icons';
 import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";
 import { getToken, isLogin } from "../../utils/authentication";
+import { WorkspaceContext } from "../../context/WorkspaceContext";
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 const Sidebar = () => {
-  const [workspace, setWorkspace] = useState([]);
-
-  const GetWorkspace = async () => {
-    const token = getToken();
-    const response = await axios.get(BASE_API_URL + 'workspace', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    setWorkspace(response.data.workspace);
-    console.log(response);
-  };
-
-  useEffect(() => {
-    GetWorkspace()
-  }, [])
-
+  
+  const context = useContext(WorkspaceContext)
   return (
     <Sider width={200} className="site-layout-background" style={{
       overflow: 'auto',
@@ -40,12 +26,12 @@ const Sidebar = () => {
       >
         <Menu.Item key="home">Home</Menu.Item>
         <Menu.Item key="workspace">Workspace</Menu.Item>
-        {workspace.map(w => (
+        {context.workspace.map(w => (
           <SubMenu key={w.id} title={w.workspace_name}>
-            <Menu.Item key="9">Dashboard</Menu.Item>
-            <Menu.Item key="10">Board</Menu.Item>
-            <Menu.Item key="11">Money Report</Menu.Item>
-            <Menu.Item key="12">Setting</Menu.Item>
+            <Menu.Item >Dashboard</Menu.Item>
+            <Menu.Item >Board</Menu.Item>
+            <Menu.Item >Money Report</Menu.Item>
+            <Menu.Item >Setting</Menu.Item>
           </SubMenu>
         ))}
 

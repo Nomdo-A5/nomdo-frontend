@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Modal } from 'antd';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import { Input, Form } from 'antd';
 import { MailOutlined } from '@ant-design/icons'
@@ -8,6 +8,7 @@ import '../floatingWorkspace/FloatingWorkspace.css';
 import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";
 import { getToken } from "../../utils/authentication";
+import { WorkspaceContext } from '../../context/WorkspaceContext';
 
 
 const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
@@ -88,10 +89,9 @@ export const FloatingWorkspace = () => {
     const [workspace_name, setWorkspaceName] = useState([]);
     const [workspace_description, setWorkspaceDescription] = useState([]);
 
-
-    const onCreate = async(values) => {
-        console.log('Received values of form: ', values);
-        
+    const context = useContext(WorkspaceContext)
+    
+    const onCreate = async(values) => {        
         const token = getToken();
         const response = await axios.post(BASE_API_URL + 'workspace', {
             workspace_name: values.workspace_name,
@@ -102,6 +102,9 @@ export const FloatingWorkspace = () => {
             'Authorization': `Bearer ${token}`
           },
         });
+        context.setWorkspace((previous) => {
+            return [...previous, response.data.workspace]
+        })
         console.log(response);
 
         setVisible(false);
