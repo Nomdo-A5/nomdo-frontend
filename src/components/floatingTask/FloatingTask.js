@@ -5,12 +5,12 @@ import Draggable from 'react-draggable';
 import { useState } from 'react';
 
 import { Card, Row, Col, Input } from 'antd';
-import { ClockCircleOutlined, MailOutlined, UserOutlined, CopyOutlined } from '@ant-design/icons'
+import { FormOutlined, ClockCircleOutlined, MailOutlined, UserOutlined, CopyOutlined } from '@ant-design/icons'
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
-import '../joinWorkspace/JoinWorkspace.css';
+import '../floatingTask/FloatingTask.css';
 
-export const JoinWorkspace = () => {
+export const FloatingTask = () => {
     
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -29,29 +29,26 @@ export const JoinWorkspace = () => {
     return (
         <>
           <Button type="primary" onClick={showModal}>
-            Join Workspace
+            New Task
           </Button>
-          <Modal title="Join Workspace" visible={isModalVisible} 
+          <Modal title="New Task" visible={isModalVisible} 
             onOk={handleOk} onCancel={handleCancel}
             style={{ textAlign: "center" }}
             okText="Add" width={340}>
             
             <div>
                 <Row>
-                    <div className="join-name-and-logo">
+                    <div className="task-name-and-logo">
                         <div className="workspace-logo">
-                            <MailOutlined/>
+                            <FormOutlined />
                         </div>
-                        <div className="join-name-and-input">
+                        <div className="task-name-and-input">
                             <div className="workspace-name">
-                                Get Link
+                                Task Name
                             </div>
                             <div className="input-area">
-                                <div className="form-input-join-name">
-                                    <Input placeholder="Workspace Link"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
-                                </div>
-                                <div className="workspace-logo-copy">
-                                    <CopyOutlined />
+                                <div className="form-input-task-name">
+                                    <Input placeholder="Add Task Name"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
                                 </div>
                             </div>
                         </div>
