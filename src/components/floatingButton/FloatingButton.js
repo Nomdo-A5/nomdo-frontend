@@ -3,7 +3,15 @@ import { Button, Tooltip, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import Draggable from 'react-draggable';
 import { useState } from 'react';
-import Task from '../../components/task/Task';
+
+import "./FloatingButton.css";
+
+import { FloatingBoard } from "../floatingBoard/FloatingBoard";
+import { FloatingWorkspace } from "../floatingWorkspace/FloatingWorkspace";
+import { FloatingMoneyReport } from "../floatingMoneyReport/FloatingMoneyReport";
+import { FloatingTask } from "../floatingTask/FloatingTask";
+import { JoinWorkspace } from "../joinWorkspace/JoinWorkspace";
+
 export const FloatingButton = () => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -24,10 +32,17 @@ export const FloatingButton = () => {
 
     return (
         <div>
-            <Tooltip title="new">
+            <Tooltip title="">
                 <Button onClick={showModal} shape="circle" icon={<PlusOutlined style={{ color: "#FFFFFF" }} />} size="large" style={{ background: '#4ABDAC' }} />
             </Tooltip>
-            <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+            <Modal title="Menu" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                <div className="floating-form">
+                    <div className="floating-form-box"><FloatingBoard /></div>
+                    <div className="floating-form-box"><FloatingWorkspace /></div>
+                    <div className="floating-form-box"><FloatingTask /></div>
+                    <div className="floating-form-box"><JoinWorkspace /></div>
+                    
+                </div>
             </Modal>
         </div>
     )

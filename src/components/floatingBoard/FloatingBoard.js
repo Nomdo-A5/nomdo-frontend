@@ -66,25 +66,6 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
                     </div>
                 </Form.Item>
 
-                <Form.Item>
-
-                </Form.Item>
-                <Row wrap={false}>
-                    <Col flex="none">
-                        <div className="task-and-logo">
-                            <div className="task-logo">
-                                <BsListTask />
-                            </div>
-                            <div className="task-text">
-                                Add Task
-                            </div>
-                            <div className="add-logo">
-                                <GrAddCircle />
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
-
             </Form>
         </Modal>
     );
@@ -106,7 +87,8 @@ export const FloatingBoard = () => {
                     setVisible(true);
                 }}
             >
-                Floating Board
+                New Board
+
             </Button>
             <NewBoardForm
                 visible={visible}

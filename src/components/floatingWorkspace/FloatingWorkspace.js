@@ -10,6 +10,7 @@ import axios from "axios";
 import { getToken } from "../../utils/authentication";
 import { WorkspaceContext } from '../../context/WorkspaceContext';
 
+import "./FloatingWorkspace.css";
 
 const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
@@ -18,7 +19,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
             width={340}
             style={{ textAlign: "center" }}
             visible={visible}
-            title="Create a new collection"
+            title="Create a new collections"
             okText="Create"
             cancelText="Cancel"
             onCancel={onCancel}
@@ -118,7 +119,7 @@ export const FloatingWorkspace = () => {
                     setVisible(true);
                 }}
             >
-                Floating Workspace
+                New Workspace
             </Button>
             <CollectionCreateForm
                 visible={visible}

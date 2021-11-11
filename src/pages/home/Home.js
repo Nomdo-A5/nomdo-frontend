@@ -8,10 +8,10 @@ import { getToken } from '../../utils/authentication';
 
 import { Layout, Space } from "antd";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
-import { FloatingWorkspace } from '../../components/floatingWorkspace/FloatingWorkspace';
 
 import "./Home.css";
 
+import { Tablereport } from "../../components/tablereport/Tablereport";
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
 import { FloatingBoard } from "../../components/floatingBoard/FloatingBoard";
 import { FloatingMoneyReport } from "../../components/floatingMoneyReport/FloatingMoneyReport";
@@ -51,8 +51,7 @@ export const Home = () =>{
                         <FloatingButton />
                     </div>
                 </Sider>
-                <Layout >                
-                    <FloatingBoard />
+                <Layout >  
                     <Space wrap style={{ backgroundColor: "#FFFFFF" }}>
                         {task.map(t => (
                             <Task key={t.id} task_id={t.id} task_name={t.task_name} task_description={t.task_description} />
