@@ -14,7 +14,6 @@ import "./Home.css";
 import { Tablereport } from "../../components/tablereport/Tablereport";
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
 import { FloatingBoard } from "../../components/floatingBoard/FloatingBoard";
-import { FloatingWorkspace } from "../../components/floatingWorkspace/FloatingWorkspace";
 import { FloatingMoneyReport } from "../../components/floatingMoneyReport/FloatingMoneyReport";
 import { JoinWorkspace } from "../../components/joinWorkspace/JoinWorkspace";
 
@@ -28,17 +27,6 @@ export const Home = () =>{
         //GetWorkspace()
         GetTask()
       }, [])    
-
-    // const GetWorkspace = async () => {
-    //     const token = getToken();
-    //     const response = await axios.get(BASE_API_URL + 'workspace', {
-    //       headers: {
-    //         'Authorization': `Bearer ${token}`
-    //       }
-    //     });
-    //     setWorkspace(response.data.workspace);
-    //     console.log(response);
-    // };
 
     const GetTask = async () => {
         const token = getToken();
@@ -63,7 +51,7 @@ export const Home = () =>{
                         <FloatingButton />
                     </div>
                 </Sider>
-                <Layout >              
+                <Layout >  
                     <Space wrap style={{ backgroundColor: "#FFFFFF" }}>
                         {task.map(t => (
                             <Task key={t.id} task_id={t.id} task_name={t.task_name} task_description={t.task_description} />

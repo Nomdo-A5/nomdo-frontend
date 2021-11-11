@@ -88,6 +88,7 @@ export const FloatingBoard = () => {
                 }}
             >
                 New Board
+
             </Button>
             <NewBoardForm
                 visible={visible}
