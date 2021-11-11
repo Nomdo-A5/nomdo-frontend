@@ -96,18 +96,6 @@ export const FloatingBoard = () => {
     const [visible, setVisible] = useState(false);
 
     const onCreate = async (values) => {
-        // const token = getToken();
-        // const response = await axios.post(BASE_API_URL + 'workspace', {
-        //     workspace_name: values.workspace_name,
-        //     workspace_description: values.workspace_description
-        // },
-        //     {
-        //         headers: {
-        //             'Authorization': `Bearer ${token}`
-        //         },
-        //     });
-        // console.log(response);
-
         setVisible(false);
     };
     return (
