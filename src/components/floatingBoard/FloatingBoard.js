@@ -12,80 +12,83 @@ import '../floatingBoard/FloatingBoard.css';
 
 const NewBoardForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
-    <Modal
-        title="New Board"
-        visible={visible}
-        onOk={() => {
-            form
-                .validateFields()
-                .then((values) => {
-                    form.resetFields();
-                    onCreate(values);
-                })
-                .catch((info) => {
-                    console.log('Validate Failed:', info);
-                });
-        }}
-        onCancel={onCancel}
-        style={{ textAlign: "center" }}
-        okText="Add"
-        width={340}
-    >
-        <Form
-            form={form}
-            layout="vertical"
-            name="form_in_modal"
-            initialValues={{
-                modifier: 'public',
+    return (
+        <Modal
+            title="New Board"
+            visible={visible}
+            onOk={() => {
+                form
+                    .validateFields()
+                    .then((values) => {
+                        form.resetFields();
+                        onCreate(values);
+                    })
+                    .catch((info) => {
+                        console.log('Validate Failed:', info);
+                    });
             }}
+            onCancel={onCancel}
+            style={{ textAlign: "center" }}
+            okText="Add"
+            width={340}
         >
-
-
-            <Form.Item
-                name="board_name"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input the new board name!',
-                    },
-                ]}
+            <Form
+                form={form}
+                layout="vertical"
+                name="form_in_modal"
+                initialValues={{
+                    modifier: 'public',
+                }}
             >
-                <div className="board-name-and-logo">
-                    <div className="board-logo">
-                        <MailOutlined />
-                    </div>
-                    <div className="board-name-and-input">
-                        <div className="board-name">
-                            Board Name
-                        </div>
-                        <div className="form-input-board-name">
-                            <Input placeholder="Board Name" style={{ borderRadius: "10px 10px 10px 10px" }} />
-                        </div>
-                    </div>
-                </div>
-            </Form.Item>
 
-            <Form.Item>
-                
-            </Form.Item>
-            <Row wrap={false}>
-                <Col flex="none">
-                    <div className="task-and-logo">
-                        <div className="task-logo">
-                            <BsListTask />
+
+                <Form.Item
+                    name="board_name"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input the new board name!',
+                        },
+                    ]}
+                >
+                    <div className="board-name-and-logo">
+                        <div className="board-logo">
+                            <MailOutlined />
                         </div>
-                        <div className="task-text">
-                            Add Task
-                        </div>
-                        <div className="add-logo">
-                            <GrAddCircle />
+                        <div className="board-name-and-input">
+                            <div className="board-name">
+                                Board Name
+                            </div>
+                            <div className="form-input-board-name">
+                                <Input placeholder="Board Name" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                            </div>
                         </div>
                     </div>
-                </Col>
-            </Row>
+                </Form.Item>
 
-        </Form>
-    </Modal>
+                <Form.Item>
+
+                </Form.Item>
+                <Row wrap={false}>
+                    <Col flex="none">
+                        <div className="task-and-logo">
+                            <div className="task-logo">
+                                <BsListTask />
+                            </div>
+                            <div className="task-text">
+                                Add Task
+                            </div>
+                            <div className="add-logo">
+                                <GrAddCircle />
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
+
+            </Form>
+        </Modal>
+    );
+
 }
 export const FloatingBoard = () => {
 
@@ -115,7 +118,7 @@ export const FloatingBoard = () => {
                     setVisible(true);
                 }}
             >
-                Floating Workspace
+                Floating Board
             </Button>
             <NewBoardForm
                 visible={visible}
