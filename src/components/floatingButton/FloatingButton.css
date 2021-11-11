@@ -1,0 +1,24 @@
+.floating-form{
+    width: 100%;
+    height:150px;
+    display:grid;
+    grid-template-columns: 200px 200px;
+    grid-row: auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-content: center;
+}
+
+.floating-form-box{
+    background-color: #1890FF;
+    padding:0px;
+    border-radius:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.floating-form-box:visited{
+    background-color: #41A8FD;
+}
+  
