@@ -9,7 +9,7 @@ export default function Task (props) {
         <div>
             <Card
                 style={{
-                    width: "260px",
+                    width: "240px",
                     height: "192px",
                     borderRadius: "16px",
                     marginRight: "24px",
@@ -44,10 +44,10 @@ export default function Task (props) {
                 <Row wrap={false}>
                     <div className="task-button">
                         <div className="task-button-complete">
-                            <Button type="success" style={{ background: "#C9EBE6", borderColor: "#657673", width: "100px" }}>Complete</Button>
+                            <Button type="success" style={{ background: "#C9EBE6", borderColor: "#657673", width: "90px" }}>Complete</Button>
                         </div>
                         <div className="task-button-dismiss">
-                            <Button type="success" style={{ background: "#EBC9C9", borderColor: "#766565", width: "100px" }}>Dismiss</Button>
+                            <Button type="success" style={{ background: "#EBC9C9", borderColor: "#766565", width: "90px" }}>Dismiss</Button>
                         </div>
                     </div>
                 </Row>

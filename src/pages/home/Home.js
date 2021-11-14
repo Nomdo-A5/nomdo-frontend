@@ -54,7 +54,7 @@ const Home = () =>{
                     </div>
                 </Sider>
                 <Layout >  
-                    <Space wrap style={{ backgroundColor: "#FFFFFF" }}>
+                    <Space wrap style={{ paddingLeft: "30px", backgroundColor: "#FFFFFF" }}>
                         {task.map(t => (
                             <Task key={t.id} task_id={t.id} task_name={t.task_name} task_description={t.task_description} />
                         ))}
