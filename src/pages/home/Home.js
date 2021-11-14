@@ -17,7 +17,7 @@ import { FloatingBoard } from "../../components/floatingBoard/FloatingBoard";
 import { FloatingMoneyReport } from "../../components/floatingMoneyReport/FloatingMoneyReport";
 import { JoinWorkspace } from "../../components/joinWorkspace/JoinWorkspace";
 
-export const Home = () =>{
+const Home = () =>{
     
     const { Header, Content, Sider } = Layout;
     const [task, setTask] = useState([]);
@@ -45,13 +45,12 @@ export const Home = () =>{
             <Nav />
             <Layout>
                 <Sider>
-                    <Sidebar/>
                     <Sidebar />
                     <div className="floating-button-component">
                         <FloatingButton />
                     </div>
                 </Sider>
-                <Layout >  
+                <Layout >
                     <Space wrap style={{ backgroundColor: "#FFFFFF" }}>
                         {task.map(t => (
                             <Task key={t.id} task_id={t.id} task_name={t.task_name} task_description={t.task_description} />
@@ -66,3 +65,5 @@ export const Home = () =>{
 
     )
 }
+
+export default Home;

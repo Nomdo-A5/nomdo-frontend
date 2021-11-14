@@ -35,10 +35,10 @@ const App = () => {
               );
             }
           })}
-          <Route exact path="/" component={Login} />
+          {/* <Route exact path="/" component={Login} />
           <Route exact path="/Register" component={Register} />
           <Route path="/Dashboard" component={Structure} />
-          <Route path="/User_Profile" component={Structure_Profile} />
+          <Route path="/User_Profile" component={Structure_Profile} /> */}
         </Switch>
       </BrowserRouter>
     </div>

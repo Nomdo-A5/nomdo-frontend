@@ -4,6 +4,9 @@ import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/ico
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import './Workspace.css';
+function refreshPage() {
+    window.location.reload(true);
+  }
 
 export default function Workspace(props) {
 
