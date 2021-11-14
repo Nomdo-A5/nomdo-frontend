@@ -6,7 +6,8 @@ import Login from "./Login/Login";
 import Structure from "./Structure";
 import Structure_Profile from "./Structure_Profile";
 import Register from "./register/Register";
-import { Home } from "../pages/home/Home";
+import Home  from "../pages/home/Home";
+import Workspace from "./workspace/Workspace";
 export const APP_ROUTE = [
   {
     name: "Login",
@@ -76,6 +77,13 @@ export const APP_ROUTE = [
     path: "/User_Profile/User_Setting",
     exact: true,
     component: Structure_Profile,
+    private: true,
+  },
+  {
+    name: "Workspace",
+    path: "/workspace",
+    exact: true,
+    component: Workspace,
     private: true,
   },
 ];

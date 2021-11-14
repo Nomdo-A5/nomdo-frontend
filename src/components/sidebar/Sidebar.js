@@ -4,14 +4,23 @@ import { NotificationOutlined } from '@ant-design/icons';
 import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";
 import { getToken, isLogin } from "../../utils/authentication";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, useHistory } from "react-router-dom";
 import { WorkspaceContext } from "../../context/WorkspaceContext";
 
 import "./Sidebar.css";
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
+// function refreshPage() {
+//   window.location.reload(true);
+// }
+// function onClickW() {
+//   this.props.history.push(`/workspace`);
+//   // window.location.reload();
+  
+//   }
 
 const Sidebar = () => {
+  const history = useHistory();
 
   const context = useContext(WorkspaceContext)
   return (
@@ -36,13 +45,13 @@ const Sidebar = () => {
           </Menu.Item>
           <Menu.Item key="workspace">
             <span>Workspace</span>
-            <Link to="/home" />
+            <Link to="/workspace" onClick={() => history.push("/workspace")}/>
           </Menu.Item>
           {context.workspace.map(w => (
             <SubMenu key={w.id} title={w.workspace_name}>
               <Menu.Item >
                 <span>Dashboard</span>
-                <Link to="/dashboard" />
+                <Link to="/dashboard" onClick={() => history.push("/dashboard")} />
               </Menu.Item>
               <Menu.Item >
                 <span>Board</span>

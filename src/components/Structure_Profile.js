@@ -8,9 +8,7 @@ function Structure_Profile() {
         <div className="main-div-structure-profile">
             <Nav />
             <div className="layout-sidebar-topbar-profile">
-                <div className="sidebar">
-                    <Sidebar />
-                </div>
+                
                 <div className="topbar-profile">
                     <Topbar_Profile />
                 </div>
