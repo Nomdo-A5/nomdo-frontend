@@ -1,0 +1,17 @@
+.task-description {
+}
+
+.checkbox-and-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.checkbox-logo{
+    font-size: large;
+}
+
+.task-title {
+    margin: auto;
+    padding-left: 10px;
+}
