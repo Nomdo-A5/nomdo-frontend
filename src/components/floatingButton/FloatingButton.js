@@ -11,6 +11,7 @@ import { FloatingWorkspace } from "../floatingWorkspace/FloatingWorkspace";
 import { FloatingMoneyReport } from "../floatingMoneyReport/FloatingMoneyReport";
 import { FloatingTask } from "../floatingTask/FloatingTask";
 import { JoinWorkspace } from "../joinWorkspace/JoinWorkspace";
+import { ClickedTask } from "../clickedTask/ClickedTask";
 
 export const FloatingButton = () => {
 
