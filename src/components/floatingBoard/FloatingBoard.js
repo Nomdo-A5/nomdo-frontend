@@ -51,16 +51,32 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
                         },
                     ]}
                 >
-                    <div className="board-name-and-logo">
-                        <div className="board-logo">
-                            <MailOutlined />
-                        </div>
-                        <div className="board-name-and-input">
-                            <div className="board-name">
-                                Board Name
+                    <div className="board-component">
+                        <div className="board-name-and-logo">
+                            <div className="board-logo">
+                                <MailOutlined />
                             </div>
-                            <div className="form-input-board-name">
-                                <Input placeholder="Board Name" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                            <div className="board-name-and-input">
+                                <div className="board-name">
+                                    Board Name
+                                </div>
+                                <div className="form-input-board-name">
+                                    <Input placeholder="Board Name" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="balance-name-and-logo">
+                            <div className="balance-name-and-input">
+                                <div className="balance-name">
+                                    Workspace Name
+                                </div>
+                                <div className="dropdown-items">
+                                <select>
+                                    <option value="dummy1">Nomdo Dummy</option>
+                                    <option value="dummy2">D4 A Dummy</option>
+                                    <option value="dummy3">IT Dummy</option>
+                                </select>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,56 @@
+.layout-title{
+    font-size: large;
+    font-weight: bold;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.layout-main{
+    display:grid;
+    grid-template-columns: 400px 400px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.tabs{
+    tab-size: 1;
+}
+
+.item-name {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 5px;
+    width: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.incoming-tasks-text{
+    text-align: left;
+    margin-top: 30px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.report-form-main {
+    display: flex;
+    flex-direction: row;
+}
+
+.report-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.done-and-given-task-main {
+    display: flex;
+    flex-direction: row;
+}
+
+.done-and-given-task-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}

@@ -4,6 +4,7 @@
 
 import Login from "./Login/Login";
 import Structure from "./Structure";
+import Dashboard from "./dashboard/Dashboard";
 import Structure_Profile from "./Structure_Profile";
 import Register from "./register/Register";
 import Home  from "../pages/home/Home";
@@ -27,7 +28,7 @@ export const APP_ROUTE = [
     name: "Dashboard",
     path: "/dashboard",
     exact: true,
-    component: Structure,
+    component: Dashboard,
     private: true,
   },
   {
