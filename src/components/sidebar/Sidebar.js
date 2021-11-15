@@ -41,7 +41,7 @@ const Sidebar = () => {
         >
           <Menu.Item key="home">
             <span>Home</span>
-            <Link to="/home" />
+            <Link to="/home" onClick={() => history.push("/home")}/>
           </Menu.Item>
           <Menu.Item key="workspace">
             <span>Workspace</span>
@@ -55,7 +55,8 @@ const Sidebar = () => {
               </Menu.Item>
               <Menu.Item >
                 <span>Board</span>
-                <Link to="/board" onClick={() => history.push("/board")} />
+                <Link to={{pathname:`/board/${w.id}`, state:{workspace:w.id} }}  onClick={() => history.push("/board/${w.id}")}/>
+               
               </Menu.Item>
               <Menu.Item >
                 <span>Money Report</span>

@@ -42,7 +42,7 @@ export const APP_ROUTE = [
   },
   {
     name: "Boards",
-    path: "/board",
+    path: "/board/:id",
     exact: true,
     component: Board,
     private: true,
