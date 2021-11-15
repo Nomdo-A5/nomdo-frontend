@@ -2,14 +2,17 @@
   Routing Page
 */
 
-import Login from "./Login/Login";
+import Login from "../pages/Login/Login";
 import Structure from "./Structure";
-import Dashboard from "./dashboard/Dashboard";
-import Board from "./board/Board";
-import Report from "./report/Report";
+import Dashboard from "../pages/dashboard/Dashboard";
+import Board from "../pages/board/Board";
+import Report from "../pages/report/Report";
 import Structure_Profile from "./Structure_Profile";
-import Register from "./register/Register";
+import Register from "../pages/register/Register";
 import Home  from "../pages/home/Home";
+import UserProfile  from "../pages/userprofile/UserProfile";
+import UserSetting  from "../pages/usersetting/UserSetting";
+import BlankPage  from "../pages/blankpage/BlankPage";
 import Workspace from "./workspace/Workspace";
 export const APP_ROUTE = [
   {
@@ -69,17 +72,17 @@ export const APP_ROUTE = [
     private: true,
   },
   {
-    name: "User_Profile",
-    path: "/User_Profile",
+    name: "UserProfile",
+    path: "/userprofile",
     exact: true,
-    component: Structure_Profile,
+    component: UserProfile,
     private: true,
   },
   {
-    name: "User_Setting",
-    path: "/User_Profile/User_Setting",
+    name: "UserSetting",
+    path: "/usersetting",
     exact: true,
-    component: Structure_Profile,
+    component: UserSetting,
     private: true,
   },
   {

@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 import { Card, Row, Col, Input } from 'antd';
 import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
-import { BsListTask, BsPeople } from 'react-icons/bs';
+import { BsPencilSquare } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import '../floatingMoneyReport/FloatingMoneyReport.css';
 
@@ -30,7 +30,7 @@ export const FloatingMoneyReport = () => {
     return (
         <>
           <Button type="primary" onClick={showModal}>
-            Modal Money Report
+            New Money Report
           </Button>
           <Modal title="New Money Report" okText="Add"
             visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
@@ -40,15 +40,15 @@ export const FloatingMoneyReport = () => {
             <div>
                 <Row>
                     <div className="name-and-logo">
-                        <div className="report-logo">
-                            <MailOutlined/>
+                        <div className="description-logo">
+                            <BsPencilSquare/>
                         </div>
-                        <div className="report-name-and-input">
-                            <div className="report-name">
-                                Report Title
+                        <div className="description-name-and-input">
+                            <div className="description-name">
+                                Description
                             </div>
-                            <div className="form-input-report-name">
-                                <Input placeholder="Report Name"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
+                            <div className="form-input-description-name">
+                                <Input placeholder="Description"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
                             </div>
                         </div>
                     </div>
@@ -79,18 +79,6 @@ export const FloatingMoneyReport = () => {
                             </div>
                             <div className="form-input-outcome-name">
                                 <Input placeholder="Outcome"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
-                            </div>
-                        </div>
-                    </div>
-                </Row>
-                <Row>
-                    <div className="description-name-and-logo">
-                        <div className="description-name-and-input">
-                            <div className="description-name">
-                                Description
-                            </div>
-                            <div className="form-input-description-name">
-                                <Input placeholder="Description" style={{ borderRadius:"10px 10px 10px 10px"}}/>
                             </div>
                         </div>
                     </div>

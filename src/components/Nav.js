@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./style/Nav.css";
 
 function Nav() {
+  const history = useHistory();
   return (
     <div className="nav">
       <div className="nav-desc">
@@ -11,7 +12,9 @@ function Nav() {
           </Link>
         </div>
         <div className="nav-profile">
-          <Link to="/User_Profile">Profile</Link>
+          <Link to="/userprofile" onClick={() => history.push("/userprofile")}>
+            Profile
+          </Link>
         </div>
       </div>
     </div>

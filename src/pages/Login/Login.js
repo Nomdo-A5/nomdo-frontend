@@ -1,6 +1,6 @@
 import React from "react";
 import './Login.css';
-import Nav from "../Nav";
+import Nav from "../../components/Nav";
 import { useHistory } from "react-router-dom";
 import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";

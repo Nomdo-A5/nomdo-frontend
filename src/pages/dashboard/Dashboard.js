@@ -4,12 +4,12 @@ import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/ico
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import './Dashboard.css';
-import Sidebar from '../sidebar/Sidebar';
-import Nav from "../Nav";
+import Sidebar from '../../components/sidebar/Sidebar';
+import Nav from "../../components/Nav";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 
-import '../taskOnBoard/TaskOnBoard.css';
-import TaskOnBoard from '../taskOnBoard/TaskOnBoard';
+import '../../components/taskOnBoard/TaskOnBoard.css';
+import TaskOnBoard from '../../components/taskOnBoard/TaskOnBoard';
 
 function refreshPage() {
     window.location.reload(true);

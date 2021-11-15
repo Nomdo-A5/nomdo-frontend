@@ -1,6 +1,6 @@
 import "./App.css";
-import Login from "./components/Login/Login";
-import Register from "./components/register/Register";
+import Login from "./pages/Login/Login";
+import Register from "./pages/register/Register";
 import Structure from "./components/Structure";
 import Structure_Profile from "./components/Structure_Profile";
 import { BrowserRouter, Route, Switch } from "react-router-dom";

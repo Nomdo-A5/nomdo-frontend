@@ -47,6 +47,7 @@ const Sidebar = () => {
             <span>Workspace</span>
             <Link to="/workspace" onClick={() => history.push("/workspace")}/>
           </Menu.Item>
+
           {context.workspace.map(w => (
             <SubMenu key={w.id} title={w.workspace_name}>
               <Menu.Item >
@@ -56,14 +57,15 @@ const Sidebar = () => {
               <Menu.Item >
                 <span>Board</span>
                 <Link to={{pathname:`/board/${w.id}`, state:{workspace:w.id} }}  onClick={() => history.push("/board/${w.id}")}/>
-               
               </Menu.Item>
               <Menu.Item >
                 <span>Money Report</span>
                 <Link to={{pathname:`/report/${w.id}`, state:{workspace:w.id} }}  onClick={() => history.push("/report/${w.id}")}/>
                 
               </Menu.Item>
-              <Menu.Item >Setting</Menu.Item>
+              <Menu.Item >
+                Setting
+              </Menu.Item>
             </SubMenu>
           ))}
 

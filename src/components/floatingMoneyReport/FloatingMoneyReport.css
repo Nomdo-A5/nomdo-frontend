@@ -1,83 +1,108 @@
 .task-description {
 }
 
-.workspace-name-and-logo {
+.name-and-logo {
     display: flex;
     flex-direction: row;
 }
 
-.workspace-name-and-input {
+.report-name-and-input {
     display: flex;
     flex-direction: column;
     justify-content: left;
 }
 
-.workspace-logo{
+.report-logo{
     font-size: large;
 }
 
-.workspace-name {
+.report-name {
     text-align: left;
     padding-left: 10px;
     padding-top: 7px;
     padding-bottom: 5px;
 }
 
-.form-input-workspace-name {
+.form-input-report-name {
     width: 250px;
     padding-left: 10px;
 }
 
-.balance-name-and-logo {
-    display: flex;
-    flex-direction: row;
-}
+--
 
-.balance-name-and-input {
+.income-name-and-input {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    padding-left: 18px;
 }
 
-.balance-logo{
+.income-logo{
     font-size: large;
 }
 
-.balance-name {
+.income-name {
     text-align: left;
     padding-left: 10px;
     padding-top: 7px;
     padding-bottom: 5px;
 }
 
-.form-input-balance-name {
+.form-input-income-name {
     width: 250px;
     padding-left: 10px;
 }
 
-.add-logo {
-    font-size: large;
-    padding-left: 8px;
-}
+--
 
-.member-and-logo {
+.outcome-name-and-input {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: left;
 }
 
-.member-logo {
+.outcome-logo{
     font-size: large;
 }
 
-.member-text {
+.outcome-name {
+    text-align: left;
     padding-left: 10px;
     padding-top: 7px;
+    padding-bottom: 5px;
 }
 
-.task-button-dismiss {
-    margin-left: 10px;
+.form-input-outcome-name {
+    width: 250px;
+    padding-left: 10px;
+}
+
+--
+
+.description-name-and-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.description-logo{
+    font-size: large;
+}
+
+.description-name {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 5px;
+}
+
+.form-input-income-name {
+    width: 250px;
+    padding-left: 10px;
+}
+
+.form-input-description-name {
+    width: 250px;
+    padding-left: 10px;
 }
 
 .task-button-add {
