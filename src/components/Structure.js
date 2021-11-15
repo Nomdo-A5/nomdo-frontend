@@ -18,7 +18,6 @@ import { JoinWorkspace } from "./joinWorkspace/JoinWorkspace";
 import Coba from "./coba/Coba";
 
 import Workspace from "./workspace/Workspace";
-import MoneyReport from "./moneyreport/MoneyReport";
 
 
 function Structure() {
