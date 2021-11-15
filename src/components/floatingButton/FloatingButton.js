@@ -42,6 +42,7 @@ export const FloatingButton = () => {
                     <div className="floating-form-box"><FloatingWorkspace /></div>
                     <div className="floating-form-box"><FloatingTask /></div>
                     <div className="floating-form-box"><JoinWorkspace /></div>
+                    <div className="floating-form-box"><FloatingMoneyReport /></div>
                     
                 </div>
             </Modal>
