@@ -49,7 +49,7 @@ export const APP_ROUTE = [
   },
   {
     name: "Report",
-    path: "/report",
+    path: "/report/:id",
     exact: true,
     component: Report,
     private: true,
