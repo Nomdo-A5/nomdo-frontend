@@ -1,16 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Card, Row, Col, Button, Input, Layout, Space } from 'antd';
 import './Board.css';
-import Sidebar from '../sidebar/Sidebar';
-import Nav from "../Nav";
+import Sidebar from '../../components/sidebar/Sidebar';
+import Nav from "../../components/Nav";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
-import ProgressBar from '../progressBar/ProgressBar';
+import ProgressBar from '../../components/progressBar/ProgressBar';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 import axios from 'axios';
 import { WorkspaceContext } from "../../context/WorkspaceContext";
-import { BrowserRouter as Router, useLocation , useHistory} from "react-router-dom"
+import { BrowserRouter as Router, useLocation , useHistory} from "react-router-dom";
+
 function refreshPage() {
     window.location.reload(true);
 }
@@ -56,7 +57,9 @@ const Board = () => {
                         </Sidebar>
                     </Sider>
                     <Layout style={{ backgroundColor: "white" }}>
-                        
+                        <div className="floating-button-component">
+                            <FloatingButton />
+                        </div>
                         <div className="layout-title">
                                     DIGANTI HEY
                                 </div>
