@@ -10,6 +10,9 @@ import Report from "./report/Report";
 import Structure_Profile from "./Structure_Profile";
 import Register from "./register/Register";
 import Home  from "../pages/home/Home";
+import UserProfile  from "../pages/userprofile/UserProfile";
+import UserSetting  from "../pages/usersetting/UserSetting";
+import BlankPage  from "../pages/blankpage/BlankPage";
 import Workspace from "./workspace/Workspace";
 export const APP_ROUTE = [
   {
@@ -69,17 +72,17 @@ export const APP_ROUTE = [
     private: true,
   },
   {
-    name: "User_Profile",
-    path: "/User_Profile",
+    name: "UserProfile",
+    path: "/userprofile",
     exact: true,
-    component: Structure_Profile,
+    component: UserProfile,
     private: true,
   },
   {
-    name: "User_Setting",
-    path: "/User_Profile/User_Setting",
+    name: "UserSetting",
+    path: "/usersetting",
     exact: true,
-    component: Structure_Profile,
+    component: UserSetting,
     private: true,
   },
   {

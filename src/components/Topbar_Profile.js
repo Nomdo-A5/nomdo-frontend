@@ -1,9 +1,11 @@
 import "./style/Topbar_Profile.css";
 import User_Profile from "./User_Profile";
 import User_Setting from "./User_Setting";
-import {Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, useHistory, Switch } from "react-router-dom";
+import UserProfile  from "../pages/userprofile/UserProfile";
 
-function Topbar_Profile(){
+const Topbar_Profile = () => {
+    const history = useHistory();
     return(
         <div className="workspace-main-topbar">
             <div className="workspace-upper-topbar">
@@ -11,19 +13,13 @@ function Topbar_Profile(){
                     <h1>Profile Name</h1>
                 </div>
                 <div className="workspace-boxes-profile">
-                    <Link to="/User_Profile" className="workspace-boxes-user-profile">
+                    <Link to="/report" onClick={() => history.push("/report")}>
                         <h5>Profile</h5>
                     </Link>
-                    <Link to="/User_Profile/User_Setting" className="workspace-boxes-user-setting">
+                    <Link to="/report" onClick={() => history.push("/report")}>
                         <h5>Setting</h5>
                     </Link>
                 </div>
-            </div>
-            <div className="workspace-downer-topbar">
-                <Switch>
-                    <Route exact path="/User_Profile" component={User_Profile} />
-                    <Route exact path="/User_Profile/User_Setting" component={User_Setting} />
-                </Switch>
             </div>
         </div>
     );
