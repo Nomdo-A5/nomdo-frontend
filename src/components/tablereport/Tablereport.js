@@ -3,21 +3,21 @@ import { Table } from 'react-bootstrap';
 
 import "./Tablereport.css";
 
-export const Tablereport = () =>{
+export const Tablereport = (props) =>{
     return (<Table striped bordered hover size="sm">
         <thead>
           <tr>
             <th bgcolor="green">ID</th>
-            <th>Report Title</th>
-            <th>Income</th>
-            <th>Outcome</th>
             <th>Description</th>
+            <th>Nominal</th>
+            <th>Income</th>
+            <th>Outcome</th>            
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
-            <td>Dummy</td>
+            <td>{props.key}</td>
+            <td>{props.balance_description}</td>
             <td>Dummy</td>
             <td>Dummy</td>
             <td>Dummy</td>

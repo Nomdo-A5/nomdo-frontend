@@ -60,7 +60,8 @@ const Sidebar = () => {
               </Menu.Item>
               <Menu.Item >
                 <span>Money Report</span>
-                <Link to="/report" onClick={() => history.push("/report")} />
+                <Link to={{pathname:`/report/${w.id}`, state:{workspace:w.id} }}  onClick={() => history.push("/report/${w.id}")}/>
+                
               </Menu.Item>
               <Menu.Item >Setting</Menu.Item>
             </SubMenu>
