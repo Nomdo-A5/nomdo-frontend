@@ -1,0 +1,18 @@
+.main-div{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-right: -50%;
+}
+
+.cloud-logo{
+    font-size: 3cm;
+}
+
+.no-data-text{
+    font-size: 1cm;
+    font-weight: lighter;
+}

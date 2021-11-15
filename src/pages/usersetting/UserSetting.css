@@ -1,0 +1,104 @@
+.profile-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.profile-name-email{
+    text-align: left;
+    padding-left: 10px;
+}
+
+.profile-pic{
+    font-size: 1.2cm;
+    font-weight: bold;
+    text-align: center;
+    padding-right: 10px;
+}
+
+.profile-name{
+    font-size: 0.8cm;
+    font-weight: bold;
+}
+
+.blank-spot{
+    border-top: 2px solid #C4C4C4;
+}
+
+.setting-items{
+    width: 600px;
+    margin: auto;
+    padding-top: 15px;
+    text-align: left;
+}
+
+.inner-items{
+    width: 350px;
+}
+
+.about-user{
+    font-size: large;
+    font-weight: bold;
+    border-bottom: 2px solid #C4C4C4;
+}
+
+.username-user{
+    padding-top: 10px;
+}
+
+.email-user{
+    padding-top: 10px;
+}
+
+.biodata-user{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.button-save{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+---
+
+.workspace-boxes-profile {
+    display: flex;
+    flex-direction: row;
+    height: 8vh;
+    width: 28%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.workspace-boxes-user-profile {
+    text-decoration: none;
+    box-sizing: border-box;
+    background-color: white;
+    width: 47.5%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #C4C4C4;
+    border-left: 2px solid #C4C4C4;
+    border-right: 2px solid #C4C4C4;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.workspace-boxes-user-setting {
+    text-decoration: none;
+    box-sizing: border-box;
+    background-color: white;
+    width: 47.5%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #C4C4C4;
+    border-left: 2px solid #C4C4C4;
+    border-right: 2px solid #C4C4C4;
+    border-radius: 10px 10px 0px 0px;
+}
