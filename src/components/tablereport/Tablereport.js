@@ -22,20 +22,6 @@ export const Tablereport = () =>{
             <td>Dummy</td>
             <td>Dummy</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Dummy</td>
-            <td>Dummy</td>
-            <td>Dummy</td>
-            <td>Dummy</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Dummy</td>
-            <td>Dummy</td>
-            <td>Dummy</td>
-            <td>Dummy</td>
-          </tr>
         </tbody>
       </Table>
     )

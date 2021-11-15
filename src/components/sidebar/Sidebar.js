@@ -59,6 +59,7 @@ const Sidebar = () => {
               </Menu.Item>
               <Menu.Item >
                 <span>Money Report</span>
+                <Link to="/report" onClick={() => history.push("/report")} />
               </Menu.Item>
               <Menu.Item >Setting</Menu.Item>
             </SubMenu>

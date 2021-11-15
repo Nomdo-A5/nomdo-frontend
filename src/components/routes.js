@@ -6,6 +6,7 @@ import Login from "./Login/Login";
 import Structure from "./Structure";
 import Dashboard from "./dashboard/Dashboard";
 import Board from "./board/Board";
+import Report from "./report/Report";
 import Structure_Profile from "./Structure_Profile";
 import Register from "./register/Register";
 import Home  from "../pages/home/Home";
@@ -47,15 +48,15 @@ export const APP_ROUTE = [
     private: true,
   },
   {
-    name: "Members",
-    path: "/Dashboard/Members",
+    name: "Report",
+    path: "/report",
     exact: true,
-    component: Structure,
+    component: Report,
     private: true,
   },
   {
-    name: "Balance",
-    path: "/Dashboard/Balance",
+    name: "Members",
+    path: "/Dashboard/Members",
     exact: true,
     component: Structure,
     private: true,
