@@ -1,6 +1,14 @@
-.layout-title{
+.layout-title {
     font-size: large;
     font-weight: bold;
     background-color: white;
     margin-top: 20px;
+}
+
+.floating-button-component {
+    position: fixed;
+    right: 20px;
+    ;
+    bottom: 20px;
+    ;
 }

@@ -17,11 +17,11 @@ export default function ProgressBar (props) {
                     boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
                     backgroundColor: "#F6F6F6"
                 }}
-                title={props.task_name}
+                
             >
                 <div className="progress-bar-form">
                     <div className="progress-bar-title">
-                        Divisi Acara 
+                        {props.board_name}
                     </div>
                     <div className="progress-bar-chart">
                         <ProgressBarPercent variant="success" now={80} />

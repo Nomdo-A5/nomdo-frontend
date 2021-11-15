@@ -1,45 +1,79 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Card, Row, Col, Button, Input, Layout, Space } from 'antd';
-import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
-import { BsListTask, BsPeople } from 'react-icons/bs';
-import { GrAddCircle } from 'react-icons/gr';
 import './Board.css';
 import Sidebar from '../sidebar/Sidebar';
 import Nav from "../Nav";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
-
-import '../taskOnBoard/TaskOnBoard.css';
-import TaskOnBoard from '../taskOnBoard/TaskOnBoard';
-
+import { FloatingButton } from "../../components/floatingButton/FloatingButton";
+import ProgressBar from '../progressBar/ProgressBar';
+import { BASE_API_URL } from '../../constants/urls';
+import { getToken } from '../../utils/authentication';
+import axios from 'axios';
+import { WorkspaceContext } from "../../context/WorkspaceContext";
+import { BrowserRouter as Router, useLocation , useHistory} from "react-router-dom"
 function refreshPage() {
     window.location.reload(true);
-  }
+}
 
-const Board = () =>{
+const Board = () => {
 
     const { Sider } = Layout;
+    const token = getToken();
+    const [boards, setBoards] = useState([]);
+    const context = useContext(WorkspaceContext)
+    const { state } = useLocation()
+    const history = useHistory();
+
+    const GetBoard = async () => {
+        const workspace_id = state.workspace
+        const response = await axios.get(BASE_API_URL + 'boards', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            params: {
+                'workspace_id': `${workspace_id}`
+            }
+        })
+        console.log(response.data)
+        setBoards(response.data.boards)
+    }
+
+    useEffect(() => {
+        GetBoard()
+    }, [])
+
     return (
-        <WorkspaceContextProvider>
-        <Nav />
-        <div>
-            <Layout >
-                <Sider>
-                    <Sidebar />
-                </Sider>
-                <Layout style={{backgroundColor: "white"}}>
-                    <div className="layout-title">
-                        Workspace Name
-                    </div>
-                    <div className="boards-lists">
-                        <Space wrap style={{ width: "1100px", backgroundColor: "white" }}>
-                            <TaskOnBoard />
-                        </Space>
-                    </div>
+        <Router>
+            <WorkspaceContextProvider>
+            <Nav />
+            <div>
+                <Layout >
+                    <Sider>
+                        <Sidebar>
+                            <div className="floating-button-component">
+                                <FloatingButton />
+                            </div>
+                        </Sidebar>
+                    </Sider>
+                    <Layout style={{ backgroundColor: "white" }}>
+                        
+                        <div className="layout-title">
+                                    DIGANTI HEY
+                                </div>
+                        <div className="boards-lists">
+                            <Space wrap style={{ width: "1100px", backgroundColor: "white" }}>
+                                {boards.map((board) => (
+                                    <ProgressBar board_name={board.board_name} />
+                                ))}
+                            </Space>
+                        </div>
+                    </Layout>
                 </Layout>
-            </Layout>
-        </div>
-        
+            </div>
+
         </WorkspaceContextProvider>
+        </Router>
+        
     );
 }
 
