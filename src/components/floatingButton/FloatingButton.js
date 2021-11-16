@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Button, Tooltip, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import Draggable from 'react-draggable';
@@ -12,6 +12,7 @@ import { FloatingMoneyReport } from "../floatingMoneyReport/FloatingMoneyReport"
 import { FloatingTask } from "../floatingTask/FloatingTask";
 import { JoinWorkspace } from "../joinWorkspace/JoinWorkspace";
 import { ClickedTask } from "../clickedTask/ClickedTask";
+import { WorkspaceContext } from '../../context/WorkspaceContext';
 
 export const FloatingButton = () => {
 
@@ -22,6 +23,9 @@ export const FloatingButton = () => {
     };
 
     const handleOk = () => {
+        context.workspace.map(w => 
+                console.log(w.workspace_name)
+            )
         setIsModalVisible(false);
     };
 
@@ -29,10 +33,10 @@ export const FloatingButton = () => {
         setIsModalVisible(false);
     };
 
-    
+    const context = useContext(WorkspaceContext)
 
     return (
-        <div>
+            <div>
             <Tooltip title="">
                 <Button onClick={showModal} shape="circle" icon={<PlusOutlined style={{ color: "#FFFFFF" }} />} size="large" style={{ background: '#4ABDAC' }} />
             </Tooltip>
@@ -47,5 +51,6 @@ export const FloatingButton = () => {
                 </div>
             </Modal>
         </div>
+        
     )
 }
