@@ -87,11 +87,13 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
                                     },
                                 ]}
                             >
-                                <Select placeholder="select your workspace">
-                                {context.workspace.map(w =>
-                                        (<Option value={w.id}>{w.workspace_name}</Option>)
-                                )}
-                                </Select>
+                                <div className="input-area-drop-down">
+                                    <Select style={{ width: 230 }} placeholder="Select your workspace">
+                                    {context.workspace.map(w =>
+                                            (<Option value={w.id}>{w.workspace_name}</Option>)
+                                    )}
+                                    </Select>
+                                </div>
                             </Form.Item>
                         </div>
 

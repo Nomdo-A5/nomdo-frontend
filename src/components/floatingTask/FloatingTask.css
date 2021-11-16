@@ -1,6 +1,13 @@
-.task-name-and-logo {
+.workspace-name-and-input {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.board-name-and-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
 }
 
 .task-name-and-input {
@@ -9,9 +16,19 @@
     justify-content: left;
 }
 
+.description-name-and-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
 .input-area {
     display: flex;
     flex-direction: row;
+}
+
+.input-area-drop-down {
+    padding-left: 10px;
 }
 
 .workspace-logo-copy {
@@ -27,6 +44,6 @@
 }
 
 .form-input-task-name {
-    width: 250px;
+    width: 280px;
     padding-left: 10px;
 }

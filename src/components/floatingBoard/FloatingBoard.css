@@ -1,3 +1,7 @@
+.input-area-drop-down{
+    text-align: left;
+}
+
 .board-name-and-logo {
     display: flex;
     flex-direction: row;
