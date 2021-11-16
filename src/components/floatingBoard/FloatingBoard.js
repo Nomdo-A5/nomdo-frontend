@@ -74,7 +74,7 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
                 <div className="balance-name-and-logo">
                     <div className="balance-name-and-input">
                         <div className="balance-name">
-                            
+
                         </div>
                         <div className="dropdown-items">
                             <Form.Item
@@ -83,18 +83,18 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please select gender!',
+                                        message: 'Please select workspace!',
                                     },
                                 ]}
+                                className="new-board-form_last-form-item"
                             >
-                                <div className="input-area-drop-down">
-                                    <Select style={{ width: 230 }} placeholder="Select your workspace">
-                                    {context.workspace.map(w =>
+                                <Select placeholder="select your gender">
+                                {context.workspace.map(w =>
                                             (<Option value={w.id}>{w.workspace_name}</Option>)
-                                    )}
-                                    </Select>
-                                </div>
+                                        )}
+                                </Select>
                             </Form.Item>
+                            
                         </div>
 
                     </div>
