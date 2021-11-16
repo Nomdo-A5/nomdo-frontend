@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Tooltip, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import Draggable from 'react-draggable';
-import { useState } from 'react';
 
-import { Card, Row, Col, Input, Form } from 'antd';
+import { Select, Input, Form } from 'antd';
 import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import '../floatingBoard/FloatingBoard.css';
+import { WorkspaceContext, WorkspaceContextProvider } from '../../context/WorkspaceContext';
+import { getToken } from '../../utils/authentication';
+import axios from 'axios';
+import { BASE_API_URL } from '../../constants/urls';
 
 const NewBoardForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
+    const { Option } = Select;
+    const context = useContext(WorkspaceContext)
+    const [workspaceId, setWorkspaceId] = useState()
+
     return (
         <Modal
             title="New Board"
@@ -36,12 +43,8 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
                 form={form}
                 layout="vertical"
                 name="form_in_modal"
-                initialValues={{
-                    modifier: 'public',
-                }}
+
             >
-
-
                 <Form.Item
                     name="board_name"
                     rules={[
@@ -65,25 +68,41 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="balance-name-and-logo">
-                            <div className="balance-name-and-input">
-                                <div className="balance-name">
-                                    Workspace Name
-                                </div>
-                                <div className="dropdown-items">
-                                <select>
-                                    <option value="dummy1">Nomdo Dummy</option>
-                                    <option value="dummy2">D4 A Dummy</option>
-                                    <option value="dummy3">IT Dummy</option>
-                                </select>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </Form.Item>
 
+                <div className="balance-name-and-logo">
+                    <div className="balance-name-and-input">
+                        <div className="balance-name">
+                            
+                        </div>
+                        <div className="dropdown-items">
+                            <Form.Item
+                                name="workspace_id"
+                                label="Workspace name"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please select gender!',
+                                    },
+                                ]}
+                            >
+                                <Select placeholder="select your workspace">
+                                {context.workspace.map(w =>
+                                        (<Option value={w.id}>{w.workspace_name}</Option>)
+                                )}
+                                </Select>
+                            </Form.Item>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
             </Form>
         </Modal>
+
     );
 
 }
@@ -92,7 +111,20 @@ export const FloatingBoard = () => {
 
     const [visible, setVisible] = useState(false);
 
+
     const onCreate = async (values) => {
+        const token = getToken()
+        console.log("value = " + values.workspace_id)
+        const response = await axios.post(BASE_API_URL + 'boards', {
+            workspace_id: values.workspace_id,
+            board_name: values.board_name
+        },
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+        console.log(response)
         setVisible(false);
     };
     return (
