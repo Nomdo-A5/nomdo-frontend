@@ -4,11 +4,9 @@ import Nav from "../../components/Nav";
 import Sidebar from '../../components/sidebar/Sidebar';
 import axios from "axios";
 import { getToken } from '../../utils/authentication';
-
 import { Layout, Input, Button } from "antd";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
-
 import "./UserProfile.css";
 
 import { CgProfile } from 'react-icons/cg';
@@ -20,22 +18,23 @@ const UserProfile = () =>{
     const { Header, Content, Sider } = Layout;
     const [task, setTask] = useState([]);
     const [workspace, setWorkspace] = useState([]);  
+    const [user, setUser] = useState('')
 
     useEffect(() => {
-        //GetWorkspace()
-        GetTask()
+        getActiveUser()
       }, [])    
 
-    const GetTask = async () => {
+
+    const getActiveUser = async () => {
         const token = getToken();
-        const response = await axios.get(BASE_API_URL + 'task', {
+        const response = await axios.get(BASE_API_URL +'user', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
-        });
-        setTask(response.data.task);
-        console.log(response);
-    };
+        })
+        console.log(response)
+        setUser(response.data.user)
+    }
 
     return (
         <WorkspaceContextProvider>
@@ -54,12 +53,13 @@ const UserProfile = () =>{
                             <div className="profile-pic">
                                 <CgProfile />
                             </div>
+                            {console.log(user)}
                             <div className="profile-name-email">
                                 <div className="profile-name">
-                                    Nama User
+                                    {user.name}
                                 </div>
                                 <div className="profile-email">
-                                    user@gmail.com
+                                    {user.email}
                                 </div>
                             </div>
                         </div>
