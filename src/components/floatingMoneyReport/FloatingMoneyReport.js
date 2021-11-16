@@ -3,16 +3,19 @@ import { Button, Tooltip, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import Draggable from 'react-draggable';
 import { BsWallet2 } from 'react-icons/bs';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
-import { Card, Row, Col, Input } from 'antd';
+import { Card, Row, Col, Input, Select } from 'antd';
 import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { BsPencilSquare } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import '../floatingMoneyReport/FloatingMoneyReport.css';
+import { WorkspaceContext, WorkspaceContextProvider } from '../../context/WorkspaceContext';
 
 export const FloatingMoneyReport = () => {
     
+    const { Option } = Select;
+    const context = useContext(WorkspaceContext)
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const showModal = () => {
@@ -30,56 +33,59 @@ export const FloatingMoneyReport = () => {
     return (
         <>
           <Button type="primary" onClick={showModal}>
-            New Money Report
+            New Balance
           </Button>
-          <Modal title="New Money Report" okText="Add"
+          <Modal title="New Balance" okText="Add"
             visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
             style={{ textAlign: "center" }} 
             width={340}>
             
             <div>
                 <Row>
-                    <div className="name-and-logo">
-                        <div className="description-logo">
-                            <BsPencilSquare/>
+                    <div className="workspace-name-and-input">
+                        <div className="workspace-name">
+                            Workspace
                         </div>
-                        <div className="description-name-and-input">
-                            <div className="description-name">
-                                Description
-                            </div>
-                            <div className="form-input-description-name">
-                                <Input placeholder="Description"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
-                            </div>
-                        </div>
-                    </div>
-                </Row>
-                <Row>
-                    <div className="name-and-logo">
-                        <div className="income-logo">
-                            <BsWallet2/>
-                        </div>
-                        <div className="income-name-and-input">
-                            <div className="income-name">
-                                Income
-                            </div>
-                            <div className="form-input-income-name">
-                                <Input placeholder="Income"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
-                            </div>
+                        <div className="input-area-drop-down">
+                            <Select style={{ width: 270 }} placeholder="Select your workspace">
+                            {context.workspace.map(w =>
+                                    (<Option value={w.id}>{w.workspace_name}</Option>)
+                            )}
+                            </Select>
                         </div>
                     </div>
                 </Row>
                 <Row>
-                    <div className="name-and-logo">
-                        <div className="outcome-logo">
-                            <BsWallet2/>
+                    <div className="nominal-name-and-input">
+                        <div className="nominal-name">
+                            Nominal
                         </div>
-                        <div className="outcome-name-and-input">
-                            <div className="outcome-name">
-                                Outcome
-                            </div>
-                            <div className="form-input-outcome-name">
-                                <Input placeholder="Outcome"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
-                            </div>
+                        <div className="form-input-nominal-name">
+                            <Input placeholder="Nominal"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
+                        </div>
+                    </div>
+                </Row>
+                <Row>
+                    <div className="tipe-name-and-input">
+                        <div className="tipe-name">
+                            Tipe
+                        </div>
+                        <div className="input-area-drop-down">
+                            <Select style={{ width: 270 }} placeholder="Select your workspace">
+                            {context.workspace.map(w =>
+                                    (<Option value={w.id}>{w.workspace_name}</Option>)
+                            )}
+                            </Select>
+                        </div>
+                    </div>
+                </Row>
+                <Row>
+                    <div className="description-name-and-input">
+                        <div className="description-name">
+                            Deskripsi
+                        </div>
+                        <div className="form-input-description-name">
+                            <Input placeholder="Deskripsi"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
                         </div>
                     </div>
                 </Row>

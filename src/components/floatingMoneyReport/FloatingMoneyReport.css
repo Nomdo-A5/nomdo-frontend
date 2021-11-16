@@ -1,79 +1,54 @@
-.task-description {
-}
-
-.name-and-logo {
-    display: flex;
-    flex-direction: row;
-}
-
-.report-name-and-input {
+.workspace-name-and-input {
     display: flex;
     flex-direction: column;
     justify-content: left;
 }
 
-.report-logo{
-    font-size: large;
-}
-
-.report-name {
+.workspace-name {
     text-align: left;
     padding-left: 10px;
     padding-top: 7px;
     padding-bottom: 5px;
 }
 
-.form-input-report-name {
-    width: 250px;
+.input-area-drop-down {
     padding-left: 10px;
+    text-align: left;
 }
 
---
+---
 
-.income-name-and-input {
+.nominal-name-and-input {
     display: flex;
     flex-direction: column;
     justify-content: left;
 }
 
-.income-logo{
-    font-size: large;
-}
-
-.income-name {
+.nominal-name {
     text-align: left;
     padding-left: 10px;
     padding-top: 7px;
     padding-bottom: 5px;
 }
 
-.form-input-income-name {
-    width: 250px;
+.form-input-nominal-name {
+    width: 280px;
     padding-left: 10px;
 }
 
---
+---
 
-.outcome-name-and-input {
+.tipe-name-and-input {
     display: flex;
     flex-direction: column;
     justify-content: left;
 }
 
-.outcome-logo{
-    font-size: large;
-}
-
-.outcome-name {
+.tipe-name {
     text-align: left;
     padding-left: 10px;
     padding-top: 7px;
     padding-bottom: 5px;
-}
-
-.form-input-outcome-name {
-    width: 250px;
-    padding-left: 10px;
 }
 
 --
@@ -84,10 +59,6 @@
     justify-content: left;
 }
 
-.description-logo{
-    font-size: large;
-}
-
 .description-name {
     text-align: left;
     padding-left: 10px;
@@ -95,19 +66,7 @@
     padding-bottom: 5px;
 }
 
-.form-input-income-name {
-    width: 250px;
-    padding-left: 10px;
-}
-
 .form-input-description-name {
-    width: 250px;
+    width: 280px;
     padding-left: 10px;
-}
-
-.task-button-add {
-    width: 360px;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: row;
 }
