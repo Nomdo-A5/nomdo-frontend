@@ -4,90 +4,204 @@ import { PlusOutlined } from '@ant-design/icons';
 import Draggable from 'react-draggable';
 import { useState, useContext } from 'react';
 
-import { Card, Row, Col, Input, Select } from 'antd';
+import { Card, Row, Col, Input, Select, Form } from 'antd';
 import { FormOutlined, ClockCircleOutlined, MailOutlined, UserOutlined, CopyOutlined } from '@ant-design/icons'
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import '../floatingTask/FloatingTask.css';
 import { WorkspaceContext, WorkspaceContextProvider } from '../../context/WorkspaceContext';
+import { BASE_API_URL } from '../../constants/urls';
+import axios from 'axios';
+import { getToken } from '../../utils/authentication';
 
-export const FloatingTask = () => {
-    
+const NewTaskForm = ({ visible, onCreate, onCancel }) => {
+    const [form] = Form.useForm();
     const { Option } = Select;
     const context = useContext(WorkspaceContext)
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [boards, setBoards] = useState([])
 
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
+    const handleSelectedWorkspace = (value, event) => {
+        console.log("value selected workspace " + value)
+        getBoards(value)
+    }
 
-    const handleOk = () => {
-        setIsModalVisible(false);
-    };
+    const getBoards = async (workspace_id) => {
+        const token = getToken()
+        console.log("workspace id on getBoards " + workspace_id)
+        const response = await axios.get(BASE_API_URL + 'boards', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            params: {
+                'workspace_id': `${workspace_id}`
+            }
+        })
+        console.log("ISI Response = " + response.data.boards)
+        setBoards(response.data.boards)
 
-    const handleCancel = () => {
-        setIsModalVisible(false);
+    }
+
+    return (
+        <Modal
+            title="New Task"
+            visible={visible}
+            onOk={() => {
+                form
+                    .validateFields()
+                    .then((values) => {
+                        form.resetFields();
+                        onCreate(values);
+                    })
+                    .catch((info) => {
+                        console.log('Validate Failed:', info);
+                    });
+            }}
+            onCancel={onCancel}
+            style={{ textAlign: "center" }}
+            okText="Add"
+            width={340}>
+
+            <Form
+                form={form}
+                layout="vertical"
+                name="form_in_modal"
+
+            >
+                <div>
+                    <Row>
+                        <div className="workspace-name-and-input">
+
+                            <div className="input-area-drop-down">
+                                <Form.Item
+                                    name="workspace_id"
+                                    label="Workspace name"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please select workspace!',
+                                        },
+                                    ]}
+
+                                >
+                                    <Select
+                                        style={{ width: 270 }}
+                                        placeholder="select your workspace"
+                                        onSelect={(value, event) => handleSelectedWorkspace(value, event)}>
+                                        {context.workspace.map(w =>
+                                            (<Option value={w.id}>{w.workspace_name}</Option>)
+                                        )}
+                                    </Select>
+
+                                </Form.Item>
+
+                            </div>
+                        </div>
+                        <div className="board-name-and-input">
+
+                            <div className="input-area-drop-down">
+                                <Form.Item
+                                    name="board_id"
+                                    label="Board name"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please select board!',
+                                        },
+                                    ]}
+
+                                >
+                                    <Select
+                                        style={{ width: 270 }}
+                                        placeholder="select your board">
+                                        {boards.map((board) => (
+                                            <Option value={board.id}>{board.board_name}</Option>
+                                        ))}
+
+                                    </Select>
+
+                                </Form.Item>
+                            </div>
+                        </div>
+                        <Form.Item
+                            name="task_name"
+                            label="Task name"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input the new task name!',
+                                },
+                            ]}
+                        >
+                            <div className="task-name-and-input">
+
+                                <div className="input-area">
+                                    <div className="form-input-task-name">
+                                        <Input placeholder="Add Task Name" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                    </div>
+                                </div>
+                            </div>
+                        </Form.Item>
+                        <Form.Item
+                            name="task_description"
+                            label="Task desciption"
+                            className="new-task-form_last-form-item"
+                        >
+                            <div className="description-name-and-input">
+                                <div className="input-area">
+                                    <div className="form-input-task-name">
+                                        <Input.TextArea placeholder="Add Description" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </Form.Item>
+
+                    </Row>
+                </div>
+            </Form>
+
+        </Modal>
+    )
+}
+export const FloatingTask = () => {
+
+    const [visible, setVisible] = useState(false);
+
+    const onCreate = async (values) => {
+        const token = getToken()
+        const response = await axios.post(BASE_API_URL + 'task', {
+            workspace_id: values.workspace_id,
+            board_id: values.board_id,
+            task_name: values.task_name,
+            task_description: values.task_description
+        },
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+        console.log(response)
+        setVisible(false);
     };
 
     return (
-        <>
-          <Button type="primary" onClick={showModal}>
-            New Task
-          </Button>
-          <Modal title="New Task" visible={isModalVisible} 
-            onOk={handleOk} onCancel={handleCancel}
-            style={{ textAlign: "center" }}
-            okText="Add" width={340}>
-            
-            <div>
-                <Row>
-                    <div className="workspace-name-and-input">
-                        <div className="workspace-name">
-                            Workspace Name
-                        </div>
-                        <div className="input-area-drop-down">
-                            <Select style={{ width: 270 }} placeholder="select your workspace">
-                            {context.workspace.map(w =>
-                                    (<Option value={w.id}>{w.workspace_name}</Option>)
-                            )}
-                            </Select>
-                        </div>
-                    </div>
-                    <div className="board-name-and-input">
-                        <div className="workspace-name">
-                            Board Name
-                        </div>
-                        <div className="input-area-drop-down">
-                            <Select style={{ width: 270 }} placeholder="select your workspace">
-                            {context.workspace.map(w =>
-                                    (<Option value={w.id}>{w.workspace_name}</Option>)
-                            )}
-                            </Select>
-                        </div>
-                    </div>
-                    <div className="task-name-and-input">
-                        <div className="workspace-name">
-                            Task Name
-                        </div>
-                        <div className="input-area">
-                            <div className="form-input-task-name">
-                                <Input placeholder="Add Task Name"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="description-name-and-input">
-                        <div className="workspace-name">
-                            Description
-                        </div>
-                        <div className="input-area">
-                            <div className="form-input-task-name">
-                                <Input placeholder="Add Description"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
-                            </div>
-                        </div>
-                    </div>
-                </Row>
-            </div>
-          </Modal>
-        </>
-      );
-    }
+        <div>
+            <Button
+                type="primary"
+                onClick={() => {
+                    setVisible(true);
+                }}
+            >
+                New task
+
+            </Button>
+            <NewTaskForm
+                visible={visible}
+                onCreate={onCreate}
+                onCancel={() => {
+                    setVisible(false);
+                }}
+            />
+        </div>
+    );
+}
