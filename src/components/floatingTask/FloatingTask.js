@@ -14,6 +14,8 @@ import { BASE_API_URL } from '../../constants/urls';
 import axios from 'axios';
 import { getToken } from '../../utils/authentication';
 
+import newTaskImage from '../floatingTask/newTask.png'
+
 const NewTaskForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
     const { Option } = Select;
@@ -186,15 +188,6 @@ export const FloatingTask = () => {
 
     return (
         <div>
-            <Button
-                type="primary"
-                onClick={() => {
-                    setVisible(true);
-                }}
-            >
-                New task
-
-            </Button>
             <NewTaskForm
                 visible={visible}
                 onCreate={onCreate}
@@ -202,6 +195,14 @@ export const FloatingTask = () => {
                     setVisible(false);
                 }}
             />
+            <div 
+                className="btn w-100 h-100 d-flex justify-content-center align-items-center"
+                
+                onClick={() => {
+                    setVisible(true);
+            }}>
+                <img src={newTaskImage} width={200} alt=""/>
+            </div>
         </div>
     );
 }

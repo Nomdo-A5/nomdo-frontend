@@ -61,7 +61,7 @@ const Board = () => {
                             <FloatingButton />
                         </div>
                         <div className="layout-title">
-                                    DIGANTI HEY
+                                    Nama Workspace
                                 </div>
                         <div className="boards-lists">
                             <Space wrap style={{ width: "1100px", backgroundColor: "white" }}>

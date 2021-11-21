@@ -10,6 +10,7 @@ import axios from "axios";
 import { getToken } from "../../utils/authentication";
 import { WorkspaceContext } from '../../context/WorkspaceContext';
 
+import newWorkspaceImage from '../floatingWorkspace/newWorkspace.png'
 import "./FloatingWorkspace.css";
 
 const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
@@ -113,14 +114,6 @@ export const FloatingWorkspace = () => {
 
     return (
         <div>
-            <Button
-                type="primary"
-                onClick={() => {
-                    setVisible(true);
-                }}
-            >
-                New Workspace
-            </Button>
             <CollectionCreateForm
                 visible={visible}
                 onCreate={onCreate}
@@ -128,6 +121,14 @@ export const FloatingWorkspace = () => {
                     setVisible(false);
                 }}
             />
+            <div 
+                className="btn w-100 h-100 d-flex justify-content-center align-items-center"
+                
+                onClick={() => {
+                    setVisible(true);
+            }}>
+                <img src={newWorkspaceImage} width={200} alt=""/>
+            </div>
         </div>
     );
 };

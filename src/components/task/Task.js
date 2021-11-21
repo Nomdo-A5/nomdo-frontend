@@ -33,7 +33,6 @@ export default function Task (props) {
                     <Col flex="none">
                         <div className="clock-and-date">
                             <div className="clock-logo">
-                                <ClockCircleOutlined/>
                             </div>
                             <div className="date-expired">
                                 {props.due_date}

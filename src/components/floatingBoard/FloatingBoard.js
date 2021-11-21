@@ -13,6 +13,8 @@ import { getToken } from '../../utils/authentication';
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 
+import newBoardImage from '../floatingBoard/newBoard.png'
+
 const NewBoardForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
     const { Option } = Select;
@@ -131,15 +133,6 @@ export const FloatingBoard = () => {
     };
     return (
         <div>
-            <Button
-                type="primary"
-                onClick={() => {
-                    setVisible(true);
-                }}
-            >
-                New Board
-
-            </Button>
             <NewBoardForm
                 visible={visible}
                 onCreate={onCreate}
@@ -147,6 +140,14 @@ export const FloatingBoard = () => {
                     setVisible(false);
                 }}
             />
+            <div 
+                className="btn w-100 h-100 d-flex justify-content-center align-items-center"
+                
+                onClick={() => {
+                    setVisible(true);
+            }}>
+                <img src={newBoardImage} width={200} alt=""/>
+            </div>
         </div>
     );
 }
