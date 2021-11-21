@@ -16,7 +16,7 @@ import { WorkspaceContext } from '../../context/WorkspaceContext';
 
 export const FloatingButton = () => {
 
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isModalVisible, setIsModalVisible, setVisible] = useState(false);
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -40,10 +40,13 @@ export const FloatingButton = () => {
             <Tooltip title="">
                 <Button onClick={showModal} shape="circle" icon={<PlusOutlined style={{ color: "#FFFFFF" }} />} size="large" style={{ background: '#4ABDAC' }} />
             </Tooltip>
-            <Modal title="Menu" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+            <Modal centered width={690} title="" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
+            footer={[
+                
+            ]}>
                 <div className="floating-form">
-                    <div className="floating-form-box"><FloatingBoard /></div>
                     <div className="floating-form-box"><FloatingWorkspace /></div>
+                    <div className="floating-form-box"><FloatingBoard /></div>
                     <div className="floating-form-box"><FloatingTask /></div>
                     <div className="floating-form-box"><JoinWorkspace /></div>
                     <div className="floating-form-box"><FloatingMoneyReport /></div>

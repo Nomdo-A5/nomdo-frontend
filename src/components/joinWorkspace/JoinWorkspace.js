@@ -10,6 +10,8 @@ import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import '../joinWorkspace/JoinWorkspace.css';
 
+import newJoinImage from '../joinWorkspace/joinWorkspace.png'
+
 export const JoinWorkspace = () => {
     
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -28,37 +30,41 @@ export const JoinWorkspace = () => {
 
     return (
         <>
-          <Button type="primary" onClick={showModal}>
-            Join Workspace
-          </Button>
-          <Modal title="Join Workspace" visible={isModalVisible} 
-            onOk={handleOk} onCancel={handleCancel}
-            style={{ textAlign: "center" }}
-            okText="Add" width={340}>
-            
-            <div>
-                <Row>
-                    <div className="join-name-and-logo">
-                        <div className="workspace-logo">
-                            <MailOutlined/>
-                        </div>
-                        <div className="join-name-and-input">
-                            <div className="workspace-name">
-                                Get Link
-                            </div>
-                            <div className="input-area">
-                                <div className="form-input-join-name">
-                                    <Input placeholder="Workspace Link"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
-                                </div>
-                                <div className="workspace-logo-copy">
-                                    <CopyOutlined />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Row>
+            <div 
+                className="btn w-100 h-100 d-flex justify-content-center align-items-center"
+                onClick={() => {
+                    setIsModalVisible(true);
+                }}>
+                <img src={newJoinImage} width={200} alt=""/>
             </div>
-          </Modal>
+            <Modal title="Join Workspace" visible={isModalVisible} 
+                onOk={handleOk} onCancel={handleCancel}
+                style={{ textAlign: "center" }}
+                okText="Add" width={340}>
+            
+                <div>
+                    <Row>
+                        <div className="join-name-and-logo">
+                            <div className="workspace-logo">
+                                <MailOutlined/>
+                            </div>
+                            <div className="join-name-and-input">
+                                <div className="workspace-name">
+                                    Get Link
+                                </div>
+                                <div className="input-area">
+                                    <div className="form-input-join-name">
+                                        <Input placeholder="Workspace Link"  style={{ borderRadius:"10px 10px 10px 10px"}}/>
+                                    </div>
+                                    <div className="workspace-logo-copy">
+                                        <CopyOutlined />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Row>
+                </div>
+            </Modal>
         </>
-      );
-    }
+    );
+}

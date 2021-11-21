@@ -15,6 +15,8 @@ import { getToken } from '../../utils/authentication';
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 
+import newReportImage from '../floatingMoneyReport/newBalance.png'
+
 const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
     const context = useContext(WorkspaceContext)
@@ -166,16 +168,7 @@ export const FloatingMoneyReport = () => {
     };
 
     return (
-        <div>
-            <Button
-                type="primary"
-                onClick={() => {
-                    setVisible(true);
-                }}
-            >
-                New Balance
-
-            </Button>
+        <>
             <NewBalanceForm
                 visible={visible}
                 onCreate={onCreate}
@@ -183,6 +176,14 @@ export const FloatingMoneyReport = () => {
                     setVisible(false);
                 }}
             />
-        </div>
+            <div 
+                className="btn w-100 h-100 d-flex justify-content-center align-items-center"
+                
+                onClick={() => {
+                    setVisible(true);
+            }}>
+                <img src={newReportImage} width={200} alt=""/>
+            </div>
+        </>
     );
 }
