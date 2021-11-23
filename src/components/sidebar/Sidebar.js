@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Avatar } from 'antd';
 import { NotificationOutlined } from '@ant-design/icons';
 import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";
@@ -48,8 +48,8 @@ const Sidebar = () => {
             <span>Workspace</span>
             <Link to="/workspace" onClick={() => history.push("/workspace")} />
           </Menu.Item>
-          {context.workspace.map(w => (
-            <SubMenu key={w.id} title={w.workspace_name}>
+          {context.workspace.map(w => (            
+            <SubMenu key={w.id} title={w.workspace_name} icon={<Avatar>{w.workspace_name.charAt(0).toUpperCase()}</Avatar>}>              
               <Menu.Item >
                 <span>Dashboard</span>
                 <Link to="/dashboard" onClick={() => history.push("/dashboard")} />

@@ -22,12 +22,10 @@ import { ClickedTask } from "../../components/clickedTask/ClickedTask";
 
 const Home = () =>{
     
-    const { Header, Content, Sider } = Layout;
-    const [task, setTask] = useState([]);
-    const [workspace, setWorkspace] = useState([]);  
+    const { Sider } = Layout;
+    const [task, setTask] = useState([]);    
 
     useEffect(() => {
-        //GetWorkspace()
         GetTask()
       }, [])    
 
