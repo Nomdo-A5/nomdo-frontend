@@ -8,6 +8,7 @@
 2. CRUD Workspace pada halaman Dashboard
 3. CRUD Board pada halaman Board
 4. Logout
+5. menampilkan report pada workspace
 
 *Data session dan CRUD disimpan dalam Local Storage.
 
@@ -16,3 +17,4 @@
 1. React Bootstrap
 2. React Icons
 3. Sweet Alert
+4. antd
