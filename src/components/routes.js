@@ -6,6 +6,7 @@ import Login from "../pages/Login/Login";
 import Structure from "./Structure";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Board from "../pages/board/Board";
+import BoardExtended from "../pages/boardExtended/BoardExtended";
 import Report from "../pages/report/Report";
 import Structure_Profile from "./Structure_Profile";
 import Register from "../pages/register/Register";
@@ -62,6 +63,13 @@ export const APP_ROUTE = [
     path: "/Dashboard/Members",
     exact: true,
     component: Structure,
+    private: true,
+  },
+  {
+    name: "BoardExtended",
+    path: "/BoardExtended",
+    exact: true,
+    component: BoardExtended,
     private: true,
   },
   {

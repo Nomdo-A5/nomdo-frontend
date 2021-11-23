@@ -1,0 +1,60 @@
+.main-layout{
+    margin-top: 10px;
+}
+
+.layout-title{
+    font-size: larger;
+}
+
+.logo-title-progress{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    margin-left: 25px;
+}
+
+.board-title-and-logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-bottom: 5px;
+}
+
+.boards-title{
+    margin-left: 10px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.progress-bar-component{
+    width: 250px;
+}
+
+.line-of-boards{
+    display: flex;
+    flex-direction: row;
+    margin-left: 25px;
+}
+
+.see-all{
+    text-align: left;
+    font-size: small;
+    font-style: italic;
+    margin-left: 25px;
+    margin-top: 10px;
+    color: #808080;
+}
+
+.layout-title {
+    font-size: large;
+    font-weight: bold;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.floating-button-component {
+    position: fixed;
+    right: 20px;;
+    bottom: 20px;;
+}
