@@ -12,7 +12,7 @@ import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 import axios from 'axios';
 import { WorkspaceContext } from "../../context/WorkspaceContext";
-import { BrowserRouter as Router, useLocation , useHistory} from "react-router-dom";
+import { BrowserRouter as Router, useLocation , useHistory, Link } from "react-router-dom";
 
 function refreshPage() {
     window.location.reload(true);
@@ -74,7 +74,9 @@ const Board = () => {
                                             <MailOutlined />
                                         </div>
                                         <div className="boards-title">
-                                            Divisi Acara
+                                            <Link to="/BoardExtended" onClick={() => history.push("/BoardExtended")} >
+                                                Divisi Acara
+                                            </Link>
                                         </div>
                                     </div>
                                     <div className="progress-bar-component">
@@ -96,7 +98,9 @@ const Board = () => {
                                     </div>
                                 </div>
                                 <div className="see-all">
-                                    See all
+                                    <Link to="/BoardExtended" onClick={() => history.push("/BoardExtended")} >
+                                        See all
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +135,9 @@ const Board = () => {
                                     </div>
                                 </div>
                                 <div className="see-all">
-                                    See all
+                                    <Link to="/BoardExtended" onClick={() => history.push("/BoardExtended")} >
+                                        See all
+                                    </Link>
                                 </div>
                             </div>
                         </div>
