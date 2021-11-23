@@ -1,7 +1,6 @@
 .progress-bar-form {
     display: grid;
-    grid: 25px / 30% 70%;
-    margin-bottom: 10px;
+    width: 250px;
 }
 
 .progress-bar-title {
@@ -11,4 +10,5 @@
 }
 
 .progress-bar-chart {
+    margin: 0;
 }

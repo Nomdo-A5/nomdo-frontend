@@ -1,0 +1,49 @@
+.checkbox-logo{
+    font-size: large;
+}
+
+.task-title {
+    font-size: medium;
+    margin: auto;
+    margin-left: 10px;
+}
+
+.checkbox-and-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.on-where-information{
+    text-align: left;
+    margin-left: 33px;
+    color: #808080;
+}
+
+.task-date-and-clock{
+    display: flex;
+    flex-direction: row;
+    margin-left: 35px;
+}
+
+.clock-logo{
+    font-size: medium;
+}
+
+.see-more-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    width: 210px;
+    font-size: smaller;
+    margin-top: 10px;
+    margin-left: 25px;
+    font-style: italic;
+    color: #4ABDAC;
+}
+
+.task-date{
+    margin-top: 6px;
+    margin-left: 8px;
+    font-size: small;
+}

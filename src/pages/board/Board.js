@@ -3,9 +3,11 @@ import { Card, Row, Col, Button, Input, Layout, Space } from 'antd';
 import './Board.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Nav from "../../components/Nav";
+import { MailOutlined } from '@ant-design/icons'
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
 import ProgressBar from '../../components/progressBar/ProgressBar';
+import Boards from '../../components/boardOnBoard/BoardOnBoard';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 import axios from 'axios';
@@ -60,16 +62,80 @@ const Board = () => {
                         <div className="floating-button-component">
                             <FloatingButton />
                         </div>
-                        <div className="layout-title">
-                                    Nama Workspace
+
+                        <div className="main-layout">
+                            <div className="layout-title">
+                                Nama Workspace
+                            </div>
+                            <div className="boards-component-view">
+                                <div className="logo-title-progress">
+                                    <div className="board-title-and-logo">
+                                        <div className="board-logo">
+                                            <MailOutlined />
+                                        </div>
+                                        <div className="boards-title">
+                                            Divisi Acara
+                                        </div>
+                                    </div>
+                                    <div className="progress-bar-component">
+                                        <ProgressBar />
+                                    </div>
                                 </div>
-                        <div className="boards-lists">
-                            <Space wrap style={{ width: "1100px", backgroundColor: "white" }}>
-                                {boards.map((board) => (
-                                    <ProgressBar board_name={board.board_name} />
-                                ))}
-                            </Space>
+                                <div className="line-of-boards">
+                                    <div className="line-of-boards-item">
+                                        <Boards />
+                                    </div>
+                                    <div className="line-of-boards-item">
+                                        <Boards />
+                                    </div>
+                                    <div className="line-of-boards-item">
+                                        <Boards />
+                                    </div>
+                                    <div className="line-of-boards-item">
+                                        <Boards />
+                                    </div>
+                                </div>
+                                <div className="see-all">
+                                    See all
+                                </div>
+                            </div>
                         </div>
+                        
+                        <div className="main-layout">
+                            <div className="boards-component-view">
+                                <div className="logo-title-progress">
+                                    <div className="board-title-and-logo">
+                                        <div className="board-logo">
+                                            <MailOutlined />
+                                        </div>
+                                        <div className="boards-title">
+                                            Divisi Acara
+                                        </div>
+                                    </div>
+                                    <div className="progress-bar-component">
+                                        <ProgressBar />
+                                    </div>
+                                </div>
+                                <div className="line-of-boards">
+                                    <div className="line-of-boards-item">
+                                        <Boards />
+                                    </div>
+                                    <div className="line-of-boards-item">
+                                        <Boards />
+                                    </div>
+                                    <div className="line-of-boards-item">
+                                        <Boards />
+                                    </div>
+                                    <div className="line-of-boards-item">
+                                        <Boards />
+                                    </div>
+                                </div>
+                                <div className="see-all">
+                                    See all
+                                </div>
+                            </div>
+                        </div>
+
                     </Layout>
                 </Layout>
             </div>
