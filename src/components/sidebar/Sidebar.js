@@ -16,13 +16,14 @@ const { Header, Content, Sider } = Layout;
 // function onClickW() {
 //   this.props.history.push(`/workspace`);
 //   // window.location.reload();
-  
+
 //   }
 
 const Sidebar = () => {
   const history = useHistory();
 
   const context = useContext(WorkspaceContext)
+
   return (
     <Router>
       <Sider width={200} className="site-layout-background" style={{
@@ -41,13 +42,12 @@ const Sidebar = () => {
         >
           <Menu.Item key="home">
             <span>Home</span>
-            <Link to="/home" onClick={() => history.push("/home")}/>
+            <Link to="/home" onClick={() => history.push("/home")} />
           </Menu.Item>
           <Menu.Item key="workspace">
             <span>Workspace</span>
-            <Link to="/workspace" onClick={() => history.push("/workspace")}/>
+            <Link to="/workspace" onClick={() => history.push("/workspace")} />
           </Menu.Item>
-
           {context.workspace.map(w => (
             <SubMenu key={w.id} title={w.workspace_name}>
               <Menu.Item >
@@ -56,12 +56,12 @@ const Sidebar = () => {
               </Menu.Item>
               <Menu.Item >
                 <span>Board</span>
-                <Link to={{pathname:`/board/${w.id}`, state:{workspace:w.id} }}  onClick={() => history.push("/board/${w.id}")}/>
+                <Link to={{ pathname: `/board/${w.id}`, state: { workspace: w.id } }} onClick={() => history.push("/board/${w.id}")} />
               </Menu.Item>
               <Menu.Item >
                 <span>Money Report</span>
-                <Link to={{pathname:`/report/${w.id}`, state:{workspace:w.id} }}  onClick={() => history.push("/report/${w.id}")}/>
-                
+                <Link to={{ pathname: `/report/${w.id}`, state: { workspace: w.id } }} onClick={() => history.push("/report/${w.id}")} />
+
               </Menu.Item>
               <Menu.Item >
                 Setting
