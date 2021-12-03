@@ -46,9 +46,16 @@ export const APP_ROUTE = [
   },
   {
     name: "Boards",
-    path: "/board/:id",
+    path: "/workspace/:workspace_id/boards",
     exact: true,
     component: Board,
+    private: true,
+  },
+  {
+    name: "BoardsTasks",
+    path: "/workspace/:workspace_id/boards/:board_id/tasks",
+    exact: true,
+    component: BoardExtended,
     private: true,
   },
   {

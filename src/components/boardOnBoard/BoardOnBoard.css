@@ -1,4 +1,4 @@
-.checkbox-logo{
+.checkbox-logo {
     font-size: large;
 }
 
@@ -14,23 +14,23 @@
     justify-content: center;
 }
 
-.on-where-information{
+.on-where-information {
     text-align: left;
     margin-left: 33px;
     color: #808080;
 }
 
-.task-date-and-clock{
+.task-date-and-clock {
     display: flex;
     flex-direction: row;
     margin-left: 35px;
 }
 
-.clock-logo{
+.clock-logo {
     font-size: medium;
 }
 
-.see-more-button{
+.see-more-button {
     display: flex;
     flex-direction: row;
     justify-content: right;
@@ -42,8 +42,13 @@
     color: #4ABDAC;
 }
 
-.task-date{
+.task-date {
     margin-top: 6px;
     margin-left: 8px;
     font-size: small;
+}
+
+.main-div {
+    display: flex;
+    flex-direction: column;
 }

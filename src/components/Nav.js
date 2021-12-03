@@ -1,5 +1,6 @@
 import { Link, useHistory } from "react-router-dom";
 import "./style/Nav.css";
+import { logout } from "../utils/authentication";
 
 function Nav() {
   const history = useHistory();
@@ -7,7 +8,7 @@ function Nav() {
     <div className="nav">
       <div className="nav-desc">
         <div className="nav-desc-logo">
-          <Link to="/" className="nav-title">
+          <Link to="/" className="nav-title" onClick={() => logout()}>
               NOMDO
           </Link>
         </div>
