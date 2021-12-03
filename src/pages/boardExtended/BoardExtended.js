@@ -8,12 +8,13 @@ import { MailOutlined } from '@ant-design/icons'
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
 import ProgressBar from '../../components/progressBar/ProgressBar';
-import Boards from '../../components/boardOnBoard/BoardOnBoard';
+import BoardOnBoard from '../../components/boardOnBoard/BoardOnBoard';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 import axios from 'axios';
 import { WorkspaceContext } from "../../context/WorkspaceContext";
-import { BrowserRouter as Router, useLocation , useHistory, Link } from "react-router-dom";
+import { BrowserRouter as Router, useLocation, useHistory, Link, useParams } from "react-router-dom";
+import { BoardContext } from '../../context/BoardContext';
 
 function refreshPage() {
     window.location.reload(true);
@@ -24,113 +25,67 @@ const BoardExtended = () => {
     const { Sider } = Layout;
     const token = getToken();
     const [boards, setBoards] = useState([]);
-    const context = useContext(WorkspaceContext)
+    const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
     const { state } = useLocation()
+    const { workspace_id, board_id } = useParams()
     const history = useHistory();
-
-    const GetBoard = async () => {
-        const workspace_id = state.workspace
-        const response = await axios.get(BASE_API_URL + 'boards', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response.data)
-        setBoards(response.data.boards)
-    }
+    const { activeBoard, GetBoardById } = useContext(BoardContext)
 
     useEffect(() => {
-        GetBoard()
+        GetBoardById(workspace_id, board_id)
+        GetWorkspaceById(workspace_id)
     }, [])
 
+    const handleBack = () => {
+
+    }
     return (
         <Router>
             <WorkspaceContextProvider>
-            <Nav />
-            <div>
-                <Layout >
-                    <Sider>
-                        <Sidebar>
+                <Nav />
+                <div>
+                    <Layout >
+                        <Sider>
+                            <Sidebar />
                             <div className="floating-button-component">
                                 <FloatingButton />
                             </div>
-                        </Sidebar>
-                    </Sider>
-                    <Layout style={{ backgroundColor: "white" }}>
-                        <div className="floating-button-component">
-                            <FloatingButton />
-                        </div>
+                        </Sider>
+                        <Layout style={{ backgroundColor: "white" }}>
 
                             <div className="main-layout">
                                 <div className="layout-title">
-                                    Nama Workspacez
+                                    {activeWorkspace.workspace_name}
                                 </div>
                                 <div className="boards-component-view">
                                     <div className="logo-title-progress">
                                         <div className="board-title-and-logo">
                                             <div className="board-logo">
-                                                <AiOutlineArrowLeft />
+                                                <Link to={{ pathname: `/workspace/${workspace_id}/boards`, state: { workspace: workspace_id } }} >
+                                                    <AiOutlineArrowLeft />
+                                                </Link>
+
                                             </div>
                                             <div className="boards-title">
-                                                Divisi Acara
+                                                {activeBoard.board_name}
                                             </div>
                                         </div>
                                     </div>
                                     <div className="line-of-boards">
                                         <div className="line-of-boards-item">
-                                            <Boards />
-                                        </div>
-                                        <div className="line-of-boards-item">
-                                            <Boards />
-                                        </div>
-                                        <div className="line-of-boards-item">
-                                            <Boards />
-                                        </div>
-                                        <div className="line-of-boards-item">
-                                            <Boards />
-                                        </div>
-                                    </div>
-                                    <div className="line-of-boards">
-                                        <div className="line-of-boards-item">
-                                            <Boards />
-                                        </div>
-                                        <div className="line-of-boards-item">
-                                            <Boards />
-                                        </div>
-                                        <div className="line-of-boards-item">
-                                            <Boards />
-                                        </div>
-                                        <div className="line-of-boards-item">
-                                            <Boards />
-                                        </div>
-                                    </div>
-                                    <div className="line-of-boards">
-                                        <div className="line-of-boards-item">
-                                            <Boards />
-                                        </div>
-                                        <div className="line-of-boards-item">
-                                            <Boards />
-                                        </div>
-                                        <div className="line-of-boards-item">
-                                            <Boards />
-                                        </div>
-                                        <div className="line-of-boards-item">
-                                            <Boards />
+                                            <BoardOnBoard board_id={board_id} board_name={activeBoard.board_name} workspace_name={activeWorkspace.workspace_name} />
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+                        </Layout>
                     </Layout>
-                </Layout>
-            </div>
+                </div>
 
-        </WorkspaceContextProvider>
+            </WorkspaceContextProvider>
         </Router>
-        
+
     );
 }
 

@@ -24,6 +24,22 @@ const Sidebar = () => {
 
   const context = useContext(WorkspaceContext)
 
+  function handleBoardClicked(id){
+    history.push("/board/"+id)
+    //onClick={() => history.push("/workspace")}
+    // onClick={() => history.push("/dashboard")}
+    // onClick={() => handleBoardClicked(w.id)}
+    // onClick={() => handleReportClicked(w.id) } 
+  }
+
+  function handleReportClicked(id){
+    history.push("/report/"+id)
+    window.location.reload()
+  }
+  function handleHomeClicked(){
+    history.push("/home")
+    window.location.reload()
+  }
   return (
     <Router>
       <Sider width={200} className="site-layout-background" style={{
@@ -42,26 +58,25 @@ const Sidebar = () => {
         >
           <Menu.Item key="home">
             <span>Home</span>
-            <Link to="/home" onClick={() => history.push("/home")} />
+            <Link to="/home" onClick={() => handleHomeClicked()} />
           </Menu.Item>
           <Menu.Item key="workspace">
             <span>Workspace</span>
-            <Link to="/workspace" onClick={() => history.push("/workspace")} />
+            <Link to="/workspace"  />
           </Menu.Item>
           {context.workspace.map(w => (            
             <SubMenu key={w.id} title={w.workspace_name} icon={<Avatar>{w.workspace_name.charAt(0).toUpperCase()}</Avatar>}>              
-              <Menu.Item >
+              <Menu.Item key={"dahboard "+w.id}>
                 <span>Dashboard</span>
-                <Link to="/dashboard" onClick={() => history.push("/dashboard")} />
+                <Link to="/dashboard"  />
               </Menu.Item>
-              <Menu.Item >
+              <Menu.Item key={"board "+w.id}>
                 <span>Board</span>
-                <Link to={{ pathname: `/board/${w.id}`, state: { workspace: w.id } }} onClick={() => history.push("/board/${w.id}")} />
+                <Link to={{ pathname: `/workspace/${w.id}/boards`, state: { workspace: w.id } }} />
               </Menu.Item>
-              <Menu.Item >
+              <Menu.Item key={"report "+w.id} >
                 <span>Money Report</span>
-                <Link to={{ pathname: `/report/${w.id}`, state: { workspace: w.id } }} onClick={() => history.push("/report/${w.id}")} />
-
+                <Link to={{ pathname: `/report/${w.id}`, state: { workspace: w.id } }} />
               </Menu.Item>
               <Menu.Item >
                 Setting
