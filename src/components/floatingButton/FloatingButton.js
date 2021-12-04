@@ -38,7 +38,7 @@ export const FloatingButton = () => {
     return (
             <div>
             <Tooltip title="">
-                <Button onClick={showModal} shape="circle" icon={<PlusOutlined style={{ color: "#FFFFFF" }} />} size="large" style={{ background: '#4ABDAC' }} />
+                <Button variant="success" onClick={showModal} shape="circle" icon={<PlusOutlined style={{ color: "#FFFFFF" }} />} size="large" style={{ background: '#4ABDAC' }} />
             </Tooltip>
             <Modal centered width={690} title="" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
             footer={[
