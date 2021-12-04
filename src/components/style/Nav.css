@@ -5,8 +5,12 @@
     box-sizing: border-box;
 }
 
+.menu-bar{
+    text-decoration: none;
+}
+
 .nav {
-    background-color: white;
+    background-color: #4ABDAC;
     z-index: 1;
     position: sticky;
     width: 100%;
@@ -20,8 +24,10 @@
     font-family: "Roboto Condensed", sans-serif;
     font-size: 24px;
     font-weight: bold;
-    display: flex;
     text-decoration: none;
+    padding-left: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 p {
@@ -47,9 +53,40 @@ p {
 }
 
 .nav-profile {
+    display: flex;
+    flex-direction: row;
     text-decoration: none;
     text-align: right;
-    width: 80%;
-    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: 3vh;
+    height: 30px;
+    vertical-align: middle;
     background-color: white;
+    color: white;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.nav-profile-name{
+    padding-left: 15px;
+    padding-right: 10px;
+    margin-top: 3px;
+    color: #4ABDAC;
+}
+
+.nav-profile-arrow{
+    color: #4ABDAC;
+    margin-top: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.name-and-arrow{
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-profile-dropdown{
+    color: red;
 }

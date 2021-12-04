@@ -96,9 +96,6 @@ const UserProfile = () =>{
                                 <div className="button-save">
                                     <Button type="success" style={{ background: "#C9EBE6", borderColor: "#657673", width: "350px" }}>Save</Button>
                                 </div>
-                                <div className="signout-user">
-                                    Signout
-                                </div>
                             </div>
                         </div>
                     </div>

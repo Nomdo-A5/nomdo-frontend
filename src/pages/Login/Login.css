@@ -14,9 +14,49 @@
     float: left;
 }
 
-.login-form-button {
+.register-text {
+    font-size: small;
+}
+
+/**/
+
+.main-division{
+    display: flex;
+    flex-direction: row;
     width: 100%;
-    border-radius: 20px 20px 20px 20px;
+    height: 92vh;
+}
+
+.left-division{
+    width: 50%;
+}
+
+.right-division{
+    width: 50%;
+}
+
+.inner-left-division{
+    width: 50%;
+    /*transform: translateX(50%,50%);*/
+    transform: translateX(50%) translateY(50%);
+}
+
+.inner-right-division{
+    transform: translateY(2%);
+}
+
+.welcome-to-nomdo{
+    width: 500px;
+    font-size: 40px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.dont-have-group {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    margin: 0 auto;
 }
 
 .dont-have-text {
@@ -24,6 +64,20 @@
     font-size: small;
 }
 
-.register-text {
+.dont-have-link {
+    padding-top: 20px;
     font-size: small;
+    color: white;
+    text-decoration: none;
+    padding-left: 5px;
+}
+
+.login-form-button {
+    width: 100%;
+    border-radius: 20px 20px 20px 20px;
+    background-color: #4ABDAC;
+    box-shadow: 1px 1px #C4C4C4;
+    color: white;
+    font-size: small;
+    font-weight: lighter;
 }

@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import Nav from "../../components/Nav";
+import Nav from "../../components/Nav_login";
 import './Register.css';
-import {
-  Form,
-  Input,
-  Button,
-  Card
-} from 'antd';
+import { Form, Input, Button, Card } from 'antd';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
+import Frontpic from '../Login/Frontpic.svg';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -70,35 +68,24 @@ const Register = () => {
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
 
   return (
-    <div className="div-register-page">
-      <Nav/>
-      <div style={{
-        position: 'absolute', left: '50%', top: '50%',
-        transform: 'translate(-50%, -50%)'
-      }}>
-        <Card title="Sign up" style={{ width: 450 }} className="register-card">
-          <Form
-            {...formItemLayout}
-            form={form}
-            name="register"
-            onFinish={onFinish}
-            scrollToFirstError
-          >
-            <Form.Item
-              name="username"
-              label="Username"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your Username!',
-                },
-              ]}
+    <div className="main-div-login" >
+      <Nav />
+      <div className="main-division-register">
+        <div className="left-division-register">
+          <div className="inner-left-division-register">
+            <div className="welcome-to-nomdo-register">
+              Welcome to Nomdo!
+            </div>
+            <Form
+              {...formItemLayout}
+              form={form}
+              name="register"
+              onFinish={onFinish}
+              scrollToFirstError
             >
-              <Input />
-            </Form.Item>
+              
             <Form.Item
               name="email"
-              label="E-mail"
               rules={[
                 {
                   type: 'email',
@@ -110,12 +97,15 @@ const Register = () => {
                 },
               ]}
             >
-              <Input />
+              <Input 
+                width="300px" 
+                placeholder="Email" 
+                prefix={<UserOutlined className="site-form-item-icon" />}
+              />
             </Form.Item>
 
             <Form.Item
               name="password"
-              label="Password"
               rules={[
                 {
                   required: true,
@@ -124,12 +114,14 @@ const Register = () => {
               ]}
               hasFeedback
             >
-              <Input.Password />
+              <Input.Password 
+                placeholder="Password" 
+                prefix={<LockOutlined className="site-form-item-icon" />}
+              />
             </Form.Item>
-
+              
             <Form.Item
               name="confirm"
-              label="Confirm Password"
               dependencies={['password']}
               hasFeedback
               rules={[
@@ -148,29 +140,37 @@ const Register = () => {
                 }),
               ]}
             >
-              <Input.Password />
+              <Input.Password 
+                placeholder="Confirm Password" 
+                prefix={<LockOutlined className="site-form-item-icon" />}
+              />
             </Form.Item>
 
-
-            <Form.Item {...tailFormItemLayout}>
-              <div className="register-form-button">
-                <Button type="primary" htmlType="submit" className="sign-up-button">
-                  Sign up
+              <Form.Item>
+                <Button type="success" htmlType="submit" className="login-form-button-register">
+                  SIGN UP
                 </Button>
-                <div className="already-have-text">
-                  Already have an account?  
+                <div className="dont-have-group-register">
+                  <div className="dont-have-text-register">
+                    Have an account?
+                  </div>
+                  <div className="dont-have-link-register">
+                    <Link to={"./"}>
+                      Sign In
+                    </Link>
+                  </div>
                 </div>
-              </div>
-              <div className="sign-in-text">
-                <Link to={"/"}>
-                    <a href=""> Signin now!</a>
-                </Link>
-              </div>
-            </Form.Item>
-          </Form>
-        </Card>
+              </Form.Item>
+            </Form>
+          </div>
+        </div>
+        <div className="right-division-register">
+          <div className="inner-right-division-register">
+            <img src={Frontpic} height={550} alt=""/>
+          </div>
+        </div>
       </div>
-    </div>
+      </div>
   );
 };
 
