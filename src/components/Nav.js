@@ -29,11 +29,11 @@ function Nav() {
 
   return (
     <div className="nav">
-        <div className="nav-desc-logo">
+      <div className="nav-components">
           <Link to="/" className="nav-title">
             <img src={LogoImage} height={35} alt=""/>
           </Link>
-        </div>
+          <div className="spacer"/>
         <div className="nav-profile-division">
           <Dropdown overlay={menu} trigger={['click']}>
               <div className="nav-profile">
@@ -53,6 +53,7 @@ function Nav() {
               </div>
           </Dropdown>
         </div>
+      </div>
     </div>
   );
 }

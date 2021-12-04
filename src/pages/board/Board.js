@@ -114,6 +114,7 @@ const Board = () => {
         <Router>
             <WorkspaceContextProvider>
                 <Nav />
+                <div className="spacer"/>
                 <div>
                     <Layout >
                         <Sider>

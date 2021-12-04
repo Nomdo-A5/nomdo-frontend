@@ -1,3 +1,7 @@
+.spacer{
+    height: 8vh;
+}
+
 .profile-main{
     display: flex;
     flex-direction: row;

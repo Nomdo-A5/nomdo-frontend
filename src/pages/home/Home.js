@@ -46,12 +46,13 @@ const Home = () =>{
             <div style={{ backgroundColor:"white", position: "absolute", zIndex: "2"}} className="navbar-division">
                 <Nav/>
             </div>
+            <div className="spacer"/>
             <Layout>
                 <Sider style={{ backgroundColor:"white", zIndex: "1"}}>
                     <Sidebar/>
                 </Sider>
                 <Layout style={{ zIndex: "0"}}>  
-                    <Space wrap style={{ paddingTop: "30px", paddingLeft: "30px", backgroundColor: "white", zIndex: "0"}}>
+                    <Space wrap style={{ paddingLeft: "30px", backgroundColor: "white", zIndex: "0"}}>
                         {task.map(t => (
                             <Task key={t.id} task_id={t.id} task_name={t.task_name} task_description={t.task_description} />
                         ))}
