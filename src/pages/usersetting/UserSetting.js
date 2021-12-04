@@ -50,6 +50,7 @@ const UserSetting = () => {
         <WorkspaceContextProvider>
             <div>
                 <Nav />
+                <div className="spacer"/>
                 <Layout>
                     <Sider>
                         <Sidebar />

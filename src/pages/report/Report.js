@@ -73,6 +73,7 @@ const Report = () => {
     return (
         <WorkspaceContextProvider>
             <Nav />
+            <div className="spacer"/>
             <div>
                 <Layout >
                     <Sider>

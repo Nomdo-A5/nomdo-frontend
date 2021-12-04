@@ -40,6 +40,7 @@ const UserProfile = () =>{
         <WorkspaceContextProvider>
             <div>
             <Nav />
+            <div className="spacer"/>
             <Layout>
                 <Sider>
                     <Sidebar />

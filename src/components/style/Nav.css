@@ -1,11 +1,9 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
 .menu-bar{
     text-decoration: none;
+}
+
+.spacer{
+    width: 75%;
 }
 
 .nav {
@@ -19,6 +17,13 @@
     border-bottom: 2px solid #C4C4C4;
 }
 
+.nav-components{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: 0 auto;
+}
+
 .nav-title {
     font-family: "Roboto Condensed", sans-serif;
     font-size: 24px;
@@ -26,7 +31,8 @@
     text-decoration: none;
     margin-top: auto;
     margin-bottom: auto;
-    position: fixed;
+    text-align: left;
+    width: 10%;
 }
 
 p {
@@ -35,18 +41,10 @@ p {
     font-weight: 300;
 }
 
-.nav-desc-logo {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: 15%;
-}
-
 .nav-profile-division{
-    position: fixed;
-    right: 7vh;
-    top: 1.5vh;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: auto;
 }
 
 .nav-profile {
