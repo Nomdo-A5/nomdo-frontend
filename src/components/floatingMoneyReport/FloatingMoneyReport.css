@@ -70,3 +70,38 @@
     width: 280px;
     padding-left: 10px;
 }
+
+---
+
+.date-name-and-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.form-input-date-name {
+    width: 280px;
+    padding-left: 10px;
+    text-align: left;
+}
+
+---
+
+.proof-name-and-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.proof-area-drop-down {
+    padding-left: 10px;
+    text-align: left;
+}
+
+.row-test-1{
+    margin-bottom: 0;
+}
+
+.row-test{
+    margin-bottom: 0;
+}

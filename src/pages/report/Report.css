@@ -8,10 +8,37 @@
 
 .floating-button-component {
     position: fixed;
-    right: 20px;;
-    bottom: 20px;;
+    right: 20px;
+    bottom: 20px;
 }
 
 .spacer{
     height: 8vh;
+}
+
+.report-images{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.report-images-component{
+    margin-left: 10px;
+    margin-right: 10px;
+    border-top: 2px solid #C4C4C4;
+    border-left: 2px solid #C4C4C4;
+    border-right: 2px solid #C4C4C4;
+    border-bottom: 2px solid #C4C4C4;
+    border-radius: 18px 18px 18px 18px;
+}
+
+.floating-button-component{
+    z-index: 1;
+}
+
+.report-table{
+    width: 85%;
+    margin: 0 auto;
 }

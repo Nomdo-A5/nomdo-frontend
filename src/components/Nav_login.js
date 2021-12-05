@@ -10,7 +10,7 @@ function Nav_login() {
   const history = useHistory();
   return (
     <div className="nav">
-      <div className="nav-desc">
+      <div className="nav-components">
         <div className="nav-desc-logo">
           <Link to="/" className="nav-title">
             <img src={LogoImage} height={35} alt=""/>

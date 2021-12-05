@@ -70,6 +70,7 @@ const Register = () => {
   return (
     <div className="main-div-login" >
       <Nav />
+      <div className="spacer"/>
       <div className="main-division-register">
         <div className="left-division-register">
           <div className="inner-left-division-register">

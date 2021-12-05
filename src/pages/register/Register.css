@@ -1,3 +1,7 @@
+.spacer{
+  height: 8vh;
+}
+
 .main-division-register{
   display: flex;
   flex-direction: row;
