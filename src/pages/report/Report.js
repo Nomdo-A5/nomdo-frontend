@@ -14,6 +14,10 @@ import { useLocation } from 'react-router';
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 
+import Income from "../../components/reportIncome/ReportIncome";
+import Outcome from "../../components/reportOutcome/ReportOutcome";
+import Overview from "../../components/reportOverview/ReportOverview";
+
 function refreshPage() {
     window.location.reload(true);
 }
@@ -41,20 +45,52 @@ const Report = () => {
 
     const columns = [
         {
+            title: 'ID',
+            dataIndex: 'balance_id',
+            key: 'id',
+            innerHeight: '10px',
+            outerHeight: '10px',
+            backgroundColor: 'red',
+            render: text => <a>{text}</a>,
+            width: '5%',
+        },
+        {
             title: 'Description',
             dataIndex: 'balance_description',
             key: 'description',
             render: text => <a>{text}</a>,
+            width: '25%',
+        },
+        {
+            title: 'Date',
+            dataIndex: 'balance_date',
+            key: 'date',
+            render: text => <a>{text}</a>,
+            width: '10%',
         },
         {
             title: 'Nominal',
             dataIndex: 'nominal',
             key: 'nominal',
+            width: '10%',
         },
         {
-            title: 'Income',
-            dataIndex: 'is_income',
-            key: 'income',
+            title: 'Type',
+            dataIndex: 'balance_type',
+            key: 'type',
+            render: text => <a>{text}</a>,
+        },
+        {
+            title: 'Status',
+            dataIndex: 'balance_status',
+            key: 'status',
+            render: text => <a>{text}</a>,
+        },
+        {
+            title: 'Proof',
+            dataIndex: 'Transaction_proof',
+            key: 'Transaction_proof',
+            width: '8%',
         },
         {
             title: 'Action',
@@ -86,9 +122,24 @@ const Report = () => {
                         <div className="report-title">
                             Workspace Name
                         </div>
+                        <div className="report-images">
+                            <div className="report-images-component">
+                                <Income />
+                            </div>
+                            <div className="report-images-component">
+                                <Outcome />
+                            </div>
+                            <div className="report-images-component">
+                                <Overview />
+                            </div>
+                        </div>
                         <div className="report-table">
 
-                            <Table columns={columns} dataSource={reports} />
+                            <Table 
+                                columns={columns} 
+                                dataSource={reports} 
+                                size="small"
+                            />
                         </div>
                     </Layout>
                 </Layout>

@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 import { BsWallet2 } from 'react-icons/bs';
 import { useState, useContext } from 'react';
 
-import { Form, Card, Row, Col, Input, Select } from 'antd';
+import { Form, Card, Row, Col, Input, Select, DatePicker, Upload } from 'antd';
 import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { BsPencilSquare } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
@@ -16,11 +16,21 @@ import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 
 import newReportImage from '../floatingMoneyReport/newBalance.png'
+import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 
 const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
     const context = useContext(WorkspaceContext)
     const { Option } = Select;
+    
+    const normFile = (e: any) => {
+        console.log('Upload event:', e);
+        if (Array.isArray(e)) {
+        return e;
+        }
+        return e && e.fileList;
+    };
+
     return (
         <Modal
             title="New Balance"
@@ -48,7 +58,7 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
 
             >
                 <div>
-                    <Row>
+                    <Row className="row-test-1">
                         <div className="workspace-name-and-input">
                             <div className="input-area-drop-down">
                                 <Form.Item
@@ -75,6 +85,36 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                             </div>
                         </div>
                     </Row>
+                    <Row className="row-test">
+                        <Form.Item
+                            name="balance_description"
+                            label="Desciption"
+                            className="new-balance-form_last-form-item"
+                        >
+                            <div className="description-name-and-input">
+
+                                <div className="form-input-description-name">
+                                    <Input.TextArea placeholder="Description" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                </div>
+                            </div>
+                        </Form.Item>
+
+                    </Row>
+                    <Form.Item 
+                        name="date"
+                        label="Date"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input the date!',
+                            },
+                        ]}>
+                        <div className="date-name-and-input">
+                            <div className="form-input-date-name">
+                                <DatePicker width="280px" placeholder="Date" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                            </div>
+                        </div>
+                    </Form.Item>
                     <Row>
                         <Form.Item
                             name="nominal"
@@ -82,7 +122,7 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input the new task name!',
+                                    message: 'Please input the value!',
                                 },
                             ]}
                         >
@@ -110,7 +150,7 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                                 >
                                     <Select
                                         style={{ width: 270 }}
-                                        placeholder="select type"
+                                        placeholder="Select Type"
                                         >
                                         
                                             <Option value='1'>income</Option>
@@ -121,23 +161,50 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                                 </Form.Item>
                             </div>
                         </div>
-
-
                     </Row>
                     <Row>
-                        <Form.Item
-                            name="balance_description"
-                            label="Desciption"
-                            className="new-balance-form_last-form-item"
-                        >
-                            <div className="description-name-and-input">
+                        <div className="status-name-and-input">
+                            <div className="input-area-drop-down">
+                                <Form.Item
+                                    name="is_income"
+                                    label="Status"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please select status!',
+                                        },
+                                    ]}
 
-                                <div className="form-input-description-name">
-                                    <Input.TextArea placeholder="Deskripsi" style={{ borderRadius: "10px 10px 10px 10px" }} />
-                                </div>
+                                >
+                                    <Select
+                                        style={{ width: 270 }}
+                                        placeholder="Select Status"
+                                        >
+                                        
+                                            <Option value='1'>Planned</Option>
+                                            <Option value='0'>Done</Option>
+                                        
+                                    </Select>
+
+                                </Form.Item>
                             </div>
-                        </Form.Item>
-
+                        </div>
+                    </Row>
+                    <Row>
+                        <div className="proof-name-and-input">
+                            <div className="proof-area-drop-down">
+                                <Form.Item
+                                    name="Transaction Notes"
+                                    label="Transaction Notes"
+                                    valuePropName="fileList"
+                                    getValueFromEvent={normFile}
+                                >
+                                    <Upload name="logo" action="/upload.do" listType="picture">
+                                    <Button icon={<UploadOutlined />}>Upload Bills</Button>
+                                    </Upload>
+                                </Form.Item>
+                            </div>
+                        </div>
                     </Row>
                 </div>
             </Form>

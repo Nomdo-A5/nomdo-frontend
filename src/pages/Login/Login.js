@@ -47,6 +47,7 @@ const Login = () => {
   return (
     <div className="main-div-login" >
       <Nav />
+      <div className="spacer"/>
       <div className="main-division">
         <div className="left-division">
           <div className="inner-left-division">
