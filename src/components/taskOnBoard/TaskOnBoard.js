@@ -9,40 +9,42 @@ export default function TaskOnBoard (props) {
         <div>
             <Card
                 style={{
-                    width: "260px",
+                    width: "220px",
                     height: "auto",
                     borderRadius: "16px",
                     marginRight: "24px",
-                    marginTop: "50px",
                     boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
-                    backgroundColor: "#F6F6F6"
+                    backgroundColor: "#FFFFFF",
+                }}
+                bodyStyle={{
+                    padding: "5px"
                 }}
                 title={props.task_name}
-            >
-                <Row>
-                    <div className="task-description">
-                        <Col>
-                            {props.task_description}
-                        </Col>
+            >    
+                <div className="main-layout-horizontal">
+                    <div className="checkbox-logo">
+                        <input
+                            name="isGoing"
+                            type="checkbox" 
+                        />
                     </div>
-                </Row>
-                <Row>
-                    <Col></Col>
-                </Row>
-                <Row wrap={false}>                    
-                    <Col flex="none">
-                        <div className="checkbox-and-name">
-                            <div className="checkbox-logo">
-                            <input
-                                name="isGoing"
-                                type="checkbox" />
+                    <div className="main-layout-vertical">
+                        <div className="task-name">
+                            Membuat Daftar Tamu
+                        </div>
+                        <div className="task-description">
+                            on Divisi Acara, IT Motion
+                        </div>
+                        <div className="clock-and-date-division">
+                            <div className="clock-icon">
+                                <ClockCircleOutlined/>
                             </div>
-                            <div className="task-title">
-                                Nama Task
+                            <div className="due-date-expired">
+                                Due 24, Aug 2021
                             </div>
                         </div>
-                    </Col>
-                </Row>
+                    </div>
+                </div>
             </Card>
         </div>
     );
