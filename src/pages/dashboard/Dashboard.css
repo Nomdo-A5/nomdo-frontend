@@ -1,56 +1,169 @@
-.layout-title{
-    font-size: large;
+.spacer{
+}
+
+.main-layout{
+    background-color: #F5F8FA;
+}
+
+.layout-title-dashboard{
+    font-size: 25px;
     font-weight: bold;
-    background-color: white;
-    margin-top: 20px;
+    background-color: #F5F8FA;
+    margin-bottom: 20px;
 }
 
 .layout-main{
-    display:grid;
-    grid-template-columns: 400px 400px;
+    display: flex;
+    flex-direction: row;
+    background-color: #F5F8FA;
+}
+
+.layout-main-left{
+    width: 85em;
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F8FA;
+}
+
+.overview-images{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    margin-top: 30px;
 }
 
-.tabs{
-    tab-size: 1;
-}
-
-.item-name {
+.layout-main-left-title{
+    font-size: 20px;
     text-align: left;
-    padding-left: 10px;
-    padding-top: 7px;
-    padding-bottom: 5px;
-    width: 80px;
+    padding-left: 2em;
+}
+
+.layout-main-right{
+    width: 40em;
+    background-color: #F5F8FA;
+}
+
+.layout-boxes-overview{
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 1em;
+    margin-left: 2em;
+    justify-content: center;
 }
 
-.incoming-tasks-text{
+.images-container-income-outcome{
+    display: flex;
+    flex-direction: row;
+}
+
+.income-overview{
+    background-color: #00AA92;
+    width: 130px;
+    margin-right: 0.4em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.overview-title-group{
+    display: flex;
+    flex-direction: row;
+}
+
+.overview-title{
+    margin: 0.2em;
     text-align: left;
-    margin-top: 30px;
-    font-size: large;
     font-weight: bold;
+    width: 50%;
 }
 
-.report-form-main {
-    display: flex;
-    flex-direction: row;
+.overview-details{
+    margin: 0.2em;
+    width: 50%;
+    text-align: right;
+    font-style: italic;
+    font-size: small;
+    margin: auto;
 }
 
-.report-items {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-}
-
-.done-and-given-task-main {
-    display: flex;
-    flex-direction: row;
-}
-
-.done-and-given-task-container {
+.outcome-overview{
+    background-color: #E6A01B;
+    width: 130px;
+    margin-left: 0.4em;
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.value-at-overview{
+    font-size: 25px;
+    margin-top: 0.2em;
+    color: #F5F8FA;
+}
+
+.value-text-overview{
+    font-weight: bold;
+    color: #F5F8FA;
+}
+
+.dashboard-bottom{
+    margin-top: 1.5em;
+}
+
+.layout-main-left-tasks-display{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2em;
+}
+
+.layout-main-left-tasks-double{
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-main-left-tasks{
+    margin-top: 1em;
+}
+
+.member-boxes-overview{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
+    justify-content: center;
+}
+
+.container-card-member-1{
+    padding-left: 10px;
+}
+
+.card-main-division-member{
+    width: 280px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.team-member-name{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 1em;
+}
+
+.members-list{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+.members-name-and-logo{
+    display: flex;
+    flex-direction: row;
+    margin-left: 3em;
+    margin-bottom: 0.5em;
+}
+
+.team-name{
+    margin-left: 1em;
+    margin-top: 4px;
+    color: #00AA92;
 }
