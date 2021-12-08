@@ -5,6 +5,7 @@
 import Login from "../pages/Login/Login";
 import Structure from "./Structure";
 import Dashboard from "../pages/dashboard/Dashboard";
+import Member from "../pages/member/Member";
 import Board from "../pages/board/Board";
 import BoardExtended from "../pages/boardExtended/BoardExtended";
 import Report from "../pages/report/Report";
@@ -66,10 +67,10 @@ export const APP_ROUTE = [
     private: true,
   },
   {
-    name: "Members",
-    path: "/Dashboard/Members",
+    name: "Member",
+    path: "/member",
     exact: true,
-    component: Structure,
+    component: Member,
     private: true,
   },
   {

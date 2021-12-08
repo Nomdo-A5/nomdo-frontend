@@ -1,0 +1,44 @@
+.member-card-main{
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+}
+
+.member-card-initial{
+}
+
+.layout-main-member{
+    margin-left: 1em;
+    width: 85%;
+}
+
+.layout-title-member{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.layout-main-title{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: larger;
+}
+
+.member-card-names{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: larger;
+}
+
+.member-card-view-details{
+    color: #4ABDAC;
+    font-size: small;
+}
+
+.layout-main-content{
+    display: flex;
+    flex-direction: row;
+}
+
+.layout-main-card{
+    margin: 0.5em;
+}

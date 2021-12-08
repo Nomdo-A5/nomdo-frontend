@@ -79,7 +79,8 @@ const Sidebar = () => {
                 <Link to={{ pathname: `/report/${w.id}`, state: { workspace: w.id } }} />
               </Menu.Item>
               <Menu.Item >
-                Setting
+                Member
+                <Link to="/member"/>
               </Menu.Item>
             </SubMenu>
           ))}
