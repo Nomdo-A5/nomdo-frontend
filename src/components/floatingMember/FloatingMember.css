@@ -1,0 +1,28 @@
+.floating-member-form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
+}
+
+.floating-member-form-box{
+    border-radius:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.floating-member-form-name{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: large;
+    font-weight: bold;
+    margin-top: 2em;
+}
+
+.floating-member-form-email{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: medium;
+}
