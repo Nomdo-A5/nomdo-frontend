@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Table, Tag, Space } from 'antd';
+import { Layout, Table, Tag, Space, Modal } from 'antd';
 import './Report.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Nav from "../../components/Nav";
@@ -10,13 +10,14 @@ import { Tablereport } from "../../components/tablereport/Tablereport";
 import TaskOnBoard from '../../components/taskOnBoard/TaskOnBoard';
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
 import { getToken } from '../../utils/authentication';
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 
 import Income from "../../components/reportIncome/ReportIncome";
 import Outcome from "../../components/reportOutcome/ReportOutcome";
 import Overview from "../../components/reportOverview/ReportOverview";
+import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
 
 function refreshPage() {
     window.location.reload(true);
@@ -27,10 +28,11 @@ const Report = () => {
     const token = getToken()
     const [reports, setReports] = useState([]);
     const { state } = useLocation()
+    const { workspace_id } = useParams()
+    const [overview, setOverview] = useState([]);
 
 
     const GetReport = async () => {
-        const workspace_id = state.workspace
         const response = await axios.get(BASE_API_URL + 'report', {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -39,10 +41,45 @@ const Report = () => {
                 'workspace_id': `${workspace_id}`
             }
         })
-        console.log(response.data)
         setReports(response.data.balance)
     }
 
+    const GetReportOverview = async () => {
+        const response = await axios.get(BASE_API_URL + 'report/overview', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            params: {
+                'workspace_id': `${workspace_id}`
+            }
+        })
+        console.log(response)
+        setOverview(response.data)
+    }
+
+    const onDeleteBalance = (record) => {
+        
+        Modal.confirm({
+            title:'Are you sure,want to delete this balance',
+            onOk:()=>{
+                deleteBalance(record.id)
+            }
+        })
+    }
+
+    const deleteBalance = async ($id) => {
+        console.log("TOKENN "+token)
+        const response = await axios.delete(BASE_API_URL + 'balance', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            },
+            data: {
+                id : $id
+            }
+          });
+        
+        console.log(response)
+    }
     const columns = [
         {
             title: 'ID',
@@ -63,7 +100,7 @@ const Report = () => {
         },
         {
             title: 'Date',
-            dataIndex: 'balance_date',
+            dataIndex: 'date',
             key: 'date',
             render: text => <a>{text}</a>,
             width: '10%',
@@ -72,17 +109,19 @@ const Report = () => {
             title: 'Nominal',
             dataIndex: 'nominal',
             key: 'nominal',
+            align: 'right',
             width: '10%',
+            render: text => <a>{new Intl.NumberFormat('ID').format(text)}</a>
         },
         {
             title: 'Type',
-            dataIndex: 'balance_type',
+            dataIndex: 'is_income',
             key: 'type',
-            render: text => <a>{text}</a>,
+            render: text => <a>{text === 0 ? 'outcome' : 'income'}</a>
         },
         {
             title: 'Status',
-            dataIndex: 'balance_status',
+            dataIndex: 'status',
             key: 'status',
             render: text => <a>{text}</a>,
         },
@@ -90,26 +129,30 @@ const Report = () => {
             title: 'Proof',
             dataIndex: 'Transaction_proof',
             key: 'Transaction_proof',
-            width: '8%',
         },
         {
             title: 'Action',
             key: 'action',
-            render: (text, record) => (
-                <Space size="middle">
-                    <a>Invite {record.name}</a>
-                    <a>Delete</a>
-                </Space>
-            ),
+            render: (record) => {
+                return (
+                    <>
+                        <EditOutlined />
+                        <DeleteOutlined onClick={() => {
+                            onDeleteBalance(record)
+                        }} style={{color : "red", marginLeft: 12}} />
+                    </>
+                )
+            }
         },
     ];
     useEffect(() => {
         GetReport()
+        GetReportOverview()
     }, [])
     return (
         <WorkspaceContextProvider>
             <Nav />
-            <div className="spacer"/>
+            <div className="spacer" />
             <div>
                 <Layout >
                     <Sider>
@@ -124,10 +167,10 @@ const Report = () => {
                         </div>
                         <div className="report-images">
                             <div className="report-images-component">
-                                <Income />
+                                <Income income={overview.income_balance}/>
                             </div>
                             <div className="report-images-component">
-                                <Outcome />
+                                <Outcome outcome={overview.outcome_balance}/>
                             </div>
                             <div className="report-images-component">
                                 <Overview />
@@ -135,9 +178,9 @@ const Report = () => {
                         </div>
                         <div className="report-table">
 
-                            <Table 
-                                columns={columns} 
-                                dataSource={reports} 
+                            <Table
+                                columns={columns}
+                                dataSource={reports}
                                 size="small"
                             />
                         </div>
