@@ -84,9 +84,9 @@ const Board = () => {
                             <div className="logo-title-progress">
                                 <div className="board-title-and-logo">
                                     <div className="boards-title">
-                                        <Link to="/BoardExtended" onClick={() => history.push("/BoardExtended")} >
+                                        
                                             {board.board_name}
-                                        </Link>
+                                        
                                     </div>
                                 </div>
                                 <div className="progress-bar-component">                                    
