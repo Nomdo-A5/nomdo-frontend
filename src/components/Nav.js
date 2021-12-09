@@ -30,28 +30,31 @@ function Nav() {
   return (
     <div className="nav">
       <div className="nav-components">
+        <div className="navbar-left-division">
           <Link to="/" className="nav-title">
-            <img src={LogoImage} height={35} alt=""/>
+            <img className="nomdo-logo-image" src={LogoImage} alt=""/>
           </Link>
-          <div className="spacer"/>
-        <div className="nav-profile-division">
-          <Dropdown overlay={menu} trigger={['click']}>
-              <div className="nav-profile">
-                <img src={ProfileImage} height={30} alt=""/>
-                  <div className="name-and-arrow">
-                    <div className="nav-profile-name">
-                      <Link to="/userprofile" onClick={() => history.push("/userprofile")}>
-                        Alan Novianto
-                      </Link>
-                    </div>
-                    <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                      <div className="nav-profile-arrow">
-                        <TiArrowSortedDown/>
+        </div>
+        <div className="navbar-right-division">
+          <div className="nav-profile-division">
+            <Dropdown overlay={menu} trigger={['click']}>
+                <div className="nav-profile">
+                  <img src={ProfileImage} className="navbar-profile-image" alt=""/>
+                    <div className="name-and-arrow">
+                      <div className="nav-profile-name">
+                        <Link to="/userprofile" onClick={() => history.push("/userprofile")}>
+                          Alan Novianto
+                        </Link>
                       </div>
-                    </a>
-                  </div>
-              </div>
-          </Dropdown>
+                      <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                        <div className="nav-profile-arrow">
+                          <TiArrowSortedDown/>
+                        </div>
+                      </a>
+                    </div>
+                </div>
+            </Dropdown>
+          </div>
         </div>
       </div>
     </div>

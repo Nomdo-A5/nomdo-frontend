@@ -11,9 +11,9 @@ function Nav_login() {
   return (
     <div className="nav">
       <div className="nav-components">
-        <div className="nav-desc-logo">
+        <div className="navbar-left-division">
           <Link to="/" className="nav-title">
-            <img src={LogoImage} height={35} alt=""/>
+            <img className="nomdo-logo-image" src={LogoImage} alt=""/>
           </Link>
         </div>
       </div>
