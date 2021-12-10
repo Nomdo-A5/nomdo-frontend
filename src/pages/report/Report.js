@@ -17,13 +17,13 @@ import { BASE_API_URL } from '../../constants/urls';
 import Income from "../../components/reportIncome/ReportIncome";
 import Outcome from "../../components/reportOutcome/ReportOutcome";
 import Overview from "../../components/reportOverview/ReportOverview";
-import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined,ExclamationCircleOutlined } from '@ant-design/icons';
 
 function refreshPage() {
     window.location.reload(true);
 }
 const Report = () => {
-
+    const { confirm } = Modal;
     const { Sider } = Layout
     const token = getToken()
     const [reports, setReports] = useState([]);
@@ -58,26 +58,26 @@ const Report = () => {
     }
 
     const onDeleteBalance = (record) => {
-        
+
         Modal.confirm({
-            title:'Are you sure,want to delete this balance',
-            onOk:()=>{
+            title: 'Are you sure,want to delete this balance',
+            onOk: () => {
                 deleteBalance(record.id)
             }
         })
     }
 
     const deleteBalance = async ($id) => {
-        console.log("TOKENN "+token)
+        console.log("TOKENN " + token)
         const response = await axios.delete(BASE_API_URL + 'balance', {
             headers: {
-              Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`
             },
             data: {
-                id : $id
+                id: $id
             }
-          });
-        
+        });
+
         console.log(response)
     }
     const columns = [
@@ -138,13 +138,31 @@ const Report = () => {
                     <>
                         <EditOutlined />
                         <DeleteOutlined onClick={() => {
-                            onDeleteBalance(record)
-                        }} style={{color : "red", marginLeft: 12}} />
+                            showDeleteConfirm(record.id)
+                        }} style={{ color: "red", marginLeft: 12 }} />
                     </>
                 )
             }
         },
     ];
+
+    function showDeleteConfirm($id) {
+        confirm({
+            title: 'Are you sure delete this balance?',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Some descriptions',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+                deleteBalance($id)
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
+    }
+
     useEffect(() => {
         GetReport()
         GetReportOverview()
@@ -167,13 +185,13 @@ const Report = () => {
                         </div>
                         <div className="report-images">
                             <div className="report-images-component">
-                                <Income income={overview.income_balance}/>
+                                <Income income={overview.income_balance} />
                             </div>
                             <div className="report-images-component">
-                                <Outcome outcome={overview.outcome_balance}/>
+                                <Outcome outcome={overview.outcome_balance} />
                             </div>
                             <div className="report-images-component">
-                                <Overview />
+                                <Overview total={overview.total_balance} />
                             </div>
                         </div>
                         <div className="report-table">

@@ -24,6 +24,10 @@ export default function BoardOnBoard(props) {
         setTasks(response.data.task)
     }
 
+    function onChange(e) {
+        console.log(`checked = ${e.target.checked}`);
+      }
+
     useEffect(() => {
         GetTask(props.board_id)
     }, [])
@@ -50,7 +54,7 @@ export default function BoardOnBoard(props) {
                         <div className="checkbox-name-title">
                             <div className="checkbox-and-name">
                                 <div className="checkbox-logo">
-                                    <Checkbox defaultChecked={task.is_done === 0? false:true}/>
+                                    <Checkbox defaultChecked={task.is_done === 0? false:true} onChange={onChange}/>
                                     
                                 </div>
                                 <div className="task-title">
