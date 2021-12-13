@@ -3,7 +3,6 @@ import { Card, Row, Col, Button, Input, Layout, Space, Empty, Progress } from 'a
 import './Board.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Nav from "../../components/Nav";
-import { MailOutlined } from '@ant-design/icons'
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
 import ProgressBar from '../../components/progressBar/ProgressBar';
@@ -14,7 +13,6 @@ import axios from 'axios';
 import { WorkspaceContext } from "../../context/WorkspaceContext";
 import { BrowserRouter as Router, useLocation, useHistory, Link, useParams } from "react-router-dom";
 
-import { IoCloudOfflineOutline } from 'react-icons/io5';
 import { BoardContext } from '../../context/BoardContext';
 function refreshPage() {
     window.location.reload(true);
