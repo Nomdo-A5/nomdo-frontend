@@ -28,7 +28,7 @@ export default function ReportOverview (props) {
                     />
                     <div className="value-and-button">
                         <div className="income-value">
-                            400.000
+                           {new Intl.NumberFormat('ID').format(props.total)}
                         </div>
                         <div className="view-data-button">
                             <div className="view-data-text">

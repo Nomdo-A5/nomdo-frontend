@@ -68,7 +68,7 @@ const Sidebar = () => {
             <SubMenu key={w.id} title={w.workspace_name} icon={<Avatar>{w.workspace_name.charAt(0).toUpperCase()}</Avatar>}>              
               <Menu.Item key={"dahboard "+w.id}>
                 <span>Dashboard</span>
-                <Link to="/dashboard"  />
+                <Link to={{ pathname: `/workspace/${w.id}/dashboards`, state: { workspace: w.id } }}  />
               </Menu.Item>
               <Menu.Item key={"board "+w.id}>
                 <span>Board</span>

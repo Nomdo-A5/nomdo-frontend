@@ -28,7 +28,7 @@ export default function ReportIncome (props) {
                     />
                     <div className="value-and-button">
                         <div className="income-value">
-                            {props.income}
+                            {new Intl.NumberFormat('ID').format(props.income)}
                         </div>
                         <div className="view-data-button">
                             <div className="view-data-text">

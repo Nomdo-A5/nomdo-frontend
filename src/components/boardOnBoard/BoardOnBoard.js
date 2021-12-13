@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Empty, Space } from 'antd';
+import { Card, Empty, Space, Checkbox } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons'
 import './BoardOnBoard.css';
 import axios from 'axios';
@@ -23,6 +23,10 @@ export default function BoardOnBoard(props) {
         console.log(response)
         setTasks(response.data.task)
     }
+
+    function onChange(e) {
+        console.log(`checked = ${e.target.checked}`);
+      }
 
     useEffect(() => {
         GetTask(props.board_id)
@@ -50,9 +54,8 @@ export default function BoardOnBoard(props) {
                         <div className="checkbox-name-title">
                             <div className="checkbox-and-name">
                                 <div className="checkbox-logo">
-                                    <input
-                                        name="isGoing"
-                                        type="checkbox" />
+                                    <Checkbox defaultChecked={task.is_done === 0? false:true} onChange={onChange}/>
+                                    
                                 </div>
                                 <div className="task-title">
                                     {task.task_name}

@@ -33,7 +33,7 @@ export const APP_ROUTE = [
   },
   {
     name: "Dashboard",
-    path: "/dashboard",
+    path: "/workspace/:workspace_id/dashboards",
     exact: true,
     component: Dashboard,
     private: true,
