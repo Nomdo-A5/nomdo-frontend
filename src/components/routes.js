@@ -15,7 +15,7 @@ import Home  from "../pages/home/Home";
 import UserProfile  from "../pages/userprofile/UserProfile";
 import UserSetting  from "../pages/usersetting/UserSetting";
 import BlankPage  from "../pages/blankpage/BlankPage";
-import Workspace from "./workspace/Workspace";
+import Workspace from "../pages/workspaceNull/WorkspaceNull";
 export const APP_ROUTE = [
   {
     name: "Login",
