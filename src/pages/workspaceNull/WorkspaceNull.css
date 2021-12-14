@@ -1,3 +1,33 @@
+.floating-button-early{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    animation: fadeIn 5s;
+    -webkit-animation: flickerAnimation 1.5s infinite;
+    -moz-animation: flickerAnimation 1.5s infinite;
+    -o-animation: flickerAnimation 1.5s infinite;
+     animation: flickerAnimation 1.5s infinite;
+  }
+  @keyframes flickerAnimation {
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-o-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-moz-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-webkit-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+
 @media (min-width: 1367px) {
 
 .main-area{
@@ -34,11 +64,6 @@
     font-weight: bold;
     margin-bottom: 30px;
     color: #7E918C;
-}
-
-.floating-button-early{
-    margin-top: 25px;
-    margin-bottom: 25px;
 }
 
 .left-col-1-2{
