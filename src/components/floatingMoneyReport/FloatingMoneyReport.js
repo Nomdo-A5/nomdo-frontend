@@ -35,6 +35,7 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
         <Modal
             title="New Balance"
             visible={visible}
+            centered={true}
             onOk={() => {
                 form
                     .validateFields()

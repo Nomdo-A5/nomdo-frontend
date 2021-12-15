@@ -23,6 +23,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
             title="Create a new workspace"
             okText="Create"
             cancelText="Cancel"
+            centered={true}
             onCancel={onCancel}
             onOk={() => {
                 form

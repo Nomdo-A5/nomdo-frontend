@@ -24,6 +24,7 @@ import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
+import { EditOutlined } from '@ant-design/icons';
 
 
 function refreshPage() {
@@ -97,6 +98,7 @@ const Dashboard = () => {
                         <div className="spacer" />
                         <div className="layout-title-dashboard">
                             {activeWorkspace.workspace_name}
+                            <EditOutlined />
                         </div>
                         <div className="layout-main">
                             <div className="layout-main-left">
