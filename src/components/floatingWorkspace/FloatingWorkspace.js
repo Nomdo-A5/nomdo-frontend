@@ -20,7 +20,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
             width={340}
             style={{ textAlign: "center" }}
             visible={visible}
-            title="Create a new collections"
+            title="Create a new workspace"
             okText="Create"
             cancelText="Cancel"
             onCancel={onCancel}

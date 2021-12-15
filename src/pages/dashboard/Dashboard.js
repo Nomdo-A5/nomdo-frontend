@@ -23,6 +23,8 @@ import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 
+import { FloatingButton } from "../../components/floatingButton/FloatingButton";
+
 
 function refreshPage() {
     window.location.reload(true);
@@ -89,6 +91,7 @@ const Dashboard = () => {
                 <Layout >
                     <Sider>
                         <Sidebar />
+
                     </Sider>
                     <Layout className="main-layout">
                         <div className="spacer" />
@@ -176,13 +179,13 @@ const Dashboard = () => {
                                                 <div className="overview-title">
                                                     Balance Overview
                                                 </div>
-                                                {context.workspace.map(w => (
-                                                    <div className="overview-details">
-                                                        <Link to={{ pathname: `/report/${w.id}`, state: { workspace: w.id } }}>
-                                                            See details
-                                                        </Link>
-                                                    </div>
-                                                ))}
+
+                                                <div className="overview-details">
+                                                    <Link to={{ pathname: `/report/${activeWorkspace.id}`, state: { workspace: activeWorkspace.id } }}>
+                                                        See details
+                                                    </Link>
+                                                </div>
+
                                             </div>
                                             <div className="images-container-income-outcome">
                                                 <div className="income-overview">
@@ -286,11 +289,14 @@ const Dashboard = () => {
                                                     </div>
                                                 </div>
                                             ))}
-                                            
+
                                         </div>
                                     </Card>
                                 </div>
                             </div>
+                        </div>
+                        <div className="floating-button-component">
+                            <FloatingButton />
                         </div>
                     </Layout>
                 </Layout>
