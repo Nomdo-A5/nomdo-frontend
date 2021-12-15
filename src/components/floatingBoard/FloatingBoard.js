@@ -25,6 +25,7 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
         <Modal
             title="New Board"
             visible={visible}
+            centered={true}
             onOk={() => {
                 form
                     .validateFields()

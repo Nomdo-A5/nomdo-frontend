@@ -47,6 +47,7 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
         <Modal
             title="New Task"
             visible={visible}
+            centered={true}
             onOk={() => {
                 form
                     .validateFields()
