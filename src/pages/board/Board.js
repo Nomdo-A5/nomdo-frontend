@@ -6,7 +6,8 @@ import Nav from "../../components/Nav";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
 import ProgressBar from '../../components/progressBar/ProgressBar';
-import BoardOnBoard from '../../components/boardOnBoard/BoardOnBoard';
+import TaskOnBoard from '../../components/taskOnBoard/TaskOnBoard';
+import TaskOnDashoard from '../../components/taskOnDashboard/TaskOnDashboard';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 import axios from 'axios';
@@ -93,7 +94,7 @@ const Board = () => {
                             </div>
                             <div className="line-of-boards">
                                 <div className="line-of-boards-item">
-                                    <BoardOnBoard board_id={board.id} board_name={board.board_name} workspace_name={activeWorkspace.workspace_name}/>
+                                    <TaskOnBoard board_id={board.id} board_name={board.board_name} workspace_name={activeWorkspace.workspace_name}/>
                                 </div>                                
                             </div>
                             <div className="see-all">

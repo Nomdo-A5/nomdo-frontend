@@ -1,14 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { Card, Row, Col, Button, Input, Layout } from 'antd';
+import { Card, Row, Col, Button, Input, Layout, Avatar, Modal } from 'antd';
 import './Dashboard.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Nav from "../../components/Nav";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { BrowserRouter as Router, Route, Link, useHistory, useParams } from "react-router-dom";
 import { WorkspaceContext } from "../../context/WorkspaceContext";
+import { FloatingButton } from "../../components/floatingButton/FloatingButton";
+import { FiEdit } from 'react-icons/fi';
 
-import '../../components/taskOnBoard/TaskOnBoard.css';
-import TaskOnBoard from '../../components/taskOnBoard/TaskOnBoard';
+import TaskOnDashboard from '../../components/taskOnDashboard/TaskOnDashboard';
 import Income from "../../components/reportIncome/ReportIncome";
 import { BsArrowRight } from 'react-icons/bs';
 import ReportImage from './ReportImage.svg'
@@ -31,6 +32,7 @@ function refreshPage() {
 const Dashboard = () => {
 
     const { Sider } = Layout;
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const context = useContext(WorkspaceContext)
     const { workspace_id } = useParams()
     const [overview, setOverview] = useState([])
@@ -38,6 +40,15 @@ const Dashboard = () => {
     const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
     const [taskOverview, setTaskOverview] = useState([])
     const [members, setMembers] = useState([])
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+    
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+
     const GetOverview = async () => {
         const response = await axios.get(BASE_API_URL + 'report/overview', {
             headers: {
@@ -50,6 +61,10 @@ const Dashboard = () => {
         console.log(response)
         setOverview(response.data)
     }
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
 
     const GetTaskOverview = async () => {
         const response = await axios.get(BASE_API_URL + 'workspace/task-information', {
@@ -93,7 +108,59 @@ const Dashboard = () => {
                     <Layout className="main-layout">
                         <div className="spacer" />
                         <div className="layout-title-dashboard">
-                            {activeWorkspace.workspace_name}
+                            <div className="workspace-title-dashboard-1">
+                                <div className="workspace-title-dashboard-1-1">
+                                    {activeWorkspace.workspace_name}
+                                </div>
+                                <div className="workspace-title-dashboard-1-2">
+                                    <Button
+                                        type="link" 
+                                        onClick={showModal} 
+                                        style={{ color: "#4ABDAC"}}
+                                    >
+                                        <FiEdit
+                                        style={{ height: "90px"}}/>
+                                    </Button>
+                                </div>
+                                <Modal title="" visible={isModalVisible} 
+                                    onOk={handleOk} onCancel={handleCancel}
+                                    style={{ textAlign: "center" }}
+                                    okText="Save" width={520}>
+                                    
+                                    <div>
+                                        <Row>
+                                            <div>
+                                                <div className="task-name-top">
+                                                        Task Name
+                                                </div>
+                                                <div className="clock-and-input">
+                                                    <div className="clock-logo">
+                                                    </div>
+                                                    <div className="due-date-and-input">
+                                                        <div className="due-date">
+                                                            Due 24, Aug 2021
+                                                        </div>
+                                                        <div className="due-date">
+                                                            Members
+                                                        </div>
+                                                        <div className="description-name">
+                                                            Description
+                                                        </div>
+                                                        <div className="due-date">
+                                                            Rahmafatin
+                                                        </div>
+                                                        <div className="input-area">
+                                                            <div className="form-input-join-name">
+                                                                <Input.TextArea style={{ borderRadius: "10px 10px 10px 10px" }} placeholder="Add a Description" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Row>
+                                    </div>
+                                </Modal>
+                            </div>
                         </div>
                         <div className="layout-main">
                             <div className="layout-main-left">
@@ -220,24 +287,24 @@ const Dashboard = () => {
                                     <div className="layout-main-left-tasks-double">
                                         <div className="layout-main-left-tasks-display">
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                         </div>
                                         <div className="layout-main-left-tasks-display">
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                         </div>
                                     </div>
@@ -293,6 +360,9 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </Layout>
+                    <div className="floating-button-component">
+                        <FloatingButton />
+                    </div>
                 </Layout>
             </div>
 
