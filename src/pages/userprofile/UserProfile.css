@@ -1,112 +1,90 @@
-.spacer{
-    height: 8vh;
-}
-
-.profile-main{
+.layout-container{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    flex-direction: column;
+    background-color: #DDFBEB;
 }
 
-.profile-name-email{
-    text-align: left;
-    padding-left: 10px;
-}
-
-.profile-pic{
-    font-size: 1.2cm;
-    font-weight: bold;
-    text-align: center;
-    padding-right: 10px;
-}
-
-.profile-name{
-    font-size: 0.8cm;
-    font-weight: bold;
-}
-
-.blank-spot{
-    border-top: 2px solid #C4C4C4;
-}
-
-.setting-items{
-    width: 600px;
-    margin: auto;
-    padding-top: 15px;
-    text-align: left;
-}
-
-.inner-items{
-    width: 350px;
-}
-
-.about-user{
-    font-size: large;
-    font-weight: bold;
+.layout-top{
     border-bottom: 2px solid #C4C4C4;
 }
 
-.username-user{
-    padding-top: 10px;
+.layout-bottom{
 }
 
-.email-user{
-    padding-top: 10px;
+.edit-profile{
+    text-align: left;
+    font-size: 24px;
 }
 
-.biodata-user{
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.button-save{
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.signout-user{
-    padding-top: 15px;
-}
-
----
-
-.workspace-boxes-profile {
+.setting-routes{
     display: flex;
     flex-direction: row;
-    height: 8vh;
-    width: 28%;
-    margin: 0 auto;
-    justify-content: space-between;
+    font-size: 12px;
+    height: 3vh;
 }
 
-.workspace-boxes-user-profile {
+.setting-routes-profile{
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
     text-decoration: none;
-    box-sizing: border-box;
-    background-color: white;
-    width: 47.5%;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    border-top: 2px solid #C4C4C4;
-    border-left: 2px solid #C4C4C4;
-    border-right: 2px solid #C4C4C4;
-    border-radius: 10px 10px 0px 0px;
 }
 
-.workspace-boxes-user-setting {
+.setting-routes-setting{
+    display: flex;
+    flex-direction: row;
     text-decoration: none;
-    box-sizing: border-box;
-    background-color: white;
-    width: 47.5%;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 10px;
+}
+
+.setting-routes-profile-icon{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.setting-routes-setting-icon{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.images-profile-background{
+    justify-content: center;
+    height: 80%;
+    margin-top: 9%;
+}
+
+.contact-title{
+    text-align: left;
+    margin-top: 7%;
+}
+
+.user-name-profile{
+    text-align: left;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+
+.user-email-profile{
+    text-align: left;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+
+.input-area-title{
+}
+
+.form-input-profile-name{
+    width: 100%
+}
+
+.form-input-profile-email{
+    width: 100%
+}
+
+.task-button-profile {
+    width: 100%;
     padding-top: 10px;
-    border-top: 2px solid #C4C4C4;
-    border-left: 2px solid #C4C4C4;
-    border-right: 2px solid #C4C4C4;
-    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5%;
 }
