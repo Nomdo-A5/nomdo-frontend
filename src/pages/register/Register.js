@@ -42,11 +42,11 @@ const tailFormItemLayout = {
 const Register = () => {
   const [form] = Form.useForm();
   const history = useHistory()
-  
+
 
   const onFinish = (values) => {
     axios.post(BASE_API_URL + 'register', {
-      name : values.username,
+      name: values.username,
       email: values.email,
       password: values.password,
       password_confirmation: values.confirm
@@ -64,13 +64,13 @@ const Register = () => {
         console.log(error);
       });
   };
-  
+
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
 
   return (
     <div className="main-div-login" >
       <Nav />
-      <div className="spacer"/>
+      <div className="spacer" />
       <div className="main-division-register">
         <div className="left-division-register">
           <div className="inner-left-division-register">
@@ -84,68 +84,84 @@ const Register = () => {
               onFinish={onFinish}
               scrollToFirstError
             >
-              
-            <Form.Item
-              name="email"
-              rules={[
-                {
-                  type: 'email',
-                  message: 'The input is not valid E-mail!',
-                },
-                {
-                  required: true,
-                  message: 'Please input your E-mail!',
-                },
-              ]}
-            >
-              <Input 
-                width="300px" 
-                placeholder="Email" 
-                prefix={<UserOutlined className="site-form-item-icon" />}
-              />
-            </Form.Item>
 
-            <Form.Item
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your password!',
-                },
-              ]}
-              hasFeedback
-            >
-              <Input.Password 
-                placeholder="Password" 
-                prefix={<LockOutlined className="site-form-item-icon" />}
-              />
-            </Form.Item>
-              
-            <Form.Item
-              name="confirm"
-              dependencies={['password']}
-              hasFeedback
-              rules={[
-                {
-                  required: true,
-                  message: 'Please confirm your password!',
-                },
-                ({ getFieldValue }) => ({
-                  validator(_, value) {
-                    if (!value || getFieldValue('password') === value) {
-                      return Promise.resolve();
-                    }
-
-                    return Promise.reject(new Error('The two passwords that you entered do not match!'));
+              <Form.Item
+                name="email"
+                rules={[
+                  {
+                    type: 'email',
+                    message: 'The input is not valid E-mail!',
                   },
-                }),
-              ]}
-            >
-              <Input.Password 
-                placeholder="Confirm Password" 
-                prefix={<LockOutlined className="site-form-item-icon" />}
-              />
-            </Form.Item>
+                  {
+                    required: true,
+                    message: 'Please input your E-mail!',
+                  },
+                ]}
+              >
+                <Input
+                  width="300px"
+                  placeholder="Email"
+                  prefix={<UserOutlined className="site-form-item-icon" />}
+                />
+              </Form.Item>
+              <Form.Item
+                name="username"
+                rules={[
+                  
+                  {
+                    required: true,
+                    message: 'Please input your Username',
+                  },
+                ]}
+              >
+                <Input
+                  width="300px"
+                  placeholder="Username"
+                  prefix={<UserOutlined className="site-form-item-icon" />}
+                />
+              </Form.Item>
+
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your password!',
+                  },
+                ]}
+                hasFeedback
+              >
+                <Input.Password
+                  placeholder="Password"
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                />
+              </Form.Item>
+
+              <Form.Item
+                name="confirm"
+                dependencies={['password']}
+                hasFeedback
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please confirm your password!',
+                  },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue('password') === value) {
+                        return Promise.resolve();
+                      }
+
+                      return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                    },
+                  }),
+                ]}
+              >
+                <Input.Password
+                  placeholder="Confirm Password"
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                />
+              </Form.Item>
 
               <Form.Item>
                 <Button type="success" htmlType="submit" className="login-form-button-register">
@@ -167,11 +183,11 @@ const Register = () => {
         </div>
         <div className="right-division-register">
           <div className="inner-right-division-register">
-            <img src={Frontpic} height={550} alt=""/>
+            <img src={Frontpic} height={550} alt="" />
           </div>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 
