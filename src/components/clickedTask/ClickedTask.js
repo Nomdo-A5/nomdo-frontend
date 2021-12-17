@@ -29,8 +29,8 @@ export const ClickedTask = () => {
 
     return (
         <>
-          <Button type="primary" onClick={showModal}>
-            Clicked Task
+          <Button type="link" onClick={showModal} style={{ fontStyle: "italic", color: "#4ABDAC"}}>
+            See
           </Button>
           <Modal title="" visible={isModalVisible} 
             onOk={handleOk} onCancel={handleCancel}

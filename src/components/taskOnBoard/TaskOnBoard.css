@@ -1,40 +1,54 @@
-.main-layout-horizontal{
+.checkbox-logo {
+    font-size: large;
+}
+
+.task-title {
+    font-size: medium;
+    margin: auto;
+    margin-left: 10px;
+}
+
+.checkbox-and-name {
     display: flex;
     flex-direction: row;
-    padding-left: 1em;
+    justify-content: center;
 }
 
-.main-layout-vertical{
-    display: flex;
-    flex-direction: column;
-    padding-left: 1em;
-}
-
-.checkbox-logo{
-}
-
-.task-name {
+.on-where-information {
     text-align: left;
+    margin-left: 33px;
+    color: #808080;
+}
+
+.task-date-and-clock {
+    display: flex;
+    flex-direction: row;
+    margin-left: 35px;
+}
+
+.clock-logo {
     font-size: medium;
 }
 
-.task-description {
-    font-size: smaller;
-    text-align: left;
-}
-
-.clock-icon{
-    text-align: left;
-}
-
-.due-date-expired{
-    font-size: smaller;
-    text-align: left;
-    padding-top: 5px;
-    padding-left: 1em;
-}
-
-.clock-and-date-division{
+.see-more-button {
     display: flex;
     flex-direction: row;
+    justify-content: right;
+    width: 210px;
+    font-size: smaller;
+    margin-top: 10px;
+    margin-left: 25px;
+    font-style: italic;
+    color: #4ABDAC;
+}
+
+.task-date {
+    margin-top: 6px;
+    margin-left: 8px;
+    font-size: small;
+}
+
+.main-div {
+    display: flex;
+    flex-direction: column;
 }

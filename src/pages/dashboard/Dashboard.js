@@ -1,14 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { Card, Row, Col, Button, Input, Layout } from 'antd';
+import { Card, Row, Col, Button, Input, Layout, Avatar, Modal } from 'antd';
 import './Dashboard.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Nav from "../../components/Nav";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { BrowserRouter as Router, Route, Link, useHistory, useParams } from "react-router-dom";
 import { WorkspaceContext } from "../../context/WorkspaceContext";
+import { FloatingButton } from "../../components/floatingButton/FloatingButton";
+import { FiEdit } from 'react-icons/fi';
 
-import '../../components/taskOnBoard/TaskOnBoard.css';
-import TaskOnBoard from '../../components/taskOnBoard/TaskOnBoard';
+import TaskOnDashboard from '../../components/taskOnDashboard/TaskOnDashboard';
+import PageTitle from '../../components/pageTitle/PageTitle';
 import Income from "../../components/reportIncome/ReportIncome";
 import { BsArrowRight } from 'react-icons/bs';
 import ReportImage from './ReportImage.svg'
@@ -23,9 +25,6 @@ import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 
-import { FloatingButton } from "../../components/floatingButton/FloatingButton";
-import { EditOutlined } from '@ant-design/icons';
-
 
 function refreshPage() {
     window.location.reload(true);
@@ -34,6 +33,7 @@ function refreshPage() {
 const Dashboard = () => {
 
     const { Sider } = Layout;
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const context = useContext(WorkspaceContext)
     const { workspace_id } = useParams()
     const [overview, setOverview] = useState([])
@@ -41,6 +41,15 @@ const Dashboard = () => {
     const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
     const [taskOverview, setTaskOverview] = useState([])
     const [members, setMembers] = useState([])
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+    
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+
     const GetOverview = async () => {
         const response = await axios.get(BASE_API_URL + 'report/overview', {
             headers: {
@@ -53,6 +62,10 @@ const Dashboard = () => {
         console.log(response)
         setOverview(response.data)
     }
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
 
     const GetTaskOverview = async () => {
         const response = await axios.get(BASE_API_URL + 'workspace/task-information', {
@@ -92,14 +105,10 @@ const Dashboard = () => {
                 <Layout >
                     <Sider>
                         <Sidebar />
-
                     </Sider>
                     <Layout className="main-layout">
                         <div className="spacer" />
-                        <div className="layout-title-dashboard">
-                            {activeWorkspace.workspace_name}
-                            <EditOutlined />
-                        </div>
+                        <PageTitle/>
                         <div className="layout-main">
                             <div className="layout-main-left">
                                 <div className="layout-main-left-title">
@@ -181,13 +190,13 @@ const Dashboard = () => {
                                                 <div className="overview-title">
                                                     Balance Overview
                                                 </div>
-
-                                                <div className="overview-details">
-                                                    <Link to={{ pathname: `/report/${activeWorkspace.id}`, state: { workspace: activeWorkspace.id } }}>
-                                                        See details
-                                                    </Link>
-                                                </div>
-
+                                                {context.workspace.map(w => (
+                                                    <div className="overview-details">
+                                                        <Link to={{ pathname: `/report/${w.id}`, state: { workspace: w.id } }}>
+                                                            See details
+                                                        </Link>
+                                                    </div>
+                                                ))}
                                             </div>
                                             <div className="images-container-income-outcome">
                                                 <div className="income-overview">
@@ -225,24 +234,24 @@ const Dashboard = () => {
                                     <div className="layout-main-left-tasks-double">
                                         <div className="layout-main-left-tasks-display">
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                         </div>
                                         <div className="layout-main-left-tasks-display">
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                             <div className="layout-main-left-tasks">
-                                                <TaskOnBoard />
+                                                <TaskOnDashboard />
                                             </div>
                                         </div>
                                     </div>
@@ -291,16 +300,16 @@ const Dashboard = () => {
                                                     </div>
                                                 </div>
                                             ))}
-
+                                            
                                         </div>
                                     </Card>
                                 </div>
                             </div>
                         </div>
-                        <div className="floating-button-component">
-                            <FloatingButton />
-                        </div>
                     </Layout>
+                    <div className="floating-button-component">
+                        <FloatingButton />
+                    </div>
                 </Layout>
             </div>
 
