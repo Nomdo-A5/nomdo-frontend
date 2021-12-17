@@ -1,6 +1,23 @@
 .spacer{
 }
 
+.workspace-title-dashboard-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.workspace-title-dashboard-1-1{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 24px;
+}
+
+.workspace-title-dashboard-1-2{
+    display: flex;
+    align-items: center;
+}
+
 .main-layout{
     background-color: #F5F8FA;
 }
@@ -10,6 +27,10 @@
     font-weight: bold;
     background-color: #F5F8FA;
     margin-bottom: 20px;
+}
+
+.workspace-title-dashboard{
+    font-size: larger;
 }
 
 .layout-main{
