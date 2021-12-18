@@ -23,14 +23,28 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
     const context = useContext(WorkspaceContext)
     const { Option } = Select;
 
-    const normFile = (e: any) => {
-        console.log('Upload event:', e);
-        if (Array.isArray(e)) {
-            return e;
+    // const normFile = (e: any) => {
+    //     console.log('Upload event:', e);
+    //     if (Array.isArray(e)) {
+    //         return e;
+    //     }
+    //     return e && e.fileList;
+    // };
+
+    const normFile = (event) => {
+        console.log('Upload event:', event);
+        if (Array.isArray(event)) {
+            return event;
         }
-        return e && e.fileList;
+        return event && event.fileList;
     };
 
+    const onImageChange = (event) => {
+        let formdata = new FormData()
+        console.log("MASUK FUNGSI onImageChange")
+        let img = event.file
+        formdata.append('file_path', img)
+    }
     return (
         <Modal
             title="New Balance"
@@ -197,7 +211,7 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
 
                                     className="new-balance-form_last-form-item"
                                 >
-                                    <Upload name="logo" action="/upload.do" listType="picture">
+                                    <Upload onChange={onImageChange}>
                                         <Button icon={<UploadOutlined />}>Upload Bills</Button>
                                     </Upload>
                                 </Form.Item>
@@ -214,12 +228,12 @@ export const FloatingMoneyReport = () => {
 
 
     const [visible, setVisible] = useState(false);
-
+    const token = getToken();
     const onCreate = async (values) => {
-        const token = getToken();
+
         const dateInput = new Date(values.date);
         const date = (dateInput.getYear() + 1900) + "-" + dateInput.getMonth() + "-" + dateInput.getDate()
-        console.log("INI VALUE DATE GESS " + date)
+        //console.log("INI VALUE DATE GESS " + date)
         const response = await axios.post(BASE_API_URL + 'balance', {
             workspace_id: values.workspace_id,
             nominal: values.nominal,
@@ -228,14 +242,15 @@ export const FloatingMoneyReport = () => {
             date: date,
             status: values.status
         },
-        {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-        });
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+            });
         console.log(response)
         setVisible(false);
     };
+
 
     return (
         <>

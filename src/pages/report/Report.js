@@ -3,7 +3,7 @@ import { Layout, Table, Tag, Space, Modal } from 'antd';
 import './Report.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Nav from "../../components/Nav";
-import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
+import { WorkspaceContext, WorkspaceContextProvider } from '../../context/WorkspaceContext';
 
 import '../../components/taskOnBoard/TaskOnBoard.css';
 import { Tablereport } from "../../components/tablereport/Tablereport";
@@ -18,6 +18,7 @@ import Income from "../../components/reportIncome/ReportIncome";
 import Outcome from "../../components/reportOutcome/ReportOutcome";
 import Overview from "../../components/reportOverview/ReportOverview";
 import { EditOutlined, DeleteOutlined,ExclamationCircleOutlined } from '@ant-design/icons';
+import { useContext } from 'react';
 
 function refreshPage() {
     window.location.reload(true);
@@ -27,9 +28,9 @@ const Report = () => {
     const { Sider } = Layout
     const token = getToken()
     const [reports, setReports] = useState([]);
-    const { state } = useLocation()
     const { workspace_id } = useParams()
     const [overview, setOverview] = useState([]);
+    const {activeWorkspace, GetWorkspaceById} = useContext(WorkspaceContext)
 
 
     const GetReport = async () => {
@@ -83,13 +84,17 @@ const Report = () => {
     const columns = [
         {
             title: 'ID',
-            dataIndex: 'balance_id',
+            dataIndex: 'id',
             key: 'id',
             innerHeight: '10px',
             outerHeight: '10px',
             backgroundColor: 'red',
             render: text => <a>{text}</a>,
-            width: '5%',
+            width: '5%'
+            // title:"Index",
+            // key:"index",
+            // dataIndex: 'id',
+            // render: (index) => (page - 1) * 10 + index
         },
         {
             title: 'Description',
@@ -131,6 +136,12 @@ const Report = () => {
             key: 'Transaction_proof',
         },
         {
+            title: 'Created at',
+            dataIndex: 'created_at',
+            key: 'created_at',
+            render: text => <a>{text.split("T")[0]}</a>
+        },
+        {
             title: 'Action',
             key: 'action',
             render: (record) => {
@@ -166,6 +177,7 @@ const Report = () => {
     useEffect(() => {
         GetReport()
         GetReportOverview()
+        GetWorkspaceById(workspace_id)
     }, [])
     return (
         <WorkspaceContextProvider>
@@ -181,7 +193,7 @@ const Report = () => {
                     </Sider>
                     <Layout style={{ backgroundColor: "white" }}>
                         <div className="report-title">
-                            Workspace Name
+                           {activeWorkspace.workspace_name}
                         </div>
                         <div className="report-images">
                             <div className="report-images-component">
