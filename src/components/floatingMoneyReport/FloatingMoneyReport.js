@@ -28,23 +28,27 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
         // console.log("TARGET FILES  " + e.target.files[0]);
         // return e.target.files[0];
 
-        console.log('Upload event:', e);
+    // const normFile = (e: any) => {
+    //     console.log('Upload event:', e);
+    //     if (Array.isArray(e)) {
+    //         return e;
+    //     }
+    //     return e && e.fileList;
+    // };
 
-        if (Array.isArray(e)) {
-            return e;
+    const normFile = (event) => {
+        console.log('Upload event:', event);
+        if (Array.isArray(event)) {
+            return event;
         }
-
-        //console.log(e.fileList[0].originFileObj)
-
-        return e.fileList;
+        return event && event.fileList;
     };
 
-    const handleChange = (e) => {
-        setImage(e.target.files[0])
-        // this.setState({
-        //     image: e.target.files[0]
-        // })
-        //console.log(e.target.files[0])
+    const onImageChange = (event) => {
+        let formdata = new FormData()
+        console.log("MASUK FUNGSI onImageChange")
+        let img = event.file
+        formdata.append('file_path', img)
     }
 
     return (
@@ -213,8 +217,11 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
 
                                     className="new-balance-form_last-form-item"
                                 >
+
+                                    
                                     <Upload>
                                         <Button icon={<UploadOutlined />}>Click to upload</Button>
+
                                     </Upload>
 
                                 </Form.Item>
@@ -231,12 +238,15 @@ export const FloatingMoneyReport = () => {
 
 
     const [visible, setVisible] = useState(false);
-
+    const token = getToken();
     const onCreate = async (values) => {
-        const token = getToken();
+
         const dateInput = new Date(values.date);
         const date = (dateInput.getYear() + 1900) + "-" + dateInput.getMonth() + "-" + dateInput.getDate()
+
+
         console.log(values)
+
         const response = await axios.post(BASE_API_URL + 'balance', {
             workspace_id: values.workspace_id,
             nominal: values.nominal,
@@ -282,6 +292,7 @@ export const FloatingMoneyReport = () => {
     //             },
     //         });
     // }
+
 
     return (
         <>
