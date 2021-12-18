@@ -28,211 +28,212 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
         // console.log("TARGET FILES  " + e.target.files[0]);
         // return e.target.files[0];
 
-    // const normFile = (e: any) => {
-    //     console.log('Upload event:', e);
-    //     if (Array.isArray(e)) {
-    //         return e;
-    //     }
-    //     return e && e.fileList;
-    // };
+        // const normFile = (e: any) => {
+        //     console.log('Upload event:', e);
+        //     if (Array.isArray(e)) {
+        //         return e;
+        //     }
+        //     return e && e.fileList;
+        // };
 
-    const normFile = (event) => {
-        console.log('Upload event:', event);
-        if (Array.isArray(event)) {
-            return event;
+        const normFile = (event) => {
+            console.log('Upload event:', event);
+            if (Array.isArray(event)) {
+                return event;
+            }
+            return event && event.fileList;
+        };
+
+        const onImageChange = (event) => {
+            let formdata = new FormData()
+            console.log("MASUK FUNGSI onImageChange")
+            let img = event.file
+            formdata.append('file_path', img)
         }
-        return event && event.fileList;
-    };
 
-    const onImageChange = (event) => {
-        let formdata = new FormData()
-        console.log("MASUK FUNGSI onImageChange")
-        let img = event.file
-        formdata.append('file_path', img)
-    }
+        return (
+            <Modal
+                title="New Balance"
+                visible={visible}
+                centered={true}
+                onOk={() => {
+                    form
+                        .validateFields()
+                        .then((values) => {
+                            form.resetFields();
+                            onCreate(values);
+                        })
+                        .catch((info) => {
+                            console.log('Validate Failed:', info);
+                        });
+                }}
+                onCancel={onCancel}
+                style={{ textAlign: "center" }}
+                okText="Add"
+                width={340}>
 
-    return (
-        <Modal
-            title="New Balance"
-            visible={visible}
-            centered={true}
-            onOk={() => {
-                form
-                    .validateFields()
-                    .then((values) => {
-                        form.resetFields();
-                        onCreate(values);
-                    })
-                    .catch((info) => {
-                        console.log('Validate Failed:', info);
-                    });
-            }}
-            onCancel={onCancel}
-            style={{ textAlign: "center" }}
-            okText="Add"
-            width={340}>
+                <Form
+                    form={form}
+                    layout="vertical"
+                    name="form_in_modal"
 
-            <Form
-                form={form}
-                layout="vertical"
-                name="form_in_modal"
+                >
+                    <div>
+                        <Row className="row-test-1">
+                            <div className="workspace-name-and-input">
+                                <div className="input-area-drop-down">
+                                    <Form.Item
+                                        name="workspace_id"
+                                        label="Workspace name"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please select workspace!',
+                                            },
+                                        ]}
 
-            >
-                <div>
-                    <Row className="row-test-1">
-                        <div className="workspace-name-and-input">
-                            <div className="input-area-drop-down">
-                                <Form.Item
-                                    name="workspace_id"
-                                    label="Workspace name"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please select workspace!',
-                                        },
-                                    ]}
-
-                                >
-                                    <Select
-                                        style={{ width: 270 }}
-                                        placeholder="select your workspace"
                                     >
-                                        {context.workspace.map(w =>
-                                            (<Option value={w.id}>{w.workspace_name}</Option>)
-                                        )}
-                                    </Select>
+                                        <Select
+                                            style={{ width: 270 }}
+                                            placeholder="select your workspace"
+                                        >
+                                            {context.workspace.map(w =>
+                                                (<Option value={w.id}>{w.workspace_name}</Option>)
+                                            )}
+                                        </Select>
 
-                                </Form.Item>
-                            </div>
-                        </div>
-                    </Row>
-                    <Row className="row-test">
-                        <Form.Item
-                            name="balance_description"
-                            label="Desciption"
-                        >
-                            <div className="description-name-and-input">
-
-                                <div className="form-input-description-name">
-                                    <Input.TextArea placeholder="Description" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                    </Form.Item>
                                 </div>
                             </div>
-                        </Form.Item>
+                        </Row>
+                        <Row className="row-test">
+                            <Form.Item
+                                name="balance_description"
+                                label="Desciption"
+                            >
+                                <div className="description-name-and-input">
 
-                    </Row>
-                    <Form.Item
-                        name="date"
-                        label="Date"
-                        rules={[
-                            {
-                                required: false,
-                                message: 'Please input the date!',
-                            },
-                        ]}>
-                        <DatePicker />
-                    </Form.Item>
-                    <Row>
+                                    <div className="form-input-description-name">
+                                        <Input.TextArea placeholder="Description" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                    </div>
+                                </div>
+                            </Form.Item>
+
+                        </Row>
                         <Form.Item
-                            name="nominal"
-                            label="Nominal"
+                            name="date"
+                            label="Date"
                             rules={[
                                 {
-                                    required: true,
-                                    message: 'Please input the value!',
+                                    required: false,
+                                    message: 'Please input the date!',
                                 },
-                            ]}
-                        >
-                            <div className="nominal-name-and-input">
-                                <div className="form-input-nominal-name">
-                                    <Input placeholder="Nominal" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                            ]}>
+                            <DatePicker />
+                        </Form.Item>
+                        <Row>
+                            <Form.Item
+                                name="nominal"
+                                label="Nominal"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input the value!',
+                                    },
+                                ]}
+                            >
+                                <div className="nominal-name-and-input">
+                                    <div className="form-input-nominal-name">
+                                        <Input placeholder="Nominal" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                    </div>
+                                </div>
+                            </Form.Item>
+
+                        </Row>
+                        <Row>
+                            <div className="tipe-name-and-input">
+                                <div className="input-area-drop-down">
+                                    <Form.Item
+                                        name="is_income"
+                                        label="Type"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please select type!',
+                                            },
+                                        ]}
+
+                                    >
+                                        <Select
+                                            style={{ width: 270 }}
+                                            placeholder="Select Type"
+                                        >
+
+                                            <Option value='1'>income</Option>
+                                            <Option value='0'>outcome</Option>
+
+                                        </Select>
+
+                                    </Form.Item>
                                 </div>
                             </div>
-                        </Form.Item>
+                        </Row>
+                        <Row>
+                            <div className="status-name-and-input">
+                                <div className="input-area-drop-down">
+                                    <Form.Item
+                                        name="status"
+                                        label="Status"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please select status!',
+                                            },
+                                        ]}
 
-                    </Row>
-                    <Row>
-                        <div className="tipe-name-and-input">
-                            <div className="input-area-drop-down">
-                                <Form.Item
-                                    name="is_income"
-                                    label="Type"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please select type!',
-                                        },
-                                    ]}
+                                    >
+                                        <Select
+                                            style={{ width: 270 }}
+                                            placeholder="Select Status"
+                                        >
 
-                                >
-                                    <Select
-                                        style={{ width: 270 }}
-                                        placeholder="Select Type"
+                                            <Option value='Planned'>Planned</Option>
+                                            <Option value='Done'>Done</Option>
+
+                                        </Select>
+
+                                    </Form.Item>
+                                </div>
+                            </div>
+                        </Row>
+                        <Row>
+                            <div className="proof-name-and-input">
+                                <div className="proof-area-drop-down">
+                                    <Form.Item
+                                        name="transaction_note"
+                                        label="Transaction Notes"
+                                        valuePropName="fileList"
+                                        getValueFromEvent={getFile}
+
+                                        className="new-balance-form_last-form-item"
                                     >
 
-                                        <Option value='1'>income</Option>
-                                        <Option value='0'>outcome</Option>
 
-                                    </Select>
+                                        <Upload>
+                                            <Button icon={<UploadOutlined />}>Click to upload</Button>
 
-                                </Form.Item>
+                                        </Upload>
+
+                                    </Form.Item>
+                                </div>
                             </div>
-                        </div>
-                    </Row>
-                    <Row>
-                        <div className="status-name-and-input">
-                            <div className="input-area-drop-down">
-                                <Form.Item
-                                    name="status"
-                                    label="Status"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please select status!',
-                                        },
-                                    ]}
+                        </Row>
+                    </div>
+                </Form>
 
-                                >
-                                    <Select
-                                        style={{ width: 270 }}
-                                        placeholder="Select Status"
-                                    >
-
-                                        <Option value='Planned'>Planned</Option>
-                                        <Option value='Done'>Done</Option>
-
-                                    </Select>
-
-                                </Form.Item>
-                            </div>
-                        </div>
-                    </Row>
-                    <Row>
-                        <div className="proof-name-and-input">
-                            <div className="proof-area-drop-down">
-                                <Form.Item
-                                    name="transaction_note"
-                                    label="Transaction Notes"
-                                    valuePropName="fileList"
-                                    getValueFromEvent={getFile}
-
-                                    className="new-balance-form_last-form-item"
-                                >
-
-                                    
-                                    <Upload>
-                                        <Button icon={<UploadOutlined />}>Click to upload</Button>
-
-                                    </Upload>
-
-                                </Form.Item>
-                            </div>
-                        </div>
-                    </Row>
-                </div>
-            </Form>
-
-        </Modal>
-    )
+            </Modal>
+        )
+    }
 }
 export const FloatingMoneyReport = () => {
 
