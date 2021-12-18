@@ -2,8 +2,37 @@ import React from 'react'
 import { Card, Row, Col, Button } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons'
 import './Task.css';
+import { useEffect, useState } from 'react'
+
+import axios from 'axios';
+import { BASE_API_URL } from '../../constants/urls';
+import { getToken } from '../../utils/authentication';
 
 export default function Task (props) {
+
+    const [tasks, setTasks] = useState([])
+    const token = getToken()
+    const GetTask = async ($board_id) => {
+        const response = await axios.get(BASE_API_URL + 'task', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            params: {
+                'board_id': $board_id
+            }
+        })
+        console.log("BOARD  ON BOARD")
+        console.log(response)
+        setTasks(response.data.task)
+    }
+
+    function onChange(e) {
+        console.log(`checked = ${e.target.checked}`);
+      }
+
+    useEffect(() => {
+        GetTask(props.board_id)
+    }, [])
 
     return (
         <div>

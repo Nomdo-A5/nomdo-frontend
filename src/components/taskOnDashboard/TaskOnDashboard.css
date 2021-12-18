@@ -1,0 +1,40 @@
+.main-layout-horizontal{
+    display: flex;
+    flex-direction: row;
+    padding-left: 1em;
+}
+
+.main-layout-vertical{
+    display: flex;
+    flex-direction: column;
+    padding-left: 1em;
+}
+
+.checkbox-logo{
+}
+
+.task-name {
+    text-align: left;
+    font-size: medium;
+}
+
+.task-description {
+    font-size: smaller;
+    text-align: left;
+}
+
+.clock-icon{
+    text-align: left;
+}
+
+.due-date-expired{
+    font-size: smaller;
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 1em;
+}
+
+.clock-and-date-division{
+    display: flex;
+    flex-direction: row;
+}

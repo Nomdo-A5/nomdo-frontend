@@ -22,6 +22,11 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
     const context = useContext(WorkspaceContext)
     const { Option } = Select;
+    const [image, setImage] = useState("")
+    const getFile = (e) => {
+        // console.log("IMAGE  " + image);
+        // console.log("TARGET FILES  " + e.target.files[0]);
+        // return e.target.files[0];
 
     // const normFile = (e: any) => {
     //     console.log('Upload event:', e);
@@ -45,6 +50,7 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
         let img = event.file
         formdata.append('file_path', img)
     }
+
     return (
         <Modal
             title="New Balance"
@@ -204,16 +210,20 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                         <div className="proof-name-and-input">
                             <div className="proof-area-drop-down">
                                 <Form.Item
-                                    name="Transaction Notes"
+                                    name="transaction_note"
                                     label="Transaction Notes"
                                     valuePropName="fileList"
-                                    getValueFromEvent={normFile}
+                                    getValueFromEvent={getFile}
 
                                     className="new-balance-form_last-form-item"
                                 >
-                                    <Upload onChange={onImageChange}>
-                                        <Button icon={<UploadOutlined />}>Upload Bills</Button>
+
+                                    
+                                    <Upload>
+                                        <Button icon={<UploadOutlined />}>Click to upload</Button>
+
                                     </Upload>
+
                                 </Form.Item>
                             </div>
                         </div>
@@ -233,7 +243,10 @@ export const FloatingMoneyReport = () => {
 
         const dateInput = new Date(values.date);
         const date = (dateInput.getYear() + 1900) + "-" + dateInput.getMonth() + "-" + dateInput.getDate()
-        //console.log("INI VALUE DATE GESS " + date)
+
+
+        console.log(values)
+
         const response = await axios.post(BASE_API_URL + 'balance', {
             workspace_id: values.workspace_id,
             nominal: values.nominal,
@@ -248,8 +261,37 @@ export const FloatingMoneyReport = () => {
                 },
             });
         console.log(response)
+        const formData = new FormData();
+        formData.append('_method', 'POST');
+        formData.append('file_path', values.transaction_note[0]);
+        //uploadProof(values.transaction_note[0],response.data.balance.id)  
+        const response_file = await axios.post(BASE_API_URL + 'attachment', {
+            formData,
+            // file_path: values.transaction_note[0].file,
+            balance_id: response.data.balance.id
+        },
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+        console.log(response_file)
         setVisible(false);
     };
+
+    // const uploadProof = async (file,$id) => {
+
+
+    //     const response = await axios.post(BASE_API_URL + 'attachment', {
+    //         file_path: values.transaction_note[0].file,
+    //         balance_id: response.data.board.id
+    //     },
+    //         {
+    //             headers: {
+    //                 'Authorization': `Bearer ${token}`
+    //             },
+    //         });
+    // }
 
 
     return (
