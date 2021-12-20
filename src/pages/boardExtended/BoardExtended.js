@@ -3,7 +3,7 @@ import { Card, Row, Col, Button, Input, Layout, Space } from 'antd';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import './BoardExtended.css';
 import Sidebar from '../../components/sidebar/Sidebar';
-import Nav from "../../components/Nav";
+import NavbarMain from "../../components/NavbarMain";
 import { MailOutlined } from '@ant-design/icons'
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
@@ -42,7 +42,7 @@ const BoardExtended = () => {
     return (
         <Router>
             <WorkspaceContextProvider>
-                <Nav />
+                <NavbarMain />
                 <div>
                     <Layout >
                         <Sider>

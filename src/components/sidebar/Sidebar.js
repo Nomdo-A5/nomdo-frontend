@@ -80,7 +80,7 @@ const Sidebar = () => {
         height: '100vh',
         position: 'fixed',
         left: 0,
-        top: '8vh',
+        top: '11vh',
         backgroundColor: 'white',
       }}>
         <Menu
