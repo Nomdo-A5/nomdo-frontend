@@ -2,16 +2,17 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Card, Row, Col, Button, Input, Layout, Space, Empty, Progress } from 'antd';
 import './Board.css';
 import Sidebar from '../../components/sidebar/Sidebar';
-import Nav from "../../components/Nav";
+import NavbarMain from "../../components/NavbarMain";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
 import ProgressBar from '../../components/progressBar/ProgressBar';
-import TaskOnBoard from '../../components/taskOnDashboard/TaskOnDashboard';
+import TaskOnBoard from '../../components/taskOnBoard/TaskOnBoard';
 import TaskOnDashoard from '../../components/taskOnDashboard/TaskOnDashboard';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 import axios from 'axios';
 import { WorkspaceContext } from "../../context/WorkspaceContext";
+import PageTitle from '../../components/pageTitle/PageTitle';
 import { BrowserRouter as Router, useLocation, useHistory, Link, useParams } from "react-router-dom";
 
 import { BoardContext } from '../../context/BoardContext';
@@ -76,7 +77,7 @@ const Board = () => {
             <div>
                 <div className="main-layout">
                     <div className="layout-title">
-                        {activeWorkspace.workspace_name}
+                        <PageTitle/>
                     </div>
                     {boards.map(board => (
                         <div className="boards-component-view">
@@ -112,7 +113,7 @@ const Board = () => {
     return (
         <Router>
             <WorkspaceContextProvider>
-                <Nav />
+                <NavbarMain />
                 <div className="spacer"/>
                 <div>
                     <Layout >

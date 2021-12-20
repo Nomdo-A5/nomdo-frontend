@@ -1,15 +1,19 @@
-.workspace-name-top{
-    align-items: center;
-    font-size: medium;
-    font-weight: bold;
-    width: 100%;
+.workspace-title-dashboard-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2%;
 }
 
-.workspace-page-title {
-    text-align: left;
-    padding-left: 10px;
-    padding-top: 7px;
-    padding-bottom: 5px;
+.workspace-title-dashboard-1-1{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 24px;
+}
+
+.workspace-title-dashboard-1-2{
+    display: flex;
+    align-items: center;
 }
 
 .workspace-description{

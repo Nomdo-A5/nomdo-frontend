@@ -1,6 +1,6 @@
 import Sidebar from "./sidebar/Sidebar";
 import Topbar from "./Topbar";
-import Nav from "./Nav";
+import NavbarMain from "./NavbarMain";
 import { FloatingButton } from "./floatingButton/FloatingButton";
 import Task from "./task/Task";
 import { Layout, Space } from "antd";

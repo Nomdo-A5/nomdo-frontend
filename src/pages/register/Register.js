@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Nav from "../../components/Nav_login";
+import NavbarMain from "../../components/Nav_login";
 import './Register.css';
 import { Form, Input, Button, Card } from 'antd';
 import { Link, useHistory } from 'react-router-dom';
@@ -69,7 +69,7 @@ const Register = () => {
 
   return (
     <div className="main-div-login" >
-      <Nav />
+      <NavbarMain />
       <div className="spacer" />
       <div className="main-division-register">
         <div className="left-division-register">
