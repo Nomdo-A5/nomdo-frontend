@@ -1,8 +1,13 @@
 import React from 'react'
 import { Card, Row, Col, Button } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons'
+import { BiDotsVerticalRounded } from 'react-icons/bi';
 import './Task.css';
 import { useEffect, useState } from 'react'
+import { Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import EditTaskModal from '../../components/editTaskModal/EditTaskModal';
 
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
@@ -25,6 +30,31 @@ export default function Task (props) {
         console.log(response)
         setTasks(response.data.task)
     }
+    
+    const menuEdit = (
+        <Menu>
+          <Menu.Item key="0">
+            <div className='edit-task-at-task'>
+                <div className='edit-task-at-task-1'>
+                    <AiOutlineEdit style={{fontSize:"large", marginRight:"10px", margin: "auto"}}/>
+                </div>
+                <div className='edit-task-at-task-2'>
+                    <EditTaskModal/>
+                </div>
+            </div>
+          </Menu.Item>
+          <Menu.Item key="1">
+            <div className='edit-task-at-task'>
+                <div className='edit-task-at-task-1'>
+                    <AiOutlineDelete style={{fontSize:"large", marginRight:"10px"}}/>
+                </div>
+                <div className='edit-task-at-task-2'>
+                    Delete Task
+                </div>
+            </div>
+          </Menu.Item>
+        </Menu>
+    );
 
     function onChange(e) {
         console.log(`checked = ${e.target.checked}`);
@@ -39,14 +69,24 @@ export default function Task (props) {
             <Card
                 style={{
                     width: "240px",
-                    height: "192px",
+                    height: "auto",
                     borderRadius: "16px",
                     marginRight: "24px",
-                    marginTop: "50px",
+                    marginTop: "25px",
                     boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
-                    backgroundColor: "#F6F6F6"
+                    backgroundColor: "#f6f6f6"  //f6f6f6//
+                }}
+                bodyStyle={{
+                    //padding: "10px"
                 }}
                 title={props.task_name}
+                extra={
+                    <Dropdown overlay={menuEdit} trigger={['click']}>
+                        <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                            <BiDotsVerticalRounded style={{color:"#969CA3", fontSize:"large"}}/>
+                        </a>
+                    </Dropdown>
+                }
             >
                 <Row>
                     <div className="task-description">

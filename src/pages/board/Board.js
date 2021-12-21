@@ -15,7 +15,12 @@ import { WorkspaceContext } from "../../context/WorkspaceContext";
 import PageTitle from '../../components/pageTitle/PageTitle';
 import { BrowserRouter as Router, useLocation, useHistory, Link, useParams } from "react-router-dom";
 
+import { BiDotsVerticalRounded } from 'react-icons/bi';
+import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import { Menu, Dropdown } from 'antd';
 import { BoardContext } from '../../context/BoardContext';
+import EditBoardModal from '../../components/editBoardModal/EditBoardModal';
+
 function refreshPage() {
     window.location.reload(true);
 }
@@ -70,6 +75,31 @@ const Board = () => {
             </div>
         )
     }
+    
+    const menuEdit = (
+        <Menu>
+            <Menu.Item key="0">
+            <div className='edit-board-at-board'>
+                <div className='edit-board-at-board-1'>
+                    <AiOutlineEdit style={{fontSize:"large", marginRight:"10px", margin: "auto"}}/>
+                </div>
+                <div className='edit-board-at-board-2'>
+                    <EditBoardModal/>
+                </div>
+            </div>
+            </Menu.Item>
+            <Menu.Item key="1">
+            <div className='edit-board-at-board'>
+                <div className='edit-board-at-board-1'>
+                    <AiOutlineDelete style={{fontSize:"large", marginRight:"10px"}}/>
+                </div>
+                <div className='edit-board-at-board-2'>
+                    Delete Board
+                </div>
+            </div>
+            </Menu.Item>
+        </Menu>
+    );
 
     const GetBoardView = () => {
         console.log("RENDER GET BOARD VIEW")
@@ -77,16 +107,23 @@ const Board = () => {
             <div>
                 <div className="main-layout">
                     <div className="layout-title">
-                        <PageTitle/>
+                    
                     </div>
                     {boards.map(board => (
                         <div className="boards-component-view">
                             <div className="logo-title-progress">
                                 <div className="board-title-and-logo">
                                     <div className="boards-title">
-                                        
+                                        <div className="boards-title-text">
                                             {board.board_name}
-                                        
+                                        </div>
+                                        <div className="boards-title-edit">
+                                            <Dropdown overlay={menuEdit} trigger={['click']}>
+                                                <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                                    <BiDotsVerticalRounded style={{color:"#969CA3", fontSize:"large"}}/>
+                                                </a>
+                                            </Dropdown>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="progress-bar-component">                                    

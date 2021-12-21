@@ -47,7 +47,7 @@ function NavbarMain() {
   }, [])
   return (
     <Navbar collapseOnSelect expand="lg" sticky="top" className='nav-responsive-container-0'>
-      <Container>
+      <Container className='nav-container'>
         <Nav.Link href="/">
           <img src={LogoImage} alt="" width="100px" height="auto" className='nomdo-logo'/>
         </Nav.Link>

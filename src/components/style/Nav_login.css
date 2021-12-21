@@ -1,28 +1,30 @@
-.menu-bar{
-    text-decoration: none;
-}
-    
-.nav {
+.nav-responsive-container-0{
     background-color: #4ABDAC;
-    z-index: 1;
     position: fixed;
     width: 100%;
-    height: 8vh;
-    top: 0;
-    left: 0;
+    height: auto;
+    z-index: 1;
     border-bottom: 2px solid #C4C4C4;
 }
-    
-.navbar-left-division{
-    width: 50%;
-    margin-top: auto;
-    margin-bottom: auto;
+
+.nav-container{
+    width: 100%;
 }
 
-.navbar-right-division{
-    width: 50%;
-    margin-top: auto;
-    margin-bottom: auto;
+.nav-responsive-1{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.nav-responsive-3{
+    display: flex;
+}
+
+.nav-responsive-3{
+    display: flex;
+    right: 0;
 }
 
 .nav-title {
@@ -33,170 +35,50 @@
     float: left;
 }
     
-.nav-profile-division{
-    width: auto;
-    float: right;
-}
-    
-.name-and-arrow{
+.nav-profile {
     display: flex;
     flex-direction: row;
+    text-decoration: none;
+    text-align: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    height: 40px;
+    width: auto;
+    vertical-align: middle;
+    color: white;
+    border-radius: 40px 40px 40px 40px;
+}
+
+.navbar-profile-image{
+    display: flex;
+    margin: auto;
+    height: 35px;
+    text-align: right;
+}
+
+.nav-profile-name-2{
+    display: flex;
+    text-decoration: none;
+    color: #F9F9F9;
+    font-size: 15px;
+    justify-content: center;
+}
+
+.navbar-profile-main{
+    display: flex;
+    flex-direction: row;
+}
+
+.ant-dropdown-link{
+    display: flex;
     margin: auto;
 }
 
-@media only screen and (min-width: 1367px) {
-    
-    .nav-components{
-        display: flex;
-        flex-direction: row;
-        width: 90%;
-        margin: 0 auto;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-
-    .nomdo-logo-image {
-        height: 45px;
-    }
-    
-    .nav-profile {
-        display: flex;
-        flex-direction: row;
-        text-decoration: none;
-        text-align: right;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: auto;
-        height: 40px;
-        width: auto;
-        vertical-align: middle;
-        background-color: white;
-        color: white;
-        border-radius: 40px 40px 40px 40px;
-    }
-
-    .navbar-profile-image{
-        height: 40px;
-    }
-    
-    .nav-profile-name{
-        color: #4ABDAC;
-        margin-left: 1em;
-        font-size: large;
-    }
-    
-    .nav-profile-arrow{
-        color: #4ABDAC;
-        margin-left: 1em;
-        margin-right: 1em;
-    }
+.nav-profile-arrow{
+    color: #F9F9F9;
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1366px) {
-    
-    .nav-components{
-        display: flex;
-        flex-direction: row;
-        width: 90%;
-        margin: 0 auto;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-
-    .nomdo-logo-image {
-        height: 30px;
-    }
-    
-    .nav-profile {
-        display: flex;
-        flex-direction: row;
-        text-decoration: none;
-        text-align: right;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: auto;
-        height: 25px;
-        width: auto;
-        vertical-align: middle;
-        background-color: white;
-        color: white;
-        border-radius: 40px 40px 40px 40px;
-    }
-
-    .navbar-profile-image{
-        height: 25px;
-    }
-    
-    .nav-profile-name{
-        color: #4ABDAC;
-        font-size: small;
-        margin-left: 0.5em;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-    
-    .nav-profile-arrow{
-        color: #4ABDAC;
-        margin-left: 0.5em;
-        margin-right: 0.5em;
-    }
-}
-
-@media only screen and (max-width: 1024px) {
-
-    .nav-title {
-        font-family: "Roboto Condensed", sans-serif;
-        font-size: 12px;
-        font-weight: bold;
-        text-decoration: none;
-        float: left;
-    }
-
-    .nav-components{
-        display: flex;
-        flex-direction: row;
-        width: 90%;
-        margin: 0 auto;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-    
-    .nomdo-logo-image {
-        height: 22px;
-    }
-    
-    .nav-profile {
-        display: flex;
-        flex-direction: row;
-        text-decoration: none;
-        text-align: right;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: auto;
-        height: 20px;
-        width: auto;
-        vertical-align: middle;
-        background-color: white;
-        color: white;
-        border-radius: 40px 40px 40px 40px;
-    }
-
-    .navbar-profile-image{
-        height: 20px;
-    }
-    
-    .nav-profile-name{
-        color: #4ABDAC;
-        font-size: x-small;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 0.5em;
-    }
-    
-    .nav-profile-arrow{
-        font-size: x-small;
-        color: #4ABDAC;
-        margin-left: 0.5em;
-        margin-right: 0.5em;
-    }
+.menu-bar{
+    position: fixed;
 }
