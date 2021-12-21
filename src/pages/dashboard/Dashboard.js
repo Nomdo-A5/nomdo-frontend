@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Card, Row, Col, Button, Input, Layout, Avatar, Modal } from 'antd';
 import './Dashboard.css';
 import Sidebar from '../../components/sidebar/Sidebar';
-import Nav from "../../components/Nav";
+import NavbarMain from "../../components/NavbarMain";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { BrowserRouter as Router, Route, Link, useHistory, useParams } from "react-router-dom";
 import { WorkspaceContext } from "../../context/WorkspaceContext";
@@ -94,14 +94,16 @@ const Dashboard = () => {
     }, [])
     return (
         <WorkspaceContextProvider>
-            <Nav />
+            <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
+                <NavbarMain />
+            </div>
+            <div className="spacer" />
             <div>
                 <Layout >
                     <Sider>
                         <Sidebar />
                     </Sider>
                     <Layout className="main-layout">
-                        <div className="spacer" />
                         <PageTitle/>
                         <div className="layout-main">
                             <div className="layout-main-left">

@@ -4,7 +4,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import Draggable from 'react-draggable';
 import { useState, useContext } from 'react';
 
-import { Card, Row, Col, Input, Select, Form } from 'antd';
+import { Card, Row, Col, Input, Select, Form, DatePicker } from 'antd';
 import { FormOutlined, ClockCircleOutlined, MailOutlined, UserOutlined, CopyOutlined } from '@ant-design/icons'
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
@@ -158,7 +158,19 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                             </div>
 
                         </Form.Item>
-
+                        <Form.Item
+                            name="date"
+                            label="Date"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input the date!',
+                                },
+                            ]}>
+                            <div className="datepicker-task">
+                                <DatePicker style={{ width: "270px", borderRadius: "10px 10px 10px 10px" }}/>
+                            </div>
+                        </Form.Item>
                     </Row>
                 </div>
             </Form>

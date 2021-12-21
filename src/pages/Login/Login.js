@@ -1,6 +1,6 @@
 import React from "react";
 import './Login.css';
-import Nav from "../../components/Nav_login";
+import NavbarMain from "../../components/Nav_login";
 import { useHistory } from "react-router-dom";
 import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";
@@ -46,7 +46,7 @@ const Login = () => {
 
   return (
     <div className="main-div-login" >
-      <Nav />
+      <NavbarMain />
       <div className="spacer"/>
       <div className="main-division">
         <div className="left-division">

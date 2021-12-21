@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Layout, Table, Tag, Space, Modal, Select, Form, Row, Input, DatePicker } from 'antd';
 import './Report.css';
 import Sidebar from '../../components/sidebar/Sidebar';
-import Nav from "../../components/Nav";
+import NavbarMain from "../../components/NavbarMain";
 import { WorkspaceContext, WorkspaceContextProvider } from '../../context/WorkspaceContext';
 
 import '../../components/taskOnBoard/TaskOnBoard.css';
@@ -13,6 +13,7 @@ import { getToken } from '../../utils/authentication';
 import { useLocation, useParams } from 'react-router';
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
+import PageTitle from '../../components/pageTitle/PageTitle';
 
 import Income from "../../components/reportIncome/ReportIncome";
 import Outcome from "../../components/reportOutcome/ReportOutcome";
@@ -339,7 +340,9 @@ const Report = () => {
 
     return (
         <WorkspaceContextProvider>
-            <Nav />
+            <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
+                <NavbarMain />
+            </div>
             <div className="spacer" />
             <div>
                 <Layout >
@@ -349,9 +352,11 @@ const Report = () => {
                             <FloatingButton />
                         </div>
                     </Sider>
-                    <Layout style={{ backgroundColor: "white" }}>
+                    <Layout style={{ backgroundColor: "#f4f8fb" }}>
                         <div className="report-title">
-                            {activeWorkspace.workspace_name}
+
+                        <PageTitle/>
+
                         </div>
                         <div className="report-images">
                             <div className="report-images-component">

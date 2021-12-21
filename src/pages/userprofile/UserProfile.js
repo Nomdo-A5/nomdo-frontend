@@ -1,6 +1,6 @@
 import React , { useContext, useState, useEffect }from 'react';
 import { BASE_API_URL } from '../../constants/urls';
-import Nav from "../../components/Nav";
+import NavbarMain from "../../components/NavbarMain";
 import Sidebar from '../../components/sidebar/Sidebar';
 import axios from "axios";
 import { getToken } from '../../utils/authentication';
@@ -45,7 +45,7 @@ const UserProfile = () =>{
     return (
         <WorkspaceContextProvider>
             <div>
-            <Nav />
+            <NavbarMain />
             <div className="spacer"/>
             <Layout>
                 <Sider>

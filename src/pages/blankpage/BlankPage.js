@@ -1,6 +1,6 @@
 import React , { useState, useEffect }from 'react';
 import { BASE_API_URL } from '../../constants/urls';
-import Nav from "../../components/Nav";
+import NavbarMain from "../../components/NavbarMain";
 import Sidebar from '../../components/sidebar/Sidebar';
 import Task from '../../components/task/Task';
 import TaskOnBoard from '../../components/taskOnBoard/TaskOnBoard';
@@ -50,7 +50,7 @@ const BlankPage = () =>{
     return (
         <WorkspaceContextProvider>
             <div>
-            <Nav />
+            <NavbarMain />
             <Layout>
                 <Sider>
                     <Sidebar />

@@ -30,7 +30,16 @@
     margin-left: 10px;
     font-size: large;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
 }
+
+.boards-title-edit{
+    display: flex;
+    margin: auto;
+    margin-left: 10px;
+}
+
 
 .progress-bar-component{
     width: 250px;
@@ -62,4 +71,21 @@
     position: fixed;
     right: 20px;;
     bottom: 20px;;
+}
+
+.edit-board-at-board{
+    display: flex;
+    flex-direction: row;
+    height: 36px;
+}
+
+.edit-board-at-board-1{
+    display: flex;
+    margin: auto;
+}
+
+.edit-board-at-board-2{
+    display: flex;
+    margin: auto;
+    color: red;
 }

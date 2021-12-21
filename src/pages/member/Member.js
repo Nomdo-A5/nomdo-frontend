@@ -4,8 +4,9 @@ import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/ico
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import './Member.css';
+import PageTitle from '../../components/pageTitle/PageTitle';
 import Sidebar from '../../components/sidebar/Sidebar';
-import Nav from "../../components/Nav";
+import NavbarMain from "../../components/NavbarMain";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { BrowserRouter as Router, Route, Link, useHistory } from "react-router-dom";
 import { WorkspaceContext } from "../../context/WorkspaceContext";
@@ -28,19 +29,18 @@ const Member = () =>{
   const context = useContext(WorkspaceContext)
     return (
         <WorkspaceContextProvider>
-        <Nav />
+        <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
+            <NavbarMain />
+        </div>
+        <div className="spacer" />
         <div>
             <Layout >
                 <Sider>
                     <Sidebar />
                 </Sider>
                 <Layout className="main-layout" style={{ backgroundColor: "white" }}>
-                    <div className="spacer"/>
-                    <div className="floating-button-component">
-                        <FloatingButton />
-                    </div>
                     <div className="layout-title-member">
-                        Workspace Name
+                        <PageTitle/>
                     </div>
                     <div className="layout-main-member">
                         <div className="layout-main-title">
@@ -66,6 +66,9 @@ const Member = () =>{
                                 <MemberCard/>
                             </div>
                         </div>
+                    </div>
+                    <div className="floating-button-component">
+                        <FloatingButton />
                     </div>
                 </Layout>
             </Layout>

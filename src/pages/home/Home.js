@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_API_URL } from '../../constants/urls';
-import Nav from "../../components/Nav";
+import NavbarMain from "../../components/NavbarMain";
 import Sidebar from '../../components/sidebar/Sidebar';
 import Task from '../../components/task/Task';
 import TaskOnBoard from '../../components/taskOnBoard/TaskOnBoard';
@@ -45,7 +45,7 @@ const Home = () => {
         <WorkspaceContextProvider>
             <div>
                 <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
-                    <Nav />
+                    <NavbarMain />
                 </div>
                 <div className="spacer" />
                 <Layout>
@@ -63,7 +63,9 @@ const Home = () => {
                         }
 
                     </Layout>
-
+                    <div className="floating-button-component">
+                        <FloatingButton />
+                    </div>
                 </Layout>
             </div>
         </WorkspaceContextProvider>
