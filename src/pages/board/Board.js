@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { Card, Row, Col, Button, Input, Layout, Space, Empty, Progress } from 'antd';
+import { Card, Row, Col, Button, Input, Layout, Space, Empty, Progress , Modal} from 'antd';
 import './Board.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import NavbarMain from "../../components/NavbarMain";
@@ -20,6 +20,7 @@ import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { Menu, Dropdown } from 'antd';
 import { BoardContext } from '../../context/BoardContext';
 import EditBoardModal from '../../components/editBoardModal/EditBoardModal';
+import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 
 function refreshPage() {
     window.location.reload(true);
@@ -37,6 +38,7 @@ const Board = () => {
     const { state } = useLocation()
     const history = useHistory();
     const context = useContext(BoardContext)
+    const { confirm } = Modal
 
     const GetBoard = async () => {
         console.log("INI FUNGSI GET BOARD")
@@ -75,10 +77,38 @@ const Board = () => {
             </div>
         )
     }
-    
-    const menuEdit = (
+
+    const deleteBoard = async ($id) => {
+        const response = await axios.delete(BASE_API_URL + 'boards', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                id: $id
+            }
+        });
+
+        console.log(response)
+    }
+    function showDeleteConfirm($id) {
+        confirm({
+            title: 'Are you sure want to delete this board?',
+            icon: <ExclamationCircleOutlined />,
+           
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+                deleteBoard($id)
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
+    }
+    const menuEdit = (id) => (
         <Menu>
-            <Menu.Item key="0">
+            <Menu.Item key="edit">
             <div className='edit-board-at-board'>
                 <div className='edit-board-at-board-1'>
                     <AiOutlineEdit style={{fontSize:"large", marginRight:"10px", margin: "auto"}}/>
@@ -88,7 +118,7 @@ const Board = () => {
                 </div>
             </div>
             </Menu.Item>
-            <Menu.Item key="1">
+            <Menu.Item key="delete" onClick={() => showDeleteConfirm(id)}>
             <div className='edit-board-at-board'>
                 <div className='edit-board-at-board-1'>
                     <AiOutlineDelete style={{fontSize:"large", marginRight:"10px"}}/>
@@ -118,7 +148,7 @@ const Board = () => {
                                             {board.board_name}
                                         </div>
                                         <div className="boards-title-edit">
-                                            <Dropdown overlay={menuEdit} trigger={['click']}>
+                                            <Dropdown overlay={menuEdit(board.id)} trigger={['click']}>
                                                 <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                                                     <BiDotsVerticalRounded style={{color:"#969CA3", fontSize:"large"}}/>
                                                 </a>
