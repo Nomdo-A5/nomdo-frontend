@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Table, Tag, Space, Modal } from 'antd';
+import { Layout, Table, Tag, Space, Modal, Select, Form, Row, Input, DatePicker } from 'antd';
 import './Report.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import NavbarMain from "../../components/NavbarMain";
@@ -18,12 +18,14 @@ import PageTitle from '../../components/pageTitle/PageTitle';
 import Income from "../../components/reportIncome/ReportIncome";
 import Outcome from "../../components/reportOutcome/ReportOutcome";
 import Overview from "../../components/reportOverview/ReportOverview";
-import { EditOutlined, DeleteOutlined,ExclamationCircleOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useContext } from 'react';
 
 function refreshPage() {
     window.location.reload(true);
 }
+
+
 const Report = () => {
     const { confirm } = Modal;
     const { Sider } = Layout
@@ -31,7 +33,9 @@ const Report = () => {
     const [reports, setReports] = useState([]);
     const { workspace_id } = useParams()
     const [overview, setOverview] = useState([]);
-    const {activeWorkspace, GetWorkspaceById} = useContext(WorkspaceContext)
+    const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
+    const [isEditFormVisible, setIsEditFormVisible] = useState(false)
+    const [editedBalance, setEditedBalance] = useState([])
 
 
     const GetReport = async () => {
@@ -59,14 +63,164 @@ const Report = () => {
         setOverview(response.data)
     }
 
-    const onDeleteBalance = (record) => {
+    const EditBalanceForm = ({ editedBalance, visible, onCreate, onCancel }) => {
+        const [form] = Form.useForm();
+        const context = useContext(WorkspaceContext)
+        const { Option } = Select;
 
-        Modal.confirm({
-            title: 'Are you sure,want to delete this balance',
-            onOk: () => {
-                deleteBalance(record.id)
-            }
-        })
+        return (
+            <Modal
+                title="Edit Balance"
+                visible={visible}
+                centered={true}
+                onOk={() => {
+                    form
+                        .validateFields()
+                        .then((values) => {
+                            form.resetFields();
+                            onCreate(values);
+                        })
+                        .catch((info) => {
+                            console.log('Validate Failed:', info);
+                        });
+                }}
+                onCancel={onCancel}
+                style={{ textAlign: "center" }}
+                okText="Add"
+                width={340}>
+
+                <Form
+                    form={form}
+                    layout="vertical"
+                    name="form_in_modal"
+
+                >
+                    <div>
+
+                        <Row className="row-test">
+                            <Form.Item
+                                name="balance_description"
+                                label="Desciption"
+                                initialValue={editedBalance.balance_description}
+                            >
+                                <div className="description-name-and-input">
+
+                                    <div className="form-input-description-name">
+                                        <Input.TextArea placeholder={editedBalance.balance_description} style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                    </div>
+                                </div>
+                            </Form.Item>
+
+                        </Row>
+                        <Form.Item
+                            name="date"
+                            label="Date"
+                            rules={[
+                                {
+                                    required: false,
+                                    message: 'Please input the date!',
+                                },
+                            ]}>
+                            <DatePicker placeholder={editedBalance.date} />
+                        </Form.Item>
+                        <Row>
+                            <Form.Item
+                                name="nominal"
+                                label="Nominal"
+                                initialValue={editedBalance.nominal}
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input the value!',
+                                    },
+                                ]}
+                            >
+                                <div className="nominal-name-and-input">
+                                    <div className="form-input-nominal-name">
+                                        <Input placeholder={new Intl.NumberFormat('ID').format(editedBalance.nominal)} style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                    </div>
+                                </div>
+                            </Form.Item>
+
+                        </Row>
+                        <Row>
+                            <div className="tipe-name-and-input">
+                                <div className="input-area-drop-down">
+                                    <Form.Item
+                                        name="is_income"
+                                        label="Type"
+                                    >
+                                        <Select
+                                            style={{ width: 270 }}
+                                            placeholder={editedBalance.is_income === 0 ? 'outcome' : 'income'}
+                                        >
+
+                                            <Option value='1'>income</Option>
+                                            <Option value='0'>outcome</Option>
+
+                                        </Select>
+
+                                    </Form.Item>
+                                </div>
+                            </div>
+                        </Row>
+                        <Row>
+                            <div className="status-name-and-input">
+                                <div className="input-area-drop-down">
+                                    <Form.Item
+                                        name="status"
+                                        label="Status"
+                                        initialValue={editedBalance.status}
+
+                                        className="edit-balance-form_last-form-item"
+
+                                    >
+                                        <Select
+                                            style={{ width: 270 }}
+                                            placeholder={editedBalance.status}
+                                        >
+
+                                            <Option value='Planned'>Planned</Option>
+                                            <Option value='Done'>Done</Option>
+
+                                        </Select>
+
+                                    </Form.Item>
+                                </div>
+                            </div>
+                        </Row>
+
+                    </div>
+                </Form>
+
+            </Modal>
+        )
+    }
+
+    const onEdit = async (values) => {
+        console.log(values)
+        const isIncome = editedBalance.is_income
+        if (typeof values.is_income != 'undefined')
+            isIncome = values.is_income
+
+        const response = await axios.put(BASE_API_URL + 'balance', {
+            id: editedBalance.id,
+            balance_description: values.balance_description,
+            nominal: values.nominal,
+            is_income: isIncome
+        },
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+        console.log(response)
+        setIsEditFormVisible(false)
+    }
+
+    function showEditBalance(balance) {
+        setEditedBalance(balance)
+        setIsEditFormVisible(true)
     }
 
     const deleteBalance = async ($id) => {
@@ -82,6 +236,7 @@ const Report = () => {
 
         console.log(response)
     }
+
     const columns = [
         {
             title: 'ID',
@@ -131,11 +286,11 @@ const Report = () => {
             key: 'status',
             render: text => <a>{text}</a>,
         },
-        {
-            title: 'Proof',
-            dataIndex: 'Transaction_proof',
-            key: 'Transaction_proof',
-        },
+        // {
+        //     title: 'Proof',
+        //     dataIndex: 'Transaction_proof',
+        //     key: 'Transaction_proof',
+        // },
         {
             title: 'Created at',
             dataIndex: 'created_at',
@@ -148,7 +303,9 @@ const Report = () => {
             render: (record) => {
                 return (
                     <>
-                        <EditOutlined />
+                        <EditOutlined onClick={() => {
+                            showEditBalance(record)
+                        }} />
                         <DeleteOutlined onClick={() => {
                             showDeleteConfirm(record.id)
                         }} style={{ color: "red", marginLeft: 12 }} />
@@ -180,6 +337,7 @@ const Report = () => {
         GetReportOverview()
         GetWorkspaceById(workspace_id)
     }, [])
+
     return (
         <WorkspaceContextProvider>
             <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
@@ -196,7 +354,9 @@ const Report = () => {
                     </Sider>
                     <Layout style={{ backgroundColor: "#f4f8fb" }}>
                         <div className="report-title">
+
                         <PageTitle/>
+
                         </div>
                         <div className="report-images">
                             <div className="report-images-component">
@@ -215,6 +375,14 @@ const Report = () => {
                                 columns={columns}
                                 dataSource={reports}
                                 size="small"
+                            />
+                            <EditBalanceForm
+                                editedBalance={editedBalance}
+                                visible={isEditFormVisible}
+                                onCreate={onEdit}
+                                onCancel={() => {
+                                    setIsEditFormVisible(false)
+                                }}
                             />
                         </div>
                     </Layout>
