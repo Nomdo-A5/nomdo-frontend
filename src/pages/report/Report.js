@@ -215,6 +215,7 @@ const Report = () => {
                 },
             });
         console.log(response)
+        
         setIsEditFormVisible(false)
     }
 
