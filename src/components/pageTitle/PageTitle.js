@@ -93,10 +93,12 @@ const PageTitle = () => {
     const { workspace_id } = useParams()
     const [overview, setOverview] = useState([])
     const token = getToken()
-    const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
+    const { activeWorkspace,setActiveWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
     const [taskOverview, setTaskOverview] = useState([])
     const [members, setMembers] = useState([])
     const [form] = Form.useForm()
+
+
     const handleOk = async (values) => {
         const response = await axios.patch(BASE_API_URL + 'workspace', {
             id:activeWorkspace.id,
@@ -110,6 +112,7 @@ const PageTitle = () => {
             });
         console.log(values)
         console.log(response)
+        setActiveWorkspace(response.data.workspace)
         setIsModalVisible(false);
 
     };

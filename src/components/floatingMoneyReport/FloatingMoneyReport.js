@@ -29,11 +29,11 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
         // return e.target.files[0];
 
         // const normFile = (e: any) => {
-        //     console.log('Upload event:', e);
-        //     if (Array.isArray(e)) {
-        //         return e;
-        //     }
-        //     return e && e.fileList;
+            console.log('Upload event:', e);
+            if (Array.isArray(e)) {
+                return e;
+            }
+            return e && e.fileList;
     };
 
     const normFile = (event) => {
@@ -276,13 +276,10 @@ export const FloatingMoneyReport = () => {
         console.log(response)
         const formData = new FormData();
         formData.append('_method', 'POST');
-        formData.append('file_path', values.transaction_note[0]);
+        formData.append('file_path', values.transaction_note[0].originFileObj);
+        formData.append('balance_id', response.data.balance.id)
         //uploadProof(values.transaction_note[0],response.data.balance.id)  
-        const response_file = await axios.post(BASE_API_URL + 'attachment', {
-            formData,
-            // file_path: values.transaction_note[0].file,
-            balance_id: response.data.balance.id
-        },
+        const response_file = await axios.post(BASE_API_URL + 'attachment', formData,
             {
                 headers: {
                     'Authorization': `Bearer ${token}`
