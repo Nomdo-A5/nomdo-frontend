@@ -42,13 +42,7 @@ const Dashboard = () => {
     const [taskOverview, setTaskOverview] = useState([])
     const [members, setMembers] = useState([])
 
-    const handleOk = () => {
-        setIsModalVisible(false);
-    };
     
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    };
 
     const GetOverview = async () => {
         const response = await axios.get(BASE_API_URL + 'report/overview', {
