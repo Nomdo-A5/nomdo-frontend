@@ -2,12 +2,13 @@
     background-color: #4ABDAC;
     position: fixed;
     width: 100%;
+    height: auto;
     z-index: 1;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
     border-bottom: 2px solid #C4C4C4;
+}
+
+.nav-container{
+    width: 100%;
 }
 
 .nav-responsive-1{
@@ -56,12 +57,15 @@
     text-align: right;
 }
 
-.nav-profile-name-2{
+.nav-profile-name{
     display: flex;
+    margin: auto;
+}
+
+.nav-profile-name-2{
     text-decoration: none;
     color: #F9F9F9;
     font-size: 15px;
-    justify-content: center;
 }
 
 .navbar-profile-main{

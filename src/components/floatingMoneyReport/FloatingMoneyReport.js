@@ -125,11 +125,11 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                         label="Date"
                         rules={[
                             {
-                                required: false,
+                                required: true,
                                 message: 'Please input the date!',
                             },
                         ]}>
-                        <DatePicker />
+                        <DatePicker style={{ width: "92%", borderRadius: "10px 10px 10px 10px" }}/>
                     </Form.Item>
                     <Row>
                         <Form.Item
@@ -220,8 +220,20 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
 
 
                                     <Upload>
-                                        <Button icon={<UploadOutlined />}>Click to upload</Button>
-
+                                        <Button 
+                                            style={{ 
+                                                width: "270px", borderRadius: "10px 10px 10px 10px" 
+                                            }} 
+                                            icon={
+                                                <UploadOutlined 
+                                                    style={{ 
+                                                        margin: "auto"
+                                                    }}
+                                                />
+                                            }
+                                        >
+                                            Click to upload
+                                        </Button>
                                     </Upload>
 
                                 </Form.Item>

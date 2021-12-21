@@ -182,7 +182,9 @@ const Report = () => {
     }, [])
     return (
         <WorkspaceContextProvider>
-            <NavbarMain />
+            <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
+                <NavbarMain />
+            </div>
             <div className="spacer" />
             <div>
                 <Layout >

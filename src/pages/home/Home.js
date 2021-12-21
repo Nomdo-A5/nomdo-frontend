@@ -63,7 +63,9 @@ const Home = () => {
                         }
 
                     </Layout>
-
+                    <div className="floating-button-component">
+                        <FloatingButton />
+                    </div>
                 </Layout>
             </div>
         </WorkspaceContextProvider>
