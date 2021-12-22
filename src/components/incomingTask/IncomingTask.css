@@ -1,0 +1,43 @@
+.workspace-title-dashboard-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.workspace-title-dashboard-1-1{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 24px;
+}
+
+.workspace-title-dashboard-1-2{
+    display: flex;
+    align-items: center;
+}
+
+.workspace-description{
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.input-area {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-input-workspace-title {
+    width: 250px;
+    padding-left: 10px;
+}
+
+.form-input-workspace-description {
+    width: 250px;
+    padding-left: 10px;
+}
+
+.form-info-workspace-name{
+    text-align: left;
+    padding-left: 10px;
+}

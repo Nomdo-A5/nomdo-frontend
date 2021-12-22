@@ -111,10 +111,6 @@ const Sidebar = () => {
                 <span>Money Report</span>
                 <Link to={{ pathname: `/report/${w.id}`, state: { workspace: w.id } }} />
               </Menu.Item>
-              <Menu.Item >
-                Member
-                <Link to="/member" />
-              </Menu.Item>
               <Menu.Item onClick={() => {
                 showDeleteConfirm(w.id)
               }}>
