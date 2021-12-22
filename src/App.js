@@ -11,6 +11,7 @@ import { WorkspaceContextProvider } from "./context/WorkspaceContext";
 import { BoardContextProvider } from "./context/BoardContext";
 
 const App = () => {
+  //document.title = 'Nomdo'
   return (
     <div className="App">
       <WorkspaceContextProvider>

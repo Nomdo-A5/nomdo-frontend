@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, Empty, Space, Checkbox, Layout, Modal, Row, Input, Form } from 'antd';
-import { ClockCircleOutlined, MailOutlined } from '@ant-design/icons'
+import { ClockCircleOutlined, MailOutlined, QrcodeOutlined } from '@ant-design/icons'
 import { WorkspaceContext } from "../../context/WorkspaceContext";
 import { BrowserRouter as Router, Route, Link, useHistory, useParams } from "react-router-dom";
 import './PageTitle.css';
@@ -9,8 +9,6 @@ import { FiEdit } from 'react-icons/fi';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 import { ClickedTask } from "../clickedTask/ClickedTask";
-
-
 
 const EditWorkspaceForm = ({ visible, workspace, onCreate, onCancel }) => {
     const [form] = Form.useForm();
@@ -42,6 +40,30 @@ const EditWorkspaceForm = ({ visible, workspace, onCreate, onCancel }) => {
                 name="form_in_modal"
 
             >
+                <Form.Item
+                    name="workspace_name"
+                    rules={[
+                        {
+                            required: false,
+                            message: 'Please input the new workspace name!',
+                        },
+                    ]}
+                    initialValue={workspace.workspace_name}
+                >
+                    <div className="workspace-name-and-logo">
+                        <div className="workspace-logo">
+                            <QrcodeOutlined />
+                        </div>
+                        <div className="workspace-name-and-input">
+                            <div className="workspace-name">
+                                Workspace's Code
+                            </div>
+                            <div className="form-input-workspace-name">
+                                Code's here
+                            </div>
+                        </div>
+                    </div>
+                </Form.Item>
                 <Form.Item
                     name="workspace_name"
                     rules={[
@@ -170,7 +192,7 @@ const PageTitle = () => {
         GetMember()
     }, [])
     return (
-        <div className="layout-title-dashboard">
+        <div className="layout-title-dashboard" style={{ backgroundColor: "white"}}>
             <div className="workspace-title-dashboard-1">
                 <div className="workspace-title-dashboard-1-1">
                     {activeWorkspace.workspace_name}

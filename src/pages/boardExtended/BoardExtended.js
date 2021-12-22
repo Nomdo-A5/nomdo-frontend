@@ -8,7 +8,7 @@ import { MailOutlined } from '@ant-design/icons'
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
 import ProgressBar from '../../components/progressBar/ProgressBar';
-import TaskOnBoard from '../../components/taskOnDashboard/TaskOnDashboard';
+import TaskOnBoard from '../../components/taskOnBoard/TaskOnBoard';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 import axios from 'axios';
@@ -42,18 +42,17 @@ const BoardExtended = () => {
     return (
         <Router>
             <WorkspaceContextProvider>
-                <NavbarMain />
+                <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
+                    <NavbarMain />
+                </div>
+                <div className="spacer"/>
                 <div>
-                    <Layout >
+                    <Layout className="layout-1">
                         <Sider>
                             <Sidebar />
-                            <div className="floating-button-component">
-                                <FloatingButton />
-                            </div>
                         </Sider>
                         <Layout style={{ backgroundColor: "white" }}>
-
-                            <div className="main-layout">
+                            <div className="main-layout" style={{ backgroundColor: "white"}}>
                                 <div className="layout-title">
                                     {activeWorkspace.workspace_name}
                                 </div>
@@ -78,8 +77,10 @@ const BoardExtended = () => {
                                     </div>
                                 </div>
                             </div>
-
                         </Layout>
+                        <div className="floating-button-component">
+                            <FloatingButton />
+                        </div>
                     </Layout>
                 </div>
 

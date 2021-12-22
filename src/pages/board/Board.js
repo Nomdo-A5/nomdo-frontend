@@ -220,7 +220,7 @@ const Board = () => {
         console.log("RENDER GET BOARD VIEW")
         return (
             <div>
-                <div className="main-layout">
+                <div className="main-layout" style={{ backgroundColor: "white"}}>
                     <div className="layout-title">
                     
                     </div>

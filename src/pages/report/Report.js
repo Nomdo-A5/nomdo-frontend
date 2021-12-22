@@ -353,7 +353,7 @@ const Report = () => {
                             <FloatingButton />
                         </div>
                     </Sider>
-                    <Layout style={{ backgroundColor: "#f4f8fb" }}>
+                    <Layout style={{ backgroundColor: "#FFFFFF" }}>
                         <div className="report-title">
 
                         <PageTitle/>

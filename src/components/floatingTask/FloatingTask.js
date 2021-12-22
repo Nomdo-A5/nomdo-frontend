@@ -171,6 +171,27 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                                 <DatePicker style={{ width: "270px", borderRadius: "10px 10px 10px 10px" }}/>
                             </div>
                         </Form.Item>
+                        <Form.Item
+                            name="member_id"
+                            label="Assigned Member"
+                            rules={[
+                                {
+                                    required: false,
+                                    message: 'Please select assigned member!',
+                                },
+                            ]}
+
+                        >
+                            <Select
+                                style={{ width: 280, paddingLeft: "10px" }}
+                                placeholder="Select members">
+                                {boards.map((board) => (
+                                    <Option value={board.id}>{board.board_name}</Option>
+                                ))}
+
+                            </Select>
+
+                        </Form.Item>
                     </Row>
                 </div>
             </Form>
