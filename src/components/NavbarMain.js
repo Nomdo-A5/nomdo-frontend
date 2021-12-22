@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from "react-router-dom";
 import "./style/NavbarMain.css";
 import LogoImage from '../components/Nomdo-logo.svg'
-import ProfileImage from '../Alan.svg'
+import ProfileImage from '../profile.svg'
 import { TiArrowSortedDown } from 'react-icons/ti';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { getToken, logout } from "../utils/authentication";

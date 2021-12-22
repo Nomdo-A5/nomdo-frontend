@@ -77,7 +77,7 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                             <div className="input-area-drop-down">
                                 <Form.Item
                                     name="workspace_id"
-                                    label="Workspace name"
+                                    label="Workspace Name"
                                     rules={[
                                         {
                                             required: true,
@@ -88,7 +88,7 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                                 >
                                     <Select
                                         style={{ width: 270 }}
-                                        placeholder="select your workspace"
+                                        placeholder="Select your workspace"
                                         onSelect={(value, event) => handleSelectedWorkspace(value, event)}>
                                         {context.workspace.map(w =>
                                             (<Option value={w.id}>{w.workspace_name}</Option>)
@@ -115,7 +115,7 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                                 >
                                     <Select
                                         style={{ width: 270 }}
-                                        placeholder="select your board">
+                                        placeholder="Select your board">
                                         {boards.map((board) => (
                                             <Option value={board.id}>{board.board_name}</Option>
                                         ))}
@@ -146,7 +146,7 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                         </Form.Item>
                         <Form.Item
                             name="task_description"
-                            label="Task desciption"
+                            label="Task Desciption"
                             className="new-task-form_last-form-item"
                         >
                             <div className="description-name-and-input">

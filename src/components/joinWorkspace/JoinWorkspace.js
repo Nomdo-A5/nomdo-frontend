@@ -72,7 +72,7 @@ const JoinWorkspaceForm = ({ visible, onCreate, onCancel }) => {
                                 </div>
                                 <div className="join-name-and-input">
                                     <div className="workspace-name">
-                                        Workspace code
+                                        Workspace Code
                                     </div>
                                     <div className="input-area">
                                         <div className="form-input-join-name">
