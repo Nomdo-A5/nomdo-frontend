@@ -82,7 +82,7 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
                         <div className="dropdown-items">
                             <Form.Item
                                 name="workspace_id"
-                                label="Workspace name"
+                                label="Workspace Name"
                                 rules={[
                                     {
                                         required: true,
@@ -90,8 +90,11 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
                                     },
                                 ]}
                                 className="new-board-form_last-form-item"
+                                style={{
+                                    width: "240px"
+                                }}
                             >
-                                <Select placeholder="select your gender">
+                                <Select placeholder="Select Workspace">
                                 {context.workspace.map(w =>
                                             (<Option value={w.id}>{w.workspace_name}</Option>)
                                         )}

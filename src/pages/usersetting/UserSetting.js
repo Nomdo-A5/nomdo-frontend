@@ -9,7 +9,7 @@ import { WorkspaceContext } from "../../context/WorkspaceContext";
 import { WorkspaceContextProvider } from '../../context/WorkspaceContext';
 import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
 import "./UserSetting.css";
-import ProfilePic from './profilepic.svg'
+import ProfilePic from './profile.svg'
 import ProfileBackground from './ProfilePana.svg'
 
 import { AiFillSetting } from 'react-icons/ai';

@@ -8,19 +8,15 @@ import { BrowserRouter as Router, Route, Link, useHistory, useParams } from "rea
 import { WorkspaceContext } from "../../context/WorkspaceContext";
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
 import { FiEdit } from 'react-icons/fi';
+import TaskDone from './TaskDone.svg'
+import TaskUndone from './TaskUndone.svg'
+import { BiNotepad, BiUserCircle, BiTask } from 'react-icons/bi';
 
 import TaskOnDashboard from '../../components/taskOnDashboard/TaskOnDashboard';
 import PageTitle from '../../components/pageTitle/PageTitle';
 import Income from "../../components/reportIncome/ReportIncome";
 import { BsArrowRight } from 'react-icons/bs';
-import ReportImage from './ReportImage.svg'
-import TaskImage from './Tasks.svg'
-import TeamMember from './TeamMember.svg'
-import Initial from './Initial.svg'
-import IncomeStairs from './IncomeStairs.svg'
-import OutcomeStairs from './OutcomeStairs.svg'
-import TaskDone from './TaskDone.svg'
-import TaskUndone from './TaskUndone.svg'
+import DashboardIllust from './dash-image.svg'
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
@@ -36,7 +32,8 @@ const Dashboard = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const context = useContext(WorkspaceContext)
     const { workspace_id } = useParams()
-    const [overview, setOverview] = useState([])
+    const [overview, setOverview] = useState([]);
+    const [user, setUser] = useState([]);
     const token = getToken()
     const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
     const [taskOverview, setTaskOverview] = useState([])
@@ -91,7 +88,19 @@ const Dashboard = () => {
         GetWorkspaceById(workspace_id)
         GetTaskOverview()
         GetMember()
+        getActiveUser()
     }, [])
+
+    const getActiveUser = async () => {
+      const token = getToken();
+      const response = await axios.get(BASE_API_URL + 'user', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      console.log(response)
+      setUser(response.data.user)
+    }
     return (
         <WorkspaceContextProvider>
             <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
@@ -99,27 +108,175 @@ const Dashboard = () => {
             </div>
             <div className="spacer" />
             <div>
-                <Layout >
+                <Layout className="layout-1">
                     <Sider>
                         <Sidebar />
                     </Sider>
-                    <Layout className="main-layout">
-                        <PageTitle/>
-                        <div className="layout-main">
-                            <div className="layout-main-left">
-                                <div className="layout-main-left-title">
-                                    Overview
+                    <Layout className="layout-2">
+                        <div className="main-container">
+                        <Row 
+                            style={{
+                                borderRadius: "10px 10px 10px 10px"
+                            }}
+                        >
+                            <Col span={9} push={15}
+                                style={{
+                                    backgroundColor: "#4ABDAC", 
+                                    borderRadius: "0px 30px 30px 0px"
+                                }}
+                            >
+                                <div className="row-1-left-col">
+                                    <img
+                                        style={{ borderRadius: "15px" }}
+                                        className="dash-illus" src={DashboardIllust} alt=""
+                                    />
                                 </div>
-                                <div className="overview-images">
-                                    <Card
+                            </Col>
+                            <Col span={15} pull={9}
+                                style={{
+                                    backgroundColor: "#4ABDAC", 
+                                    borderRadius: "30px 0px 0px 30px"
+                                }}
+                            >
+                                <Row
+                                    style={{
+                                        backgroundColor: "", 
+                                        borderRadius: "30px 0px 0px 30px",
+                                        height: "40%",
+                                        marginTop: "4%",
+                                        fontWeight: "bold"
+                                    }}
+                                >
+                                    <div className="row-1-right-col">
+                                        <div className="row-1-right-col-cont-1">
+                                            <div className="row-1-right-col-comp-1">
+                                                Hello, {user.name} !
+                                            </div>
+                                            <div className="row-1-right-col-comp-2">
+                                                Have a very nice day!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Row>
+                                <Row>
+                                </Row>
+                            </Col>
+                        </Row>
+                        <Row
+                            style={{
+                                marginTop: "4%"
+                            }}
+                        >
+                            <Col span={8}>
+                            <Card
                                         style={{
-                                            width: "300px",
+                                            width: "90%",
+                                            borderRadius: "18px",
+                                            display: "flex",
+                                            justifyContent: "left",
+                                            marginRight: "1em",
+                                            margin: "auto",
+                                            backgroundColor: "#EBF6F1",
+                                            display: "flex",
+                                            justifyContent: "center"
+                                        }}
+                                        bodyStyle={{
+                                            paddingLeft: "10px",
+                                            paddingRight: "10px",
+                                            paddingBottom: "10px",
+                                            paddingTop: "5px"
+                                        }}
+                                    >
+                                        <div className="overview-card-outer-workspace">
+                                            <div className="overview-title">
+                                                Your Workspaces
+                                            </div>
+                                            <div className="workspace-container-at-dashboard">
+                                                <Row style={{ width: "260px", height: "60px", display: "flex", margin: "auto", backgroundColor: "#FFFFFF", marginBottom: "10px", borderRadius: "10px 10px 10px 10px"}}>
+                                                    <Col span={5} className="photo-container" style={{ margin: "auto" }}>
+                                                        <BiUserCircle style={{ fontSize: "48px" }}/>
+                                                    </Col>
+                                                    <Col span={12} style={{ margin: "auto" }}>
+                                                        <Row>
+                                                            <div className="name-container-dashboard">
+                                                                Nomdo
+                                                            </div>
+                                                        </Row>
+                                                        <Row>
+                                                            <div className="member-container-dashboard">
+                                                                6 members
+                                                            </div>
+                                                        </Row>
+                                                    </Col>
+                                                    <Col span={7} style={{ margin: "auto" }}>
+                                                        <div className="details-button">
+                                                            Details
+                                                        </div>
+                                                    </Col>
+                                                </Row>
+                                                <Row style={{ width: "260px", height: "60px", display: "flex", margin: "auto", backgroundColor: "#FFFFFF", marginBottom: "10px", borderRadius: "10px 10px 10px 10px" }}>
+                                                    <Col span={5} className="photo-container" style={{ margin: "auto" }}>
+                                                        <BiUserCircle style={{ fontSize: "48px" }}/>
+                                                    </Col>
+                                                    <Col span={12} style={{ margin: "auto" }}>
+                                                        <Row>
+                                                            <div className="name-container-dashboard">
+                                                                Nomdo
+                                                            </div>
+                                                        </Row>
+                                                        <Row>
+                                                            <div className="member-container-dashboard">
+                                                                6 members
+                                                            </div>
+                                                        </Row>
+                                                    </Col>
+                                                    <Col span={7} style={{ margin: "auto" }}>
+                                                        <div className="details-button">
+                                                            Details
+                                                        </div>
+                                                    </Col>
+                                                </Row>
+                                                <Row style={{ width: "260px", height: "60px", display: "flex", margin: "auto", backgroundColor: "#FFFFFF", marginBottom: "10px", borderRadius: "10px 10px 10px 10px" }}>
+                                                    <Col span={5} className="photo-container" style={{ margin: "auto" }}>
+                                                        <BiUserCircle style={{ fontSize: "48px" }}/>
+                                                    </Col>
+                                                    <Col span={12} style={{ margin: "auto" }}>
+                                                        <Row>
+                                                            <div className="name-container-dashboard">
+                                                                Nomdo
+                                                            </div>
+                                                        </Row>
+                                                        <Row>
+                                                            <div className="member-container-dashboard">
+                                                                6 members
+                                                            </div>
+                                                        </Row>
+                                                    </Col>
+                                                    <Col span={7} style={{ margin: "auto" }}>
+                                                        <div className="details-button">
+                                                            Details
+                                                        </div>
+                                                    </Col>
+                                                </Row>
+                                            </div>
+                                        </div>
+                                    </Card>
+                            </Col>
+                            <Col span={8}
+                                style={{
+                                    backgroundColor: ""
+                                }}
+                            >  
+                            <Card
+                                        style={{
+                                            width: "90%",
                                             height: "100%",
                                             borderRadius: "18px",
                                             display: "flex",
                                             justifyContent: "left",
                                             marginRight: "1em",
-                                            backgroundColor: "#FFFFFF",
+                                            margin: "auto",
+                                            backgroundColor: "#EBF6F1",
                                             display: "flex",
                                             justifyContent: "center"
                                         }}
@@ -132,45 +289,51 @@ const Dashboard = () => {
                                     >
                                         <div className="overview-card-outer-left">
                                             <div className="overview-title">
-                                                Task Overview
+                                                Overview
                                             </div>
                                             <div className="images-container-income-outcome">
-                                                <div className="income-overview">
-                                                    <img
-                                                        style={{ borderRadius: "15px" }}
-                                                        className="imagez" src={TaskDone} height={75} alt=""
-                                                    />
+                                                <div className="total-task-1">
+                                                    <div className="total-task-logo">
+                                                        <BiNotepad className='binoted' style={{ fontSize: "18px" }}/>
+                                                    </div>
+                                                    <div className="value-text-overview">
+                                                        Total Task
+                                                    </div>
                                                     <div className="value-at-overview">
                                                         {taskOverview.task_done}
                                                     </div>
-                                                    <div className="value-text-overview">
-                                                        Completed Task
+                                                    <div className="see-more-details">
+                                                        See More
                                                     </div>
                                                 </div>
-                                                <div className="outcome-overview">
-                                                    <img
-                                                        style={{ borderRadius: "15px" }}
-                                                        className="imagez" src={TaskUndone} height={75} alt=""
-                                                    />
-                                                    <div className="value-at-overview">
-                                                        {taskOverview.task_count - taskOverview.task_done}
+                                                <div className="done-task-1">
+                                                    <div className="done-task-logo">
+                                                        <BiTask className='binoted' style={{ fontSize: "18px" }}/>
                                                     </div>
                                                     <div className="value-text-overview">
-                                                        Unfinished Task
+                                                        Done Task
+                                                    </div>
+                                                    <div className="value-at-overview">
+                                                        {taskOverview.task_done}
+                                                    </div>
+                                                    <div className="see-more-details">
+                                                        See More
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </Card>
-                                    <Card
+                            </Col>
+                            <Col span={8}>
+                            <Card
                                         style={{
-                                            width: "300px",
-                                            height: "100%",
+                                            width: "90%",
                                             borderRadius: "18px",
                                             display: "flex",
                                             justifyContent: "left",
                                             marginRight: "1em",
-                                            backgroundColor: "#FFFFFF",
+                                            margin: "auto",
+                                            backgroundColor: "#EBF6F1",
                                             display: "flex",
                                             justifyContent: "center"
                                         }}
@@ -181,126 +344,88 @@ const Dashboard = () => {
                                             paddingTop: "5px"
                                         }}
                                     >
-                                        <div className="overview-card-outer-left">
-                                            <div className="overview-title-group">
-                                                <div className="overview-title">
-                                                    Balance Overview
-                                                </div>
-                                                {context.workspace.map(w => (
-                                                    <div className="overview-details">
-                                                        <Link to={{ pathname: `/report/${w.id}`, state: { workspace: w.id } }}>
-                                                            See details
-                                                        </Link>
-                                                    </div>
-                                                ))}
+                                        <div className="overview-card-outer-workspace">
+                                            <div className="overview-title">
+                                                Your Incoming Tasks
                                             </div>
-                                            <div className="images-container-income-outcome">
-                                                <div className="income-overview">
-                                                    <img
-                                                        style={{ borderRadius: "15px" }}
-                                                        className="imagez" src={IncomeStairs} height={75} alt=""
-                                                    />
-                                                    <div className="value-at-overview">
-                                                        {new Intl.NumberFormat('ID').format(overview.income_balance)}
-                                                    </div>
-                                                    <div className="value-text-overview">
-                                                        Income
-                                                    </div>
-                                                </div>
-                                                <div className="outcome-overview">
-                                                    <img
-                                                        style={{ borderRadius: "15px" }}
-                                                        className="imagez" src={OutcomeStairs} height={75} alt=""
-                                                    />
-                                                    <div className="value-at-overview">
-                                                        {new Intl.NumberFormat('ID').format(overview.outcome_balance)}
-                                                    </div>
-                                                    <div className="value-text-overview">
-                                                        Outcome
-                                                    </div>
-                                                </div>
+                                            <div className="workspace-container-at-dashboard">
+                                                <Row style={{ width: "280px", height: "60px", display: "flex", margin: "auto", backgroundColor: "#DBF0EA", marginBottom: "10px", borderRadius: "10px 10px 10px 10px"}}>
+                                                    <Col span={5} className="photo-container" style={{ margin: "auto" }}>
+                                                        <div className="date-main-container-dashboard">
+                                                            <div className="date-text-dashboard">
+                                                                21
+                                                            </div>
+                                                            <div className="month-text-dashboard">
+                                                                Dec
+                                                            </div>
+                                                        </div>
+                                                    </Col>
+                                                    <Col span={19} style={{ margin: "auto" }}>
+                                                        <Row>
+                                                            <div className="name-container-dashboard">
+                                                                Mengerjakan Layout
+                                                            </div>
+                                                        </Row>
+                                                        <Row>
+                                                            <div className="member-container-dashboard">
+                                                                Boards
+                                                            </div>
+                                                        </Row>
+                                                    </Col>
+                                                </Row>
+                                                <Row style={{ width: "280px", height: "60px", display: "flex", margin: "auto", backgroundColor: "#DBF0EA", marginBottom: "10px", borderRadius: "10px 10px 10px 10px" }}>
+                                                    <Col span={5} className="photo-container" style={{ margin: "auto" }}>
+                                                        <div className="date-main-container-dashboard">
+                                                            <div className="date-text-dashboard">
+                                                                21
+                                                            </div>
+                                                            <div className="month-text-dashboard">
+                                                                Dec
+                                                            </div>
+                                                        </div>
+                                                    </Col>
+                                                    <Col span={19} style={{ margin: "auto" }}>
+                                                        <Row>
+                                                            <div className="name-container-dashboard">
+                                                                Mengerjakan Layout
+                                                            </div>
+                                                        </Row>
+                                                        <Row>
+                                                            <div className="member-container-dashboard">
+                                                                Boards
+                                                            </div>
+                                                        </Row>
+                                                    </Col>
+                                                </Row>
+                                                <Row style={{ width: "280px", height: "60px", display: "flex", margin: "auto", backgroundColor: "#DBF0EA", marginBottom: "10px", borderRadius: "10px 10px 10px 10px" }}>
+                                                    <Col span={5} className="photo-container" style={{ margin: "auto" }}>
+                                                        <div className="date-main-container-dashboard">
+                                                            <div className="date-text-dashboard">
+                                                                21
+                                                            </div>
+                                                            <div className="month-text-dashboard">
+                                                                Dec
+                                                            </div>
+                                                        </div>
+                                                    </Col>
+                                                    <Col span={19} style={{ margin: "auto" }}>
+                                                        <Row>
+                                                            <div className="name-container-dashboard">
+                                                                Mengerjakan Layout
+                                                            </div>
+                                                        </Row>
+                                                        <Row>
+                                                            <div className="member-container-dashboard">
+                                                                Boards
+                                                            </div>
+                                                        </Row>
+                                                    </Col>
+                                                </Row>
                                             </div>
                                         </div>
                                     </Card>
-                                </div>
-                                <div className="dashboard-bottom">
-                                    <div className="layout-main-left-title">
-                                        Incoming Task
-                                    </div>
-                                    <div className="layout-main-left-tasks-double">
-                                        <div className="layout-main-left-tasks-display">
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
-                                        </div>
-                                        <div className="layout-main-left-tasks-display">
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="layout-main-right">
-                                <div className="layout-main-left-title">
-                                    Members
-                                </div>
-                                <div className="member-boxes-overview">
-                                    <Card
-                                        style={{
-                                            width: "280px",
-                                            height: "100%",
-                                            borderRadius: "18px",
-                                            display: "flex",
-                                            justifyContent: "left",
-                                            marginRight: "1em"
-                                        }}
-                                        bodyStyle={{
-                                            padding: "0"
-                                        }}
-                                    >
-                                        <div className="container-card-member-1">
-                                            <div className="card-main-division-member">
-                                                <div className="team-member-image">
-                                                    <img
-                                                        style={{ borderRadius: "15px" }}
-                                                        className="imagez" src={TeamMember} height={35} alt=""
-                                                    />
-                                                </div>
-                                                <div className="team-member-name">
-                                                    Team Members
-                                                </div>
-                                            </div>
-                                            {members.map(member => (
-                                                <div className="members-name-and-logo">
-                                                    <div className="team-member">
-                                                        <img
-                                                            style={{ borderRadius: "15px" }}
-                                                            className="imagez" src={Initial} height={30} alt=""
-                                                        />
-                                                    </div>
-                                                    <div className="team-name">
-                                                        {member.name}
-                                                    </div>
-                                                </div>
-                                            ))}
-                                            
-                                        </div>
-                                    </Card>
-                                </div>
-                            </div>
+                            </Col>
+                        </Row>
                         </div>
                     </Layout>
                     <div className="floating-button-component">

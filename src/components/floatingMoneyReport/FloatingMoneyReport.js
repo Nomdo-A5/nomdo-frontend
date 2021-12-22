@@ -95,7 +95,7 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                                 >
                                     <Select
                                         style={{ width: 270 }}
-                                        placeholder="select your workspace"
+                                        placeholder="Select your workspace"
                                     >
                                         {context.workspace.map(w =>
                                             (<Option value={w.id}>{w.workspace_name}</Option>)
@@ -129,7 +129,7 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                                 message: 'Please input the date!',
                             },
                         ]}>
-                        <DatePicker style={{ width: "92%", borderRadius: "10px 10px 10px 10px" }}/>
+                        <DatePicker style={{ width: "270px", borderRadius: "10px 10px 10px 10px" }}/>
                     </Form.Item>
                     <Row>
                         <Form.Item

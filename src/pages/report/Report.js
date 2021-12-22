@@ -121,7 +121,7 @@ const Report = () => {
                                     message: 'Please input the date!',
                                 },
                             ]}>
-                            <DatePicker placeholder={editedBalance.date} />
+                            <DatePicker style={{ width: "270px", borderRadius: "10px 10px 10px 10px" }} placeholder={editedBalance.date} />
                         </Form.Item>
                         <Row>
                             <Form.Item
