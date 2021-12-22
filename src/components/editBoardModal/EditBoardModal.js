@@ -10,7 +10,7 @@ import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 import { ClickedTask } from "../clickedTask/ClickedTask";
 
-const EditBoardModal = ({ visible, workspace, onCreate, onCancel }) => {
+const EditBoardModal = ({ visible, editedBoard, onCreate, onCancel }) => {
     const [form] = Form.useForm();
     return (
         <Modal
@@ -41,14 +41,14 @@ const EditBoardModal = ({ visible, workspace, onCreate, onCancel }) => {
 
             >
                 <Form.Item
-                    name="workspace_name"
+                    name="board_name"
                     rules={[
                         {
                             required: false,
                             message: 'Please input the new workspace name!',
                         },
                     ]}
-                    initialValue={workspace.workspace_name}
+                    initialValue={editedBoard.board_name}
                 >
                     <div className="workspace-name-and-logo">
                         <div className="workspace-logo">
@@ -59,14 +59,14 @@ const EditBoardModal = ({ visible, workspace, onCreate, onCancel }) => {
                                 Board Name
                             </div>
                             <div className="form-input-workspace-name">
-                                <Input placeholder={workspace.workspace_name} style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                <Input placeholder={editedBoard.board_name} style={{ borderRadius: "10px 10px 10px 10px" }} />
                             </div>
                         </div>
                     </div>
                 </Form.Item>
                 <Form.Item
                     name="description"
-                    initialValue={workspace.workspace_description}
+                    initialValue={editedBoard.board_description}
                     className="collection-create-form_last-form-item" >
                     <div className="workspace-name-and-logo">
                         <div className="workspace-logo">
@@ -77,7 +77,7 @@ const EditBoardModal = ({ visible, workspace, onCreate, onCancel }) => {
                                 Description
                             </div>
                             <div className="form-input-workspace-name">
-                                <Input.TextArea style={{ borderRadius: "10px 10px 10px 10px" }} placeholder={workspace.workspace_description} />
+                                <Input.TextArea style={{ borderRadius: "10px 10px 10px 10px" }} placeholder={editedBoard.board_description} />
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@ const EditBoardModal = ({ visible, workspace, onCreate, onCancel }) => {
         </Modal>
     );
 };
-const PageTitle = () => {
+const PageTitle = (props) => {
 
     const { Sider } = Layout;
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -98,11 +98,13 @@ const PageTitle = () => {
     const [taskOverview, setTaskOverview] = useState([])
     const [members, setMembers] = useState([])
     const [form] = Form.useForm()
+    
+    
     const handleOk = async (values) => {
-        const response = await axios.patch(BASE_API_URL + 'workspace', {
-            id:activeWorkspace.id,
-            workspace_name: values.workspace_name,
-            workspace_description: values.description
+        const response = await axios.patch(BASE_API_URL + 'boards', {
+            id:props.editedBoard.id,
+            board_name: values.board_name,
+            board_description: values.description
         },
             {
                 headers: {
@@ -110,62 +112,15 @@ const PageTitle = () => {
                 },
             });
         console.log(values)
-        console.log(response)
+        // console.log(response)
         setIsModalVisible(false);
 
     };
-
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    };
-
-    const GetOverview = async () => {
-        const response = await axios.get(BASE_API_URL + 'report/overview', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setOverview(response.data)
-    }
-
     const showModal = () => {
         setIsModalVisible(true);
-    };
-
-    const GetTaskOverview = async () => {
-        const response = await axios.get(BASE_API_URL + 'workspace/task-information', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setTaskOverview(response.data)
-    }
-
-    const GetMember = async () => {
-        const response = await axios.get(BASE_API_URL + 'workspace/member', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setMembers(response.data.member)
-    }
+    };    
     useEffect(() => {
-        GetOverview()
         GetWorkspaceById(workspace_id)
-        GetTaskOverview()
-        GetMember()
     }, [])
     return (
         <div className="layout-title-dashboard">
@@ -187,7 +142,7 @@ const PageTitle = () => {
                 </div>
                 <EditBoardModal
                     visible={isModalVisible}
-                    workspace={activeWorkspace}
+                    editedBoard={props.editedBoard}
                     onCreate={handleOk}
                     onCancel={() => { setIsModalVisible(false) }}
                 />
