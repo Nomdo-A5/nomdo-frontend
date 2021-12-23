@@ -280,12 +280,38 @@ const Report = () => {
             title: 'Type',
             dataIndex: 'is_income',
             key: 'type',
-            render: text => <a>{text === 0 ? 'outcome' : 'income'}</a>
+            filters: [
+                {
+                    text: 'Outcome',
+                    value: 0,
+                },
+                {
+                    text: 'Income',
+                    value: 1,
+                },
+            ],
+            onFilter: (value, record) => {
+                return record.is_income === value
+            },
+            render: text => <a>{text === 0 ? 'Outcome' : 'Income'}</a>
         },
         {
             title: 'Status',
             dataIndex: 'status',
             key: 'status',
+            filters: [
+                {
+                    text: 'Done',
+                    value: 'Done',
+                },
+                {
+                    text: 'Planned',
+                    value: 'Planned',
+                },
+            ],
+            onFilter: (value, record) => {
+                return record.status === value
+            },
             render: text => <a>{text}</a>,
         },
         // {
