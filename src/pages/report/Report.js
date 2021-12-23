@@ -215,7 +215,7 @@ const Report = () => {
                 },
             });
         console.log(response)
-        
+
         setIsEditFormVisible(false)
     }
 
@@ -273,6 +273,7 @@ const Report = () => {
             key: 'nominal',
             align: 'right',
             width: '10%',
+            sorter: (a, b) => a.nominal - b.nominal,
             render: text => <a>{new Intl.NumberFormat('ID').format(text)}</a>
         },
         {
@@ -356,7 +357,7 @@ const Report = () => {
                     <Layout style={{ backgroundColor: "#FFFFFF" }}>
                         <div className="report-title">
 
-                        <PageTitle/>
+                            <PageTitle />
 
                         </div>
                         <div className="report-images">
