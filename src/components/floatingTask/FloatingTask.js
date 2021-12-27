@@ -21,14 +21,17 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
     const { Option } = Select;
     const context = useContext(WorkspaceContext)
     const [boards, setBoards] = useState([])
+    const [members, setMembers] = useState([])
+    const token = getToken()
 
     const handleSelectedWorkspace = (value, event) => {
         console.log("value selected workspace " + value)
         getBoards(value)
+        getMember(value)
     }
 
     const getBoards = async (workspace_id) => {
-        const token = getToken()
+
         console.log("workspace id on getBoards " + workspace_id)
         const response = await axios.get(BASE_API_URL + 'boards', {
             headers: {
@@ -41,6 +44,19 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
         console.log("ISI Response = " + response.data.boards)
         setBoards(response.data.boards)
 
+    }
+
+    const getMember = async (workspace_id) => {
+        const response = await axios.get(BASE_API_URL + 'workspace/member', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            params: {
+                'workspace_id': `${workspace_id}`
+            }
+        })
+        console.log(response)
+        setMembers(response.data.member)
     }
 
     return (
@@ -164,12 +180,12 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input the date!',
+                                    message: 'Please input the date!'
                                 },
                             ]}>
-                            <div className="datepicker-task">
-                                <DatePicker style={{ width: "270px", borderRadius: "10px 10px 10px 10px" }}/>
-                            </div>
+
+                            <DatePicker style={{ width: "270px", borderRadius: "10px 10px 10px 10px" }} />
+
                         </Form.Item>
                         <Form.Item
                             name="member_id"
@@ -185,8 +201,8 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                             <Select
                                 style={{ width: 280, paddingLeft: "10px" }}
                                 placeholder="Select members">
-                                {boards.map((board) => (
-                                    <Option value={board.id}>{board.board_name}</Option>
+                                {members.map((member) => (
+                                    <Option value={member.id}>{member.name}</Option>
                                 ))}
 
                             </Select>
@@ -202,14 +218,18 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
 export const FloatingTask = () => {
 
     const [visible, setVisible] = useState(false);
+    const token = getToken()
 
     const onCreate = async (values) => {
-        const token = getToken()
+        const dateInput = new Date(values.date);
+        const date = (dateInput.getYear() + 1900) + "-" + dateInput.getMonth() + "-" + dateInput.getDate()
+
         const response = await axios.post(BASE_API_URL + 'task', {
             workspace_id: values.workspace_id,
             board_id: values.board_id,
             task_name: values.task_name,
-            task_description: values.task_description
+            task_description: values.task_description,
+            due_date: date
         },
             {
                 headers: {
@@ -229,13 +249,13 @@ export const FloatingTask = () => {
                     setVisible(false);
                 }}
             />
-            <div 
+            <div
                 className="btn w-100 h-100 d-flex justify-content-center align-items-center"
-                
+
                 onClick={() => {
                     setVisible(true);
-            }}>
-                <img src={newTaskImage} width={200} alt=""/>
+                }}>
+                <img src={newTaskImage} width={200} alt="" />
             </div>
         </div>
     );

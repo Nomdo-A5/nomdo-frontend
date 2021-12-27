@@ -24,11 +24,6 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
     const { Option } = Select;
     const [image, setImage] = useState("")
     const getFile = (e) => {
-        // console.log("IMAGE  " + image);
-        // console.log("TARGET FILES  " + e.target.files[0]);
-        // return e.target.files[0];
-
-        // const normFile = (e: any) => {
             console.log('Upload event:', e);
             if (Array.isArray(e)) {
                 return e;
@@ -256,10 +251,6 @@ export const FloatingMoneyReport = () => {
 
         const dateInput = new Date(values.date);
         const date = (dateInput.getYear() + 1900) + "-" + dateInput.getMonth() + "-" + dateInput.getDate()
-
-
-        console.log(values)
-
         const response = await axios.post(BASE_API_URL + 'balance', {
             workspace_id: values.workspace_id,
             nominal: values.nominal,

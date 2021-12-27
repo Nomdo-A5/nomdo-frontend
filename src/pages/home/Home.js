@@ -260,7 +260,7 @@ const Home = () => {
                                                 </Row>
                                             </div>
                                         </div>
-                                    </Card>
+                            </Card>
                             </Col>
                             <Col span={8}
                                 style={{
