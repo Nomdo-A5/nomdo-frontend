@@ -59,7 +59,7 @@ const EditWorkspaceForm = ({ visible, workspace, onCreate, onCancel }) => {
                                 Workspace's Code
                             </div>
                             <div className="form-input-workspace-name">
-                                Code's here
+                                {workspace.url_join}
                             </div>
                         </div>
                     </div>
