@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, Row, Col, Button, Progress } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons'
 import './ProgressBar.css';
@@ -14,19 +14,26 @@ export default function ProgressBar(props) {
     const token = getToken()
 
     const GetBoardInformation = async ($board_id) => {
-        const response = await axios.get(BASE_API_URL + 'boards/task-information', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'board_id': $board_id
-            }
-        })
-        console.log(response)
-        if (response.data.task_count === 0)
+
+        try {
+            const response = await axios.get(BASE_API_URL + 'boards/task-information', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                params: {
+                    'board_id': $board_id
+                }
+            })
+            if (response.data.task_count === 0)
+                setInfo(0)
+            else
+                setInfo(response.data.done_task / response.data.task_count * 100)
+            
+        } catch (err) {
             setInfo(0)
-        else
-            setInfo(response.data.done_task / response.data.task_count* 100)
+        }
+
+
     }
 
     useEffect(() => {
@@ -36,7 +43,7 @@ export default function ProgressBar(props) {
     return (
         <div className="progress-bar-form">
             <div className="progress-bar-chart">
-                <Progress percent={info} />               
+                <Progress percent={info} />
             </div>
         </div>
     );
