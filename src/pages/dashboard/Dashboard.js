@@ -43,7 +43,7 @@ const Dashboard = () => {
     const [taskOverview, setTaskOverview] = useState([])
     const [members, setMembers] = useState([])
 
-    
+
 
     const GetOverview = async () => {
         const response = await axios.get(BASE_API_URL + 'report/overview', {
@@ -94,216 +94,200 @@ const Dashboard = () => {
         GetMember()
     }, [])
     return (
-        <WorkspaceContextProvider>
-            <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
-                <NavbarMain />
-            </div>
-            <div className="spacer" />
-            <div>
-                <Layout style={{ backgroundColor: "white"}}>
-                    <Sider>
-                        <Sidebar />
-                    </Sider>
-                    <Layout className="main-layout" style={{ backgroundColor: "white"}}>
-                        <PageTitle/>
-                        <div className="layout-main">
-                            <div className="layout-main-left" style={{ backgroundColor: "white"}}>
-                                <div className="layout-main-left-title">
-                                    Overview
+
+        <Layout className="main-layout" style={{ backgroundColor: "white" }}>
+            <PageTitle />
+            <div className="layout-main">
+                <div className="layout-main-left" style={{ backgroundColor: "white" }}>
+                    <div className="layout-main-left-title">
+                        Overview
+                    </div>
+                    <div className="overview-images">
+                        <Card
+                            style={{
+                                width: "300px",
+                                height: "100%",
+                                borderRadius: "18px",
+                                display: "flex",
+                                justifyContent: "left",
+                                marginRight: "1em",
+                                backgroundColor: "#FFFFFF",
+                                display: "flex",
+                                justifyContent: "center"
+                            }}
+                            bodyStyle={{
+                                paddingLeft: "10px",
+                                paddingRight: "10px",
+                                paddingBottom: "10px",
+                                paddingTop: "5px"
+                            }}
+                        >
+                            <div className="overview-card-outer-left">
+                                <div className="overview-title">
+                                    Task Overview
                                 </div>
-                                <div className="overview-images">
-                                    <Card
-                                        style={{
-                                            width: "300px",
-                                            height: "100%",
-                                            borderRadius: "18px",
-                                            display: "flex",
-                                            justifyContent: "left",
-                                            marginRight: "1em",
-                                            backgroundColor: "#FFFFFF",
-                                            display: "flex",
-                                            justifyContent: "center"
-                                        }}
-                                        bodyStyle={{
-                                            paddingLeft: "10px",
-                                            paddingRight: "10px",
-                                            paddingBottom: "10px",
-                                            paddingTop: "5px"
-                                        }}
-                                    >
-                                        <div className="overview-card-outer-left">
-                                            <div className="overview-title">
-                                                Task Overview
-                                            </div>
-                                            <div className="images-container-income-outcome">
-                                                <div className="income-overview">
-                                                    <img
-                                                        style={{ borderRadius: "15px" }}
-                                                        className="imagez" src={TaskDone} height={75} alt=""
-                                                    />
-                                                    <div className="value-at-overview">
-                                                        {taskOverview.task_done}
-                                                    </div>
-                                                    <div className="value-text-overview">
-                                                        Completed Task
-                                                    </div>
-                                                </div>
-                                                <div className="outcome-overview">
-                                                    <img
-                                                        style={{ borderRadius: "15px" }}
-                                                        className="imagez" src={TaskUndone} height={75} alt=""
-                                                    />
-                                                    <div className="value-at-overview">
-                                                        {taskOverview.task_count - taskOverview.task_done}
-                                                    </div>
-                                                    <div className="value-text-overview">
-                                                        Unfinished Task
-                                                    </div>
-                                                </div>
-                                            </div>
+                                <div className="images-container-income-outcome">
+                                    <div className="income-overview">
+                                        <img
+                                            style={{ borderRadius: "15px" }}
+                                            className="imagez" src={TaskDone} height={75} alt=""
+                                        />
+                                        <div className="value-at-overview">
+                                            {taskOverview.task_done}
                                         </div>
-                                    </Card>
-                                    <Card
-                                        style={{
-                                            width: "300px",
-                                            height: "100%",
-                                            borderRadius: "18px",
-                                            display: "flex",
-                                            justifyContent: "left",
-                                            marginRight: "1em",
-                                            backgroundColor: "#FFFFFF",
-                                            display: "flex",
-                                            justifyContent: "center"
-                                        }}
-                                        bodyStyle={{
-                                            paddingLeft: "10px",
-                                            paddingRight: "10px",
-                                            paddingBottom: "10px",
-                                            paddingTop: "5px"
-                                        }}
-                                    >
-                                        <div className="overview-card-outer-left">
-                                            <div className="overview-title-group">
-                                                <div className="overview-title">
-                                                    Balance Overview
-                                                </div>
-                                            </div>
-                                            <div className="images-container-income-outcome">
-                                                <div className="income-overview">
-                                                    <img
-                                                        style={{ borderRadius: "15px" }}
-                                                        className="imagez" src={IncomeStairs} height={75} alt=""
-                                                    />
-                                                    <div className="value-at-overview">
-                                                        {new Intl.NumberFormat('ID').format(overview.income_balance)}
-                                                    </div>
-                                                    <div className="value-text-overview">
-                                                        Income
-                                                    </div>
-                                                </div>
-                                                <div className="outcome-overview">
-                                                    <img
-                                                        style={{ borderRadius: "15px" }}
-                                                        className="imagez" src={OutcomeStairs} height={75} alt=""
-                                                    />
-                                                    <div className="value-at-overview">
-                                                        {new Intl.NumberFormat('ID').format(overview.outcome_balance)}
-                                                    </div>
-                                                    <div className="value-text-overview">
-                                                        Outcome
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div className="value-text-overview">
+                                            Completed Task
                                         </div>
-                                    </Card>
-                                </div>
-                                <div className="dashboard-bottom">
-                                    <div className="layout-main-left-title">
-                                        Incoming Task
                                     </div>
-                                    <div className="layout-main-left-tasks-double">
-                                        <div className="layout-main-left-tasks-display">
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
+                                    <div className="outcome-overview">
+                                        <img
+                                            style={{ borderRadius: "15px" }}
+                                            className="imagez" src={TaskUndone} height={75} alt=""
+                                        />
+                                        <div className="value-at-overview">
+                                            {taskOverview.task_count - taskOverview.task_done}
                                         </div>
-                                        <div className="layout-main-left-tasks-display">
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
-                                            <div className="layout-main-left-tasks">
-                                                <TaskOnDashboard />
-                                            </div>
+                                        <div className="value-text-overview">
+                                            Unfinished Task
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="layout-main-right" style={{ backgroundColor: "white"}}>
-                                <div className="layout-main-left-title">
-                                    Members
+                        </Card>
+                        <Card
+                            style={{
+                                width: "300px",
+                                height: "100%",
+                                borderRadius: "18px",
+                                display: "flex",
+                                justifyContent: "left",
+                                marginRight: "1em",
+                                backgroundColor: "#FFFFFF",
+                                display: "flex",
+                                justifyContent: "center"
+                            }}
+                            bodyStyle={{
+                                paddingLeft: "10px",
+                                paddingRight: "10px",
+                                paddingBottom: "10px",
+                                paddingTop: "5px"
+                            }}
+                        >
+                            <div className="overview-card-outer-left">
+                                <div className="overview-title-group">
+                                    <div className="overview-title">
+                                        Balance Overview
+                                    </div>
                                 </div>
-                                <div className="member-boxes-overview">
-                                    <Card
-                                        style={{
-                                            width: "280px",
-                                            height: "100%",
-                                            borderRadius: "18px",
-                                            display: "flex",
-                                            justifyContent: "left",
-                                            marginRight: "1em"
-                                        }}
-                                        bodyStyle={{
-                                            padding: "0"
-                                        }}
-                                    >
-                                        <div className="container-card-member-1">
-                                            <div className="card-main-division-member">
-                                                <div className="team-member-image">
-                                                    <img
-                                                        style={{ borderRadius: "15px" }}
-                                                        className="imagez" src={TeamMember} height={35} alt=""
-                                                    />
-                                                </div>
-                                                <div className="team-member-name">
-                                                    Team Members
-                                                </div>
-                                            </div>
-                                            {members.map(member => (
-                                                <div className="members-name-and-logo">
-                                                    <div className="team-member">
-                                                        <img
-                                                            style={{ borderRadius: "15px" }}
-                                                            className="imagez" src={Initial} height={30} alt=""
-                                                        />
-                                                    </div>
-                                                    <div className="team-name">
-                                                        {member.name}
-                                                    </div>
-                                                </div>
-                                            ))}
-                                            
+                                <div className="images-container-income-outcome">
+                                    <div className="income-overview">
+                                        <img
+                                            style={{ borderRadius: "15px" }}
+                                            className="imagez" src={IncomeStairs} height={75} alt=""
+                                        />
+                                        <div className="value-at-overview">
+                                            {new Intl.NumberFormat('ID').format(overview.income_balance)}
                                         </div>
-                                    </Card>
+                                        <div className="value-text-overview">
+                                            Income
+                                        </div>
+                                    </div>
+                                    <div className="outcome-overview">
+                                        <img
+                                            style={{ borderRadius: "15px" }}
+                                            className="imagez" src={OutcomeStairs} height={75} alt=""
+                                        />
+                                        <div className="value-at-overview">
+                                            {new Intl.NumberFormat('ID').format(overview.outcome_balance)}
+                                        </div>
+                                        <div className="value-text-overview">
+                                            Outcome
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+                    </div>
+                    <div className="dashboard-bottom">
+                        <div className="layout-main-left-title">
+                            Incoming Task
+                        </div>
+                        <div className="layout-main-left-tasks-double">
+                            <div className="layout-main-left-tasks-display">
+                                <div className="layout-main-left-tasks">
+                                    <TaskOnDashboard />
+                                </div>
+                                <div className="layout-main-left-tasks">
+                                    <TaskOnDashboard />
+                                </div>
+                                <div className="layout-main-left-tasks">
+                                    <TaskOnDashboard />
+                                </div>
+                            </div>
+                            <div className="layout-main-left-tasks-display">
+                                <div className="layout-main-left-tasks">
+                                    <TaskOnDashboard />
+                                </div>
+                                <div className="layout-main-left-tasks">
+                                    <TaskOnDashboard />
+                                </div>
+                                <div className="layout-main-left-tasks">
+                                    <TaskOnDashboard />
                                 </div>
                             </div>
                         </div>
-                    </Layout>
-                    <div className="floating-button-component">
-                        <FloatingButton />
                     </div>
-                </Layout>
-            </div>
+                </div>
+                <div className="layout-main-right" style={{ backgroundColor: "white" }}>
+                    <div className="layout-main-left-title">
+                        Members
+                    </div>
+                    <div className="member-boxes-overview">
+                        <Card
+                            style={{
+                                width: "280px",
+                                height: "100%",
+                                borderRadius: "18px",
+                                display: "flex",
+                                justifyContent: "left",
+                                marginRight: "1em"
+                            }}
+                            bodyStyle={{
+                                padding: "0"
+                            }}
+                        >
+                            <div className="container-card-member-1">
+                                <div className="card-main-division-member">
+                                    <div className="team-member-image">
+                                        <img
+                                            style={{ borderRadius: "15px" }}
+                                            className="imagez" src={TeamMember} height={35} alt=""
+                                        />
+                                    </div>
+                                    <div className="team-member-name">
+                                        Team Members
+                                    </div>
+                                </div>
+                                {members.map(member => (
+                                    <div className="members-name-and-logo">
+                                        <div className="team-member">
+                                            <img
+                                                style={{ borderRadius: "15px" }}
+                                                className="imagez" src={Initial} height={30} alt=""
+                                            />
+                                        </div>
+                                        <div className="team-name">
+                                            {member.name}
+                                        </div>
+                                    </div>
+                                ))}
 
-        </WorkspaceContextProvider>
+                            </div>
+                        </Card>
+                    </div>
+                </div>
+            </div>
+        </Layout>
     );
 }
 

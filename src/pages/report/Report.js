@@ -367,56 +367,42 @@ const Report = () => {
     }, [])
 
     return (
-        <WorkspaceContextProvider>
-            <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
-                <NavbarMain />
+        <div>
+            <div className="report-title">
+
+                <PageTitle />
+
             </div>
-            <div className="spacer" />
-            <div>
-                <Layout >
-                    <Sider>
-                        <Sidebar />
-                        <div className="floating-button-component">
-                            <FloatingButton />
-                        </div>
-                    </Sider>
-                    <Layout style={{ backgroundColor: "#FFFFFF" }}>
-                        <div className="report-title">
-
-                            <PageTitle />
-
-                        </div>
-                        <div className="report-images">
-                            <div className="report-images-component">
-                                <Income income={overview.income_balance} />
-                            </div>
-                            <div className="report-images-component">
-                                <Outcome outcome={overview.outcome_balance} />
-                            </div>
-                            <div className="report-images-component">
-                                <Overview total={overview.total_balance} />
-                            </div>
-                        </div>
-                        <div className="report-table">
-
-                            <Table
-                                columns={columns}
-                                dataSource={reports}
-                                size="small"
-                            />
-                            <EditBalanceForm
-                                editedBalance={editedBalance}
-                                visible={isEditFormVisible}
-                                onCreate={onEdit}
-                                onCancel={() => {
-                                    setIsEditFormVisible(false)
-                                }}
-                            />
-                        </div>
-                    </Layout>
-                </Layout>
+            <div className="report-images">
+                <div className="report-images-component">
+                    <Income income={overview.income_balance} />
+                </div>
+                <div className="report-images-component">
+                    <Outcome outcome={overview.outcome_balance} />
+                </div>
+                <div className="report-images-component">
+                    <Overview total={overview.total_balance} />
+                </div>
             </div>
-        </WorkspaceContextProvider>
+            <div className="report-table">
+
+                <Table
+                    columns={columns}
+                    dataSource={reports}
+                    size="small"
+                />
+                <EditBalanceForm
+                    editedBalance={editedBalance}
+                    visible={isEditFormVisible}
+                    onCreate={onEdit}
+                    onCancel={() => {
+                        setIsEditFormVisible(false)
+                    }}
+                />
+            </div>
+
+        </div>
+
     );
 }
 

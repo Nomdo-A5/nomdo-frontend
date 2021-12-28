@@ -16,6 +16,7 @@ import UserProfile  from "../pages/userprofile/UserProfile";
 import UserSetting  from "../pages/usersetting/UserSetting";
 import BlankPage  from "../pages/blankpage/BlankPage";
 import Workspace from "../pages/workspaceNull/WorkspaceNull";
+
 export const APP_ROUTE = [
   {
     name: "Login",
@@ -30,82 +31,5 @@ export const APP_ROUTE = [
     exact: true,
     component: Register,
     restricted: true,
-  },
-  {
-    name: "Dashboard",
-    path: "/workspace/:workspace_id/dashboards",
-    exact: true,
-    component: Dashboard,
-    private: true,
-  },
-  {
-    name: "Home",
-    path: "/home",
-    exact: true,
-    component: Home,
-    private: true,
-  },
-  {
-    name: "Boards",
-    path: "/workspace/:workspace_id/boards",
-    exact: true,
-    component: Board,
-    private: true,
-  },
-  {
-    name: "BoardsTasks",
-    path: "/workspace/:workspace_id/boards/:board_id/tasks",
-    exact: true,
-    component: BoardExtended,
-    private: true,
-  },
-  {
-    name: "Report",
-    path: "/report/:workspace_id",
-    exact: true,
-    component: Report,
-    private: true,
-  },
-  {
-    name: "Member",
-    path: "/member",
-    exact: true,
-    component: Member,
-    private: true,
-  },
-  {
-    name: "BoardExtended",
-    path: "/BoardExtended",
-    exact: true,
-    component: BoardExtended,
-    private: true,
-  },
-  {
-    name: "Workspace_Setting",
-    path: "/Dashboard/Workspace_Setting",
-    exact: true,
-    component: Structure,
-    private: true,
-  },
-  {
-    name: "UserProfile",
-    path: "/userprofile",
-    exact: true,
-    component: UserProfile,
-    private: true,
-  },
-  {
-    name: "UserSetting",
-    path: "/usersetting",
-    exact: true,
-    component: UserSetting,
-    private: true,
-  },
-  {
-    name: "Workspace",
-    path: "/workspace",
-    exact: true,
-    component: Workspace,
-    private: true,
-  },
+  }
 ];

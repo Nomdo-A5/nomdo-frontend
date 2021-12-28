@@ -63,16 +63,34 @@ const Sidebar = () => {
   const deleteWorkspace = async ($id) => {
     console.log("TOKENN " + token)
     const response = await axios.delete(BASE_API_URL + 'workspace', {
-        headers: {
-            Authorization: `Bearer ${token}`
-        },
-        data: {
-            id: $id
-        }
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: {
+        id: $id
+      }
     });
 
     console.log(response)
-}
+  }
+
+  // const menuList = [
+  //   {
+  //     name: "Dashboard",
+  //     path: "/workspace/${w.id}/dashboards",
+  //     icon: <Dashboard />,
+  //   },
+  //   {
+  //     name: "Matakuliah",
+  //     path: "/matakuliah",
+  //     icon: <Assignment />,
+  //   },
+  //   {
+  //     name: "Logout",
+  //     path: "/login",
+  //     icon: <ExitToApp />,
+  //   },
+  // ];
   return (
     <Router>
       <Sider width={200} className="site-layout-background" style={{
@@ -89,29 +107,24 @@ const Sidebar = () => {
           defaultOpenKeys={['sub1']}
           style={{ height: '100%', borderRight: 0 }}
         >
-          <Menu.Item key="home">
+          <Menu.Item key="home" onClick={() => history.push(`/home`)}>
             <span>Home</span>
-            <Link to="/home" onClick={() => handleHomeClicked()} />
           </Menu.Item>
           <Menu.Item key="workspace">
             <span>Workspace</span>
-            <Link to="/workspace" />
           </Menu.Item>
           {context.workspace.map(w => (
             <SubMenu key={w.id} title={w.workspace_name} icon={<Avatar>{w.workspace_name.charAt(0).toUpperCase()}</Avatar>}>
-              <Menu.Item key={"dahboard " + w.id}>
-                <span>Dashboard</span>
-                <Link to={{ pathname: `/workspace/${w.id}/dashboards`, state: { workspace: w.id } }} />
+              <Menu.Item key={"dahboard " + w.id} onClick={() => history.push(`/workspace/${w.id}/dashboards`)}>
+                <span>Dashboard</span>                
               </Menu.Item>
-              <Menu.Item key={"board " + w.id}>
+              <Menu.Item key={"board " + w.id} onClick={() => history.push(`/workspace/${w.id}/boards`)}>
                 <span>Board</span>
-                <Link to={{ pathname: `/workspace/${w.id}/boards`, state: { workspace: w.id } }} />
               </Menu.Item>
-              <Menu.Item key={"report " + w.id} >
-                <span>Money Report</span>
-                <Link to={{ pathname: `/report/${w.id}`, state: { workspace: w.id } }} />
+              <Menu.Item key={"report " + w.id} onClick={() => history.push(`/report/${w.id}`,)} >
+                <span>Money Report</span>                
               </Menu.Item>
-              <Menu.Item onClick={() => {
+              <Menu.Item key={"delete " + w.id} onClick={() => {
                 showDeleteConfirm(w.id)
               }}>
                 <span style={{ color: 'red' }}>Delete Workspace</span>

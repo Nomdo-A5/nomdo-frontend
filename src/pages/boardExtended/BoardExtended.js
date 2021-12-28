@@ -40,52 +40,34 @@ const BoardExtended = () => {
 
     }
     return (
-        <Router>
-            <WorkspaceContextProvider>
-                <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
-                    <NavbarMain />
-                </div>
-                <div className="spacer"/>
-                <div>
-                    <Layout className="layout-1">
-                        <Sider>
-                            <Sidebar />
-                        </Sider>
-                        <Layout style={{ backgroundColor: "white" }}>
-                            <div className="main-layout" style={{ backgroundColor: "white"}}>
-                                <div className="layout-title">
-                                    {activeWorkspace.workspace_name}
-                                </div>
-                                <div className="boards-component-view">
-                                    <div className="logo-title-progress">
-                                        <div className="board-title-and-logo">
-                                            <div className="board-logo">
-                                                <Link to={{ pathname: `/workspace/${workspace_id}/boards`, state: { workspace: workspace_id } }} >
-                                                    <AiOutlineArrowLeft />
-                                                </Link>
 
-                                            </div>
-                                            <div className="boards-title">
-                                                {activeBoard.board_name}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="line-of-boards">
-                                        <div className="line-of-boards-item">
-                                            <TaskOnBoard board_id={board_id} board_name={activeBoard.board_name} workspace_name={activeWorkspace.workspace_name} />
-                                        </div>
-                                    </div>
-                                </div>
+        <Layout style={{ backgroundColor: "white" }}>
+            <div className="main-layout" style={{ backgroundColor: "white" }}>
+                <div className="layout-title">
+                    {activeWorkspace.workspace_name}
+                </div>
+                <div className="boards-component-view">
+                    <div className="logo-title-progress">
+                        <div className="board-title-and-logo">
+                            <div className="board-logo">
+                                <Link to={{ pathname: `/workspace/${workspace_id}/boards`, state: { workspace: workspace_id } }} >
+                                    <AiOutlineArrowLeft />
+                                </Link>
+
                             </div>
-                        </Layout>
-                        <div className="floating-button-component">
-                            <FloatingButton />
+                            <div className="boards-title">
+                                {activeBoard.board_name}
+                            </div>
                         </div>
-                    </Layout>
+                    </div>
+                    <div className="line-of-boards">
+                        <div className="line-of-boards-item">
+                            <TaskOnBoard board_id={board_id} board_name={activeBoard.board_name} workspace_name={activeWorkspace.workspace_name} />
+                        </div>
+                    </div>
                 </div>
-
-            </WorkspaceContextProvider>
-        </Router>
+            </div>
+        </Layout>
 
     );
 }

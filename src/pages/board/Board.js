@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { Card, Row, Col, Button, Input, Layout, Space, Empty, Progress , Modal} from 'antd';
+import { Card, Row, Col, Button, Input, Layout, Space, Empty, Progress, Modal } from 'antd';
 import './Board.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import NavbarMain from "../../components/NavbarMain";
@@ -33,7 +33,7 @@ const Board = () => {
     const [error, setError] = useState(null)
     const [boardInfoError, setBoardInfoError] = useState(null)
     const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
-    const { boards, setBoards,boardInfo, GetBoardInformation} = useContext(BoardContext)
+    const { boards, setBoards, boardInfo, GetBoardInformation } = useContext(BoardContext)
     const { workspace_id } = useParams()
     const { state } = useLocation()
     const history = useHistory();
@@ -98,7 +98,7 @@ const Board = () => {
         confirm({
             title: 'Are you sure want to delete this board?',
             icon: <ExclamationCircleOutlined />,
-           
+
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -111,7 +111,7 @@ const Board = () => {
         });
     }
 
-    function showEditBoardForm(board){
+    function showEditBoardForm(board) {
         setEditedBoard(board)
         setIsEditFormVisible(true)
     }
@@ -144,7 +144,7 @@ const Board = () => {
                     form={form}
                     layout="vertical"
                     name="form_in_modal"
-    
+
                 >
                     <Form.Item
                         name="board_name"
@@ -194,24 +194,24 @@ const Board = () => {
     const menuEdit = (board) => (
         <Menu>
             <Menu.Item key="edit">
-            <div className='edit-board-at-board'>
-                <div className='edit-board-at-board-1'>
-                    <AiOutlineEdit style={{fontSize:"large", marginRight:"10px", margin: "auto"}}/>
+                <div className='edit-board-at-board'>
+                    <div className='edit-board-at-board-1'>
+                        <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
+                    </div>
+                    <div className='edit-board-at-board-2'>
+                        <EditBoardModal editedBoard={board} />
+                    </div>
                 </div>
-                <div className='edit-board-at-board-2'>
-                    <EditBoardModal editedBoard={board}/>
-                </div>
-            </div>
             </Menu.Item>
             <Menu.Item key="delete" onClick={() => showDeleteConfirm(board.id)}>
-            <div className='edit-board-at-board'>
-                <div className='edit-board-at-board-1'>
-                    <AiOutlineDelete style={{fontSize:"large", marginRight:"10px"}}/>
+                <div className='edit-board-at-board'>
+                    <div className='edit-board-at-board-1'>
+                        <AiOutlineDelete style={{ fontSize: "large", marginRight: "10px" }} />
+                    </div>
+                    <div className='edit-board-at-board-2'>
+                        Delete Board
+                    </div>
                 </div>
-                <div className='edit-board-at-board-2'>
-                    Delete Board
-                </div>
-            </div>
             </Menu.Item>
         </Menu>
     );
@@ -220,9 +220,9 @@ const Board = () => {
         console.log("RENDER GET BOARD VIEW")
         return (
             <div>
-                <div className="main-layout" style={{ backgroundColor: "white"}}>
+                <div className="main-layout" style={{ backgroundColor: "white" }}>
                     <div className="layout-title">
-                    
+
                     </div>
                     {boards.map(board => (
                         <div className="boards-component-view">
@@ -235,23 +235,23 @@ const Board = () => {
                                         <div className="boards-title-edit">
                                             <Dropdown overlay={menuEdit(board)} trigger={['click']}>
                                                 <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                                                    <BiDotsVerticalRounded style={{color:"#969CA3", fontSize:"large"}}/>
+                                                    <BiDotsVerticalRounded style={{ color: "#969CA3", fontSize: "large" }} />
                                                 </a>
                                             </Dropdown>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="progress-bar-component">                                    
-                                    <ProgressBar key={board.id} board_id={board.id}/>                                 
+                                <div className="progress-bar-component">
+                                    <ProgressBar key={board.id} board_id={board.id} />
                                 </div>
                             </div>
                             <div className="line-of-boards">
                                 <div className="line-of-boards-item">
-                                    <TaskOnBoard board_id={board.id} board_name={board.board_name} workspace_name={activeWorkspace.workspace_name}/>
-                                </div>                                
+                                    <TaskOnBoard board_id={board.id} board_name={board.board_name} workspace_name={activeWorkspace.workspace_name} />
+                                </div>
                             </div>
                             <div className="see-all">
-                                <Link to={{ pathname: `/workspace/${workspace_id}/boards/${board.id}/tasks`, state: { board_id : board.id } }} onClick={() => history.push("/workspace/${workspace_id}/boards/${board.id}/tasks")} >
+                                <Link to={{ pathname: `/workspace/${workspace_id}/boards/${board.id}/tasks`, state: { board_id: board.id } }} onClick={() => history.push("/workspace/${workspace_id}/boards/${board.id}/tasks")} >
                                     See all
                                 </Link>
                             </div>
@@ -263,28 +263,13 @@ const Board = () => {
     }
 
     return (
-        <Router>
-            <WorkspaceContextProvider>
-                <NavbarMain />
-                <div className="spacer"/>
-                <div>
-                    <Layout >
-                        <Sider>
-                            <Sidebar />
-                            <div className="floating-button-component">
-                                <FloatingButton />
-                            </div>
-                        </Sider>
-                        <Layout style={{ backgroundColor: "white" }}>
-                            
-                            {error ? <GetErrorView /> : <GetBoardView />
-                            }
-                        </Layout>
-                    </Layout>
-                </div>
 
-            </WorkspaceContextProvider>
-        </Router>
+        <Layout style={{ backgroundColor: "white" }}>
+
+            {error ? <GetErrorView /> : <GetBoardView />
+            }
+        </Layout>
+
 
     );
 }
