@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Empty, Space, Checkbox, Button } from 'antd';
-import { ClockCircleOutlined } from '@ant-design/icons'
+import { Card, Empty, Space, Checkbox,  Dropdown, Menu, Modal } from 'antd';
+import { ClockCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import './TaskOnBoard.css';
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 import { ClickedTask } from "../clickedTask/ClickedTask";
+import { BiDotsVerticalRounded } from 'react-icons/bi';
+import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 
 export default function TaskOnBoard(props) {
 
     const [tasks, setTasks] = useState([])
     const token = getToken()
+    const [editedTask, setEditedTask] = useState([])
+    const [isEditModalVisible, setIsEditModalVisible] = useState(false)
+    const { confirm } = Modal
     const GetTask = async ($board_id) => {
         const response = await axios.get(BASE_API_URL + 'task', {
             headers: {
@@ -30,13 +35,70 @@ export default function TaskOnBoard(props) {
     useEffect(() => {
         GetTask(props.board_id)
     }, [])
+    
+    const menuEdit = (task) => (
+      
+        <Menu>
+            <Menu.Item key="edit" onClick={() => showEditForm(task.id)}>
+                <div className='edit-board-at-board'>
+                    <div className='edit-board-at-board-1'>
+                        <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
+                    </div>
+                    <div className='edit-board-at-board-1'>
+                        Edit Board
+                    </div>
+                </div>
+            </Menu.Item>
+            <Menu.Item key="delete" onClick={() => showDeleteConfirm(task.id)}>
+                <div className='edit-board-at-board'>
+                    <div className='edit-board-at-board-1'>
+                        <AiOutlineDelete style={{ fontSize: "large", marginRight: "10px" }} />
+                    </div>
+                    <div className='edit-board-at-board-2'>
+                        Delete Task
+                    </div>
+                </div>
+            </Menu.Item>
+        </Menu>
+    );
 
-    // function showDetailModal(task){
+    function showDeleteConfirm($id) {
+        confirm({
+            title: 'Are you sure want to delete this task?',
+            icon: <ExclamationCircleOutlined />,
 
-    // }
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+                deleteTask($id)
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
+    }
+
+    const deleteTask = async ($id) => {
+        const response = await axios.delete(BASE_API_URL + 'task', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                id: $id
+            }
+        });
+
+        console.log(response)
+    }
+
+    function showEditForm(task){
+        setEditedTask(task)
+        setIsEditModalVisible(true)
+    }
     const GetTaskView = () => {
         return (
-            <Space wrap style={{ paddingLeft: "30px", backgroundColor: "#FFFFFF" }}>                
+            <Space wrap style={{ paddingLeft: "30px", backgroundColor: "#FFFFFF" }}>
                 {tasks.map((task) => (
                     <Card
                         style={{
@@ -61,6 +123,13 @@ export default function TaskOnBoard(props) {
                                 </div>
                                 <div className="task-title">
                                     {task.task_name}
+                                </div>
+                                <div>
+                                    <Dropdown overlay={menuEdit(task)} trigger={['click']}>
+                                        <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                            <BiDotsVerticalRounded style={{ color: "#969CA3", fontSize: "large" }} />
+                                        </a>
+                                    </Dropdown>
                                 </div>
                             </div>
                             <div className="on-where-information">
