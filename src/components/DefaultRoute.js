@@ -15,7 +15,7 @@ import Home  from "../pages/home/Home";
 import UserProfile  from "../pages/userprofile/UserProfile";
 import UserSetting  from "../pages/usersetting/UserSetting";
 import BlankPage  from "../pages/blankpage/BlankPage";
-import Workspace from "../pages/workspaceNull/WorkspaceNull";
+import WorkspaceNull from "../pages/workspaceNull/WorkspaceNull";
 
 export const DEFAULT_ROUTE = [
   
@@ -32,6 +32,14 @@ export const DEFAULT_ROUTE = [
     path: "/home",
     exact: true,
     component: Home,
+    private: true,
+  },
+  
+  {
+    name: "Workspace",
+    path: "/workspace",
+    exact: true,
+    component: WorkspaceNull,
     private: true,
   },
   {
@@ -88,13 +96,6 @@ export const DEFAULT_ROUTE = [
     path: "/usersetting",
     exact: true,
     component: UserSetting,
-    private: true,
-  },
-  {
-    name: "Workspace",
-    path: "/workspace",
-    exact: true,
-    component: Workspace,
     private: true,
   },
 ];

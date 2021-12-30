@@ -110,7 +110,7 @@ const Sidebar = () => {
           <Menu.Item key="home" onClick={() => history.push(`/home`)}>
             <span>Home</span>
           </Menu.Item>
-          <Menu.Item key="workspace">
+          <Menu.Item key="workspace"  onClick={() => history.push(`/workspace`)}>
             <span>Workspace</span>
           </Menu.Item>
           {context.workspace.map(w => (
