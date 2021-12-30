@@ -26,6 +26,7 @@ const Sidebar = () => {
   const { confirm } = Modal;
   const context = useContext(WorkspaceContext)
   const token = getToken()
+  const {setWorkspace} = useContext(WorkspaceContext)
 
   function handleBoardClicked(id) {
     history.push("/board/" + id)
@@ -56,12 +57,10 @@ const Sidebar = () => {
         deleteWorkspace($id)
       },
       onCancel() {
-        console.log('Cancel');
       },
     });
   }
   const deleteWorkspace = async ($id) => {
-    console.log("TOKENN " + token)
     const response = await axios.delete(BASE_API_URL + 'workspace', {
       headers: {
         Authorization: `Bearer ${token}`
@@ -70,8 +69,7 @@ const Sidebar = () => {
         id: $id
       }
     });
-
-    console.log(response)
+    setWorkspace(prev => prev.filter(wspc => wspc.id !== $id))
   }
 
   // const menuList = [
