@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Empty, Space, Checkbox } from 'antd';
+import { Card, Empty, Space, Checkbox, Button } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons'
 import './TaskOnBoard.css';
 import axios from 'axios';
@@ -20,23 +20,24 @@ export default function TaskOnBoard(props) {
                 'board_id': $board_id
             }
         })
-        console.log("BOARD  ON BOARD")
-        console.log(response)
         setTasks(response.data.task)
     }
 
     function onChange(e) {
         console.log(`checked = ${e.target.checked}`);
-      }
+    }
 
     useEffect(() => {
         GetTask(props.board_id)
     }, [])
 
+    // function showDetailModal(task){
+
+    // }
     const GetTaskView = () => {
         return (
-            <Space wrap style={{ paddingLeft: "30px", backgroundColor: "#FFFFFF" }}>
-                {tasks.map(task => (
+            <Space wrap style={{ paddingLeft: "30px", backgroundColor: "#FFFFFF" }}>                
+                {tasks.map((task) => (
                     <Card
                         style={{
                             width: "260px",
@@ -55,8 +56,8 @@ export default function TaskOnBoard(props) {
                         <div className="checkbox-name-title">
                             <div className="checkbox-and-name">
                                 <div className="checkbox-logo">
-                                    <Checkbox defaultChecked={task.is_done === 0? false:true} onChange={onChange}/>
-                                    
+                                    <Checkbox defaultChecked={task.is_done === 0 ? false : true} onChange={onChange} />
+
                                 </div>
                                 <div className="task-title">
                                     {task.task_name}
@@ -75,7 +76,10 @@ export default function TaskOnBoard(props) {
                             </div>
                             <div className="see-more-button">
                                 <div className="see-more">
-                                    <ClickedTask/>
+                                    {/* <Button type="link" onClick= {() => showDetailModal(task)}style={{ fontStyle: "italic", color: "#4ABDAC" }}>
+                                        See
+                                    </Button> */}
+                                    <ClickedTask task={task} />
                                 </div>
                             </div>
                         </div>

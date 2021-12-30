@@ -217,7 +217,6 @@ const Board = () => {
     );
 
     const GetBoardView = () => {
-        console.log("RENDER GET BOARD VIEW")
         return (
             <div>
                 <div className="main-layout" style={{ backgroundColor: "white" }}>
