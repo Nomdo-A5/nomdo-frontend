@@ -44,16 +44,6 @@ const UserSetting = () =>{
 
     return (
         <WorkspaceContextProvider>
-            <div>
-            <NavbarMain />
-            <div className="spacer"/>
-            <Layout>
-                <Sider>
-                    <Sidebar />
-                    <div className="floating-button-component">
-                        <FloatingButton />
-                    </div>
-                </Sider>
                 <Layout >
                     <Row style={{height: "8vh", backgroundColor: "#DDFBEB" }}/>
                     <Row style={{height: "84vh"}}>
@@ -67,7 +57,7 @@ const UserSetting = () =>{
                                         Edit Profile
                                     </div>
                                     <div className="setting-routes">
-                                        <Link to="/userprofile" className="profile-link">
+                                        <Link to="/userprofile" onClick={() => history.push("/userprofile")} className="profile-link">
                                             <div className="setting-routes-profile">
                                                 <div className="setting-routes-profile-icon">
                                                     <BsPersonFill/>
@@ -77,7 +67,7 @@ const UserSetting = () =>{
                                                 </div>
                                             </div>
                                         </Link>
-                                        <Link to="/usersetting" className="setting-link">
+                                        <Link to="/usersetting" onClick={() => history.push("/usersetting")} className="setting-link">
                                             <div className="setting-routes-setting">
                                                 <div className="setting-routes-setting-icon">
                                                     <AiFillSetting/>
@@ -161,8 +151,6 @@ const UserSetting = () =>{
                         </Col>
                     </Row>
                 </Layout>
-            </Layout>
-            </div>
         </WorkspaceContextProvider>
     )
 }

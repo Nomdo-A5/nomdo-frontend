@@ -20,7 +20,7 @@
 .inner-left-division-register{
   width: 50%;
   /*transform: translateX(50%,50%);*/
-  transform: translateX(50%) translateY(39%);
+  transform: translateX(50%) translateY(25%);
 }
 
 .inner-right-division-register{
@@ -37,8 +37,8 @@
 .dont-have-group-register {
   display: flex;
   flex-direction: row;
-  width: 50%;
-  margin: 0 auto;
+  width: 100%;
+  justify-content: center;
 }
 
 .dont-have-text-register {

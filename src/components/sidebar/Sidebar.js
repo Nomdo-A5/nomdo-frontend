@@ -57,10 +57,12 @@ const Sidebar = () => {
         deleteWorkspace($id)
       },
       onCancel() {
+        console.log('Cancel');
       },
     });
   }
   const deleteWorkspace = async ($id) => {
+    console.log("TOKENN " + token)
     const response = await axios.delete(BASE_API_URL + 'workspace', {
       headers: {
         Authorization: `Bearer ${token}`

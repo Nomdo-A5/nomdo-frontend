@@ -28,7 +28,7 @@ function refreshPage() {
 
 const DefaultPage = (props) => {
 
-    const { Sider } = Layout;
+    const { Header, Footer, Sider, Content } = Layout;
     const [isModalVisible, setIsModalVisible] = useState(false);
     const context = useContext(WorkspaceContext)
     const { workspace_id } = useParams()
@@ -103,24 +103,26 @@ const DefaultPage = (props) => {
     }
     return (
         <WorkspaceContextProvider>
-            <div style={{ backgroundColor: "white", position: "absolute", zIndex: "2" }} className="navbar-division">
-                <NavbarMain />
-            </div>
-            <div className="spacer" />
-            <div>
-                <Layout className="layout-1">
-                    <Sider>
+            <Layout>
+                <Header
+                    style={{ 
+                        backgroundColor: "#4ABDAC"
+                    }}
+                >
+                    <NavbarMain/>
+                </Header>
+                <Layout style={{backgroundColor:"white"}}>
+                    <Sider style={{ backgroundColor: "#4ABDAC" }}>
                         <Sidebar />
                     </Sider>
-                    <Layout className="layout-2" style={{ backgroundColor: "white"}}>
+                    <Content style={{ backgroundColor: "" }}>
                         {props.children}
-                    </Layout>
-                    <div className="floating-button-component">
-                        <FloatingButton />
-                    </div>
+                    </Content>
                 </Layout>
-            </div>
-
+                <div className="floating-button-component">
+                    <FloatingButton />
+                </div>
+            </Layout>
         </WorkspaceContextProvider>
     );
 }

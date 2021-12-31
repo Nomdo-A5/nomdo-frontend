@@ -8,12 +8,14 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 import { getToken, logout } from "../utils/authentication";
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 
-import { Menu, Button, message, Space, Tooltip, Dropdown } from 'antd';
+import { Menu, Button, message, Space, Tooltip, Dropdown, Row, Col, Layout } from 'antd';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { BASE_API_URL } from '../constants/urls';
+import {   Breadcrumb } from 'antd';
 
 function NavbarMain() {
+const { Header, Content, Sider, Footer } = Layout;
   const history = useHistory();
   const token = getToken()
   const [user, setUser] = useState([]);
@@ -24,6 +26,10 @@ function NavbarMain() {
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="1">
+        <Link to="/usersetting" onClick={() => history.push("/usersetting")}>Setting</Link>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="2">
         <Link to="/" onClick={() => logout()}>
           Logout
         </Link>
@@ -46,34 +52,51 @@ function NavbarMain() {
     getActiveUser()
   }, [])
   return (
-    <Navbar collapseOnSelect expand="lg" sticky="top" className='nav-responsive-container-0'>
-      <Container className='nav-container'>
-        <Nav.Link href="/">
-          <img src={LogoImage} alt="" width="100px" height="auto" className='nomdo-logo'/>
-        </Nav.Link>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto"/>
-          <Dropdown overlay={menu} trigger={['click']}>
-            <Nav className='navbar-profile-main'>
-              <Nav.Link href="/userprofile">
-                <img src={ProfileImage} className="navbar-profile-image" alt="" />
-              </Nav.Link>
-                <div className="nav-profile-name">
-                  <Link to="/userprofile" className='nav-profile-name-2' onClick={() => history.push("/userprofile")}>
-                    {user.name}
-                  </Link>
-                </div>
-                <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                  <div className="nav-profile-arrow">
-                    <TiArrowSortedDown />
+      <Header
+        style={{ 
+          backgroundColor: "#4ABDAC",
+          position: 'fixed',
+          top: 0,
+          zIndex: "2",
+          width: "100%"
+        }}
+      >
+        <Row
+          style={{ 
+            width: "90%"
+          }}
+        >
+          <Col style={{ backgroundColor: "#4ABDAC"}} span={6}>
+            <Link to="/">
+              <img src={LogoImage} alt="" width="100px" height="auto" className='nomdo-logo'/>
+            </Link>
+          </Col>
+          <Col 
+            style={{ 
+              backgroundColor: "#4ABDAC",
+              display:"flex",
+              justifyContent: "right"
+            }}
+            span={18}
+          >
+            <Dropdown overlay={menu} trigger={['click']}>
+              <Nav className='navbar-profile-main'>
+                  <img src={ProfileImage} className="navbar-profile-image" alt="" style={{ paddingRight: "10px"}} />
+                  <div className="nav-profile-name">
+                    <Link to="/userprofile" className='nav-profile-name-2' onClick={() => history.push("/userprofile")} style={{ paddingRight: "10px"}}>
+                      {user.name}
+                    </Link>
                   </div>
-                </a>
-            </Nav>
-          </Dropdown>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+                  <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                    <div className="nav-profile-arrow">
+                      <TiArrowSortedDown />
+                    </div>
+                  </a>
+              </Nav>
+            </Dropdown>
+          </Col>
+        </Row>
+      </Header>
   );
 }
 

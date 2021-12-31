@@ -86,7 +86,7 @@ const Report = () => {
                 }}
                 onCancel={onCancel}
                 style={{ textAlign: "center" }}
-                okText="Add"
+                okText="Save Changes"
                 width={340}>
 
                 <Form
@@ -367,11 +367,9 @@ const Report = () => {
     }, [])
 
     return (
-        <div>
-            <div className="report-title">
-
+        <div style={{backgroundColor:"white"}}>
+            <div className="report-title" style={{backgroundColor:"white"}}>
                 <PageTitle />
-
             </div>
             <div className="report-images">
                 <div className="report-images-component">

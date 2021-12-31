@@ -111,7 +111,8 @@ const Home = () => {
                 <Col span={9} push={15}
                     style={{
                         backgroundColor: "#4ABDAC",
-                        borderRadius: "0px 30px 30px 0px"
+                        borderRadius: "0px 30px 30px 0px",
+                        marginTop: "4%"
                     }}
                 >
                     <div className="row-1-left-col">
@@ -124,7 +125,8 @@ const Home = () => {
                 <Col span={15} pull={9}
                     style={{
                         backgroundColor: "#4ABDAC",
-                        borderRadius: "30px 0px 0px 30px"
+                        borderRadius: "30px 0px 0px 30px",
+                        marginTop: "4%"
                     }}
                 >
                     <Row
