@@ -28,7 +28,7 @@ const App = () => {
                   restricted={val.restricted}
                 />
               ))}
-              <Route exact path={["/home", "/member", "/workspace","/workspace/*", "/BoardExtended", "/userprofile", "/report/*"]}>
+              <Route exact path={["/home", "/member", "/workspace","/workspace/*", "/BoardExtended", "/userprofile", "/usersetting", "/report/*"]}>
                 <DefaultPage>
                   <Switch>
                     {DEFAULT_ROUTE.map((val) => (

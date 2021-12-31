@@ -86,7 +86,7 @@ const EditBoardModal = ({ visible, editedBoard, onCreate, onCancel }) => {
         </Modal>
     );
 };
-const PageTitle = (props) => {
+const EditBoardModals = (props) => {
 
     const { Sider } = Layout;
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -125,9 +125,6 @@ const PageTitle = (props) => {
     return (
         <div className="layout-title-dashboard">
             <div className="workspace-title-dashboard-1">
-                <div className="workspace-title-dashboard-1-1">
-                    {activeWorkspace.workspace_name}
-                </div>
                 <div className="workspace-title-dashboard-1-2">
                     <Button
                         type="text"
@@ -152,4 +149,4 @@ const PageTitle = (props) => {
     );
 }
 
-export default PageTitle;
+export default EditBoardModals;

@@ -42,11 +42,21 @@
 .inner-left-division{
     width: 50%;
     /*transform: translateX(50%,50%);*/
-    transform: translateX(50%) translateY(50%);
+    transform: translateX(50%) translateY(30%);
 }
 
 .inner-right-division{
     transform: translateY(2%);
+}
+
+.inner-left-google{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.inner-left-google-1{
+    font-size: 16px;
 }
 
 .welcome-to-nomdo{

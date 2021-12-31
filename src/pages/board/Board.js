@@ -221,7 +221,7 @@ const Board = () => {
             <div>
                 <div className="main-layout" style={{ backgroundColor: "white" }}>
                     <div className="layout-title">
-
+                        <PageTitle />
                     </div>
                     {boards.map(board => (
                         <div className="boards-component-view">

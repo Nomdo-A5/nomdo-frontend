@@ -30,14 +30,6 @@ export default function ReportOverview (props) {
                         <div className="income-value">
                            {new Intl.NumberFormat('ID').format(props.total)}
                         </div>
-                        <div className="view-data-button">
-                            <div className="view-data-text">
-                                View Data
-                            </div>
-                            <div className="view-data-arrow">
-                                <BsArrowRight/>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </Card>

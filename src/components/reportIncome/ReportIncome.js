@@ -27,17 +27,7 @@ export default function ReportIncome (props) {
                         className="imagez" src={Income} height={150} alt=""
                     />
                     <div className="value-and-button">
-                        <div className="income-value">
                             {new Intl.NumberFormat('ID').format(props.income)}
-                        </div>
-                        <div className="view-data-button">
-                            <div className="view-data-text">
-                                View Data
-                            </div>
-                            <div className="view-data-arrow">
-                                <BsArrowRight/>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </Card>

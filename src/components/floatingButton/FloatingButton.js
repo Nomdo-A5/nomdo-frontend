@@ -44,13 +44,14 @@ export const FloatingButton = () => {
             footer={[
                 
             ]}>
-                <div className="floating-form">
+                <div className="floating-form-1">
                     <div className="floating-form-box"><FloatingWorkspace /></div>
                     <div className="floating-form-box"><FloatingBoard /></div>
                     <div className="floating-form-box"><FloatingTask /></div>
+                </div>
+                <div className="floating-form-2">
                     <div className="floating-form-box"><JoinWorkspace /></div>
                     <div className="floating-form-box"><FloatingMoneyReport /></div>
-                    
                 </div>
             </Modal>
         </div>

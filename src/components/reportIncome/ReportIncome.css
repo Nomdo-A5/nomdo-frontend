@@ -5,13 +5,9 @@
 
 .value-and-button{
     width: 165px;
+    font-size: 30px;
     margin-top: auto;
     margin-bottom: auto;
-    padding-top: 30px;
-}
-
-.income-value{
-    font-size: 30px;
     font-weight: bolder;
     padding-bottom: 12px;
 }

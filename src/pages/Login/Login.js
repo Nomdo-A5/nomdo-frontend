@@ -4,12 +4,21 @@ import NavbarMain from "../../components/Nav_login";
 import { useHistory } from "react-router-dom";
 import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";
-import { Form, Input, Button,Card } from 'antd';
+import { Form, Input, Button, Card, Modal } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { loginAuth } from "../../utils/authentication";
 import { Link } from 'react-router-dom';
 
 import Frontpic from '../Login/Frontpic.svg'
+import GooglePlay from '../Login/googleplay200.svg';
+
+function countDown() {
+  const modal = Modal.error({
+    title: 'Wrong Username or Password',
+    content: `Please try again.`,
+    okText: "Try Again"
+  });
+}
 
 const Login = () => {
   const [password] = React.useState("");
@@ -37,6 +46,7 @@ const Login = () => {
         }
         else {
           console.log("Login failed");
+          countDown();
         }
 
       }, (error) => {
@@ -106,6 +116,16 @@ const Login = () => {
                   </div>
                 </div>
               </Form.Item>
+              <div className="inner-left-google">
+                <div className="inner-left-google-1">
+                  Download Apps Now on Google Play
+                </div>
+                <div className="inner-left-google-2">
+                <Link to={{ pathname: "https://play.google.com/store/apps/details?id=com.nomdoa5.nomdo" }} target="_blank">
+                  <img src={GooglePlay} width={200} alt=""/>
+                </Link>
+                </div>
+              </div>
             </Form>
           </div>
         </div>

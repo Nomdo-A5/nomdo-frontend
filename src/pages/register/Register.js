@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import NavbarMain from "../../components/Nav_login";
 import './Register.css';
-import { Form, Input, Button, Card } from 'antd';
+import { Form, Input, Button, Card, Modal } from 'antd';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
@@ -39,6 +39,14 @@ const tailFormItemLayout = {
   },
 };
 
+function shortPassword() {
+  const modal = Modal.warning({
+    title: 'Your Password is too short!',
+    content: `Please try again with 6 characters.`,
+    okText: "Try Again"
+  });
+}
+
 const Register = () => {
   const [form] = Form.useForm();
   const history = useHistory()
@@ -61,6 +69,7 @@ const Register = () => {
         }
 
       }, (error) => {
+        shortPassword();
         console.log(error);
       });
   };
