@@ -14,12 +14,13 @@ import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 
 import newBoardImage from '../floatingBoard/newBoard.png'
+import { BoardContext } from '../../context/BoardContext';
 
 const NewBoardForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
     const { Option } = Select;
     const context = useContext(WorkspaceContext)
-    const [workspaceId, setWorkspaceId] = useState()
+
 
     return (
         <Modal
@@ -95,12 +96,12 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
                                 }}
                             >
                                 <Select placeholder="Select Workspace">
-                                {context.workspace.map(w =>
-                                            (<Option value={w.id}>{w.workspace_name}</Option>)
-                                        )}
+                                    {context.workspace.map(w =>
+                                        (<Option value={w.id}>{w.workspace_name}</Option>)
+                                    )}
                                 </Select>
                             </Form.Item>
-                            
+
                         </div>
 
                     </div>
@@ -116,13 +117,11 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
 }
 export const FloatingBoard = () => {
 
-
     const [visible, setVisible] = useState(false);
-
+    const { setBoards } = useContext(BoardContext)
 
     const onCreate = async (values) => {
         const token = getToken()
-        console.log("value = " + values.workspace_id)
         const response = await axios.post(BASE_API_URL + 'boards', {
             workspace_id: values.workspace_id,
             board_name: values.board_name
@@ -132,7 +131,11 @@ export const FloatingBoard = () => {
                     'Authorization': `Bearer ${token}`
                 },
             });
+        
         console.log(response)
+        setBoards((previous) => {
+            return [...previous, response.data.board]
+        })
         setVisible(false);
     };
     return (
@@ -144,13 +147,13 @@ export const FloatingBoard = () => {
                     setVisible(false);
                 }}
             />
-            <div 
+            <div
                 className="btn w-100 h-100 d-flex justify-content-center align-items-center"
-                
+
                 onClick={() => {
                     setVisible(true);
-            }}>
-                <img src={newBoardImage} width={200} alt=""/>
+                }}>
+                <img src={newBoardImage} width={200} alt="" />
             </div>
         </div>
     );

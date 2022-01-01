@@ -91,8 +91,9 @@ const Board = () => {
                     <div className='edit-board-at-board-1'>
                         <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
                     </div>
-                    <div className='edit-board-at-board-2'>
-                        <EditBoardModal editedBoard={board} />
+                    <div className='edit-board-at-board-1'>
+                        Edit board
+                        {/* <EditBoardModal editedBoard={board} /> */}
                     </div>
                 </div>
             </Menu.Item>

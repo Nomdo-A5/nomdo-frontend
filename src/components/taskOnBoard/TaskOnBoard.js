@@ -46,7 +46,7 @@ export default function TaskOnBoard(props) {
                         <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
                     </div>
                     <div className='edit-board-at-board-1'>
-                        Edit Board
+                        Edit Task
                     </div>
                 </div>
             </Menu.Item>
