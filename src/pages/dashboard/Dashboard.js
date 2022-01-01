@@ -89,7 +89,6 @@ const Dashboard = () => {
     }
     useEffect(() => {
         GetOverview()
-        GetWorkspaceById(workspace_id)
         GetTaskOverview()
         GetMember()
     }, [])

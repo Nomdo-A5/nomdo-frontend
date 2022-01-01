@@ -41,7 +41,6 @@ const Login = () => {
       .then((response) => {
         if (response.data.status_code === 200) {
           loginAuth(response.data.access_token);
-          console.log(response);
           history.push("/home");
         }
         else {

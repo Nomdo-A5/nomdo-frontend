@@ -16,6 +16,7 @@ export default function TaskOnBoard(props) {
     const [editedTask, setEditedTask] = useState([])
     const [isEditModalVisible, setIsEditModalVisible] = useState(false)
     const { confirm } = Modal
+
     const GetTask = async ($board_id) => {
         const response = await axios.get(BASE_API_URL + 'task', {
             headers: {
@@ -45,7 +46,7 @@ export default function TaskOnBoard(props) {
                         <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
                     </div>
                     <div className='edit-board-at-board-1'>
-                        Edit Board
+                        Edit Task
                     </div>
                 </div>
             </Menu.Item>
@@ -145,9 +146,6 @@ export default function TaskOnBoard(props) {
                             </div>
                             <div className="see-more-button">
                                 <div className="see-more">
-                                    {/* <Button type="link" onClick= {() => showDetailModal(task)}style={{ fontStyle: "italic", color: "#4ABDAC" }}>
-                                        See
-                                    </Button> */}
                                     <ClickedTask task={task} />
                                 </div>
                             </div>

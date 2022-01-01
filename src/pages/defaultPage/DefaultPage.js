@@ -20,6 +20,7 @@ import DashboardIllust from './dash-image.svg'
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
+import { UserContext } from '../../context/UserContext';
 
 
 function refreshPage() {
@@ -30,10 +31,9 @@ const DefaultPage = (props) => {
 
     const { Header, Footer, Sider, Content } = Layout;
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const context = useContext(WorkspaceContext)
     const { workspace_id } = useParams()
     const [overview, setOverview] = useState([]);
-    const [user, setUser] = useState([]);
+    const {user} = useContext(UserContext)
     const token = getToken()
     const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
     const [taskOverview, setTaskOverview] = useState([])
@@ -88,19 +88,8 @@ const DefaultPage = (props) => {
         GetWorkspaceById(workspace_id)
         GetTaskOverview()
         GetMember()
-        getActiveUser()
     }, [])
 
-    const getActiveUser = async () => {
-      const token = getToken();
-      const response = await axios.get(BASE_API_URL + 'user', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
-      console.log(response)
-      setUser(response.data.user)
-    }
     return (
         <WorkspaceContextProvider>
             <Layout>

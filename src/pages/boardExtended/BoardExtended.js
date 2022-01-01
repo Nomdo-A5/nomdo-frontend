@@ -36,9 +36,6 @@ const BoardExtended = () => {
         GetWorkspaceById(workspace_id)
     }, [])
 
-    const handleBack = () => {
-
-    }
     return (
 
         <Layout style={{ backgroundColor: "white" }}>

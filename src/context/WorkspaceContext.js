@@ -33,6 +33,18 @@ export const WorkspaceContextProvider = (props) => {
         setActiveWorkspace(response.data)        
     }
 
+    const GetBoardInformation = async ($id) => {
+        const response = await axios.get(BASE_API_URL+'workspace/board-information',{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            params: {
+                'id': $id
+            }
+        })
+        console.log(response)
+    }
+
     useEffect(() => {
         GetWorkspace()
     }, [])
@@ -42,7 +54,8 @@ export const WorkspaceContextProvider = (props) => {
         setWorkspace,
         activeWorkspace,
         setActiveWorkspace,
-        GetWorkspaceById
+        GetWorkspaceById,
+        GetBoardInformation
     }}>
         {props.children}
     </WorkspaceContext.Provider>
