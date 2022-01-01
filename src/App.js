@@ -11,12 +11,12 @@ import PublicRoute from "./components/PublicRoute";
 import { WorkspaceContextProvider } from "./context/WorkspaceContext";
 import { BoardContextProvider } from "./context/BoardContext";
 import DefaultPage from "./pages/defaultPage/DefaultPage"
-import { USerContextProvider } from "./context/UserContext";
+import { UserContextProvider } from "./context/UserContext";
 const App = () => {
   //document.title = 'Nomdo'
   return (
     <div className="App">
-      <USerContextProvider>
+      <UserContextProvider>
         <WorkspaceContextProvider>
           <BoardContextProvider>
             <Router>
@@ -49,7 +49,7 @@ const App = () => {
             </Router>
           </BoardContextProvider>
         </WorkspaceContextProvider>
-      </USerContextProvider>
+      </UserContextProvider>
 
     </div>
   );

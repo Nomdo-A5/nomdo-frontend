@@ -16,6 +16,7 @@ export default function TaskOnBoard(props) {
     const [editedTask, setEditedTask] = useState([])
     const [isEditModalVisible, setIsEditModalVisible] = useState(false)
     const { confirm } = Modal
+
     const GetTask = async ($board_id) => {
         const response = await axios.get(BASE_API_URL + 'task', {
             headers: {

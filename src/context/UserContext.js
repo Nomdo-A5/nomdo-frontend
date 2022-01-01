@@ -4,7 +4,7 @@ import axios from "axios";
 import { BASE_API_URL } from "../constants/urls";
 
 export const UserContext = React.createContext(null)
-export const USerContextProvider = (props) => {
+export const UserContextProvider = (props) => {
     const token = getToken();
     const [user, setUser] = useState("")
 

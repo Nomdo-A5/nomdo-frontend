@@ -39,9 +39,6 @@ const Board = () => {
     const history = useHistory();
     const { confirm } = Modal
 
-    useEffect(() => {
-    }, [])
-
     const GetErrorView = () => {
         return (
             <div className="main-div">
