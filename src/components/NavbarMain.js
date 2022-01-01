@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from "react-router-dom";
 import "./style/NavbarMain.css";
 import LogoImage from '../components/Nomdo-logo.svg'
@@ -13,12 +13,13 @@ import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { BASE_API_URL } from '../constants/urls';
 import {   Breadcrumb } from 'antd';
+import { UserContext } from '../context/UserContext';
 
 function NavbarMain() {
 const { Header, Content, Sider, Footer } = Layout;
   const history = useHistory();
   const token = getToken()
-  const [user, setUser] = useState([]);
+  const {user} = useContext(UserContext)
   const menu = (
     <Menu className="menu-bar" style={{ width: "200px" }}>
       <Menu.Item key="0">
@@ -37,20 +38,6 @@ const { Header, Content, Sider, Footer } = Layout;
     </Menu>
   );
 
-  const getActiveUser = async () => {
-    const token = getToken();
-    const response = await axios.get(BASE_API_URL + 'user', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    console.log(response)
-    setUser(response.data.user)
-  }
-
-  useEffect(() => {
-    getActiveUser()
-  }, [])
   return (
       <Header
         style={{ 

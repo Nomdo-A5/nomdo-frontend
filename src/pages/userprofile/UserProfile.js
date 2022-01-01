@@ -16,6 +16,7 @@ import { AiFillSetting } from 'react-icons/ai';
 import { BsPersonFill } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import { FloatingButton } from "../../components/floatingButton/FloatingButton";
+import { UserContext } from '../../context/UserContext';
 
 const UserProfile = () => {
     const history = useHistory();
@@ -23,29 +24,12 @@ const UserProfile = () => {
     const { Header, Content, Sider } = Layout;
     const [task, setTask] = useState([]);
     const [workspace, setWorkspace] = useState([]);
-    const [user, setUser] = useState([])
+    const {user} = useContext(UserContext)
     const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
-
-    useEffect(() => {
-        getActiveUser()
-    }, [])
 
     const onFinish = (values) => {
         //ini untuk code ganti profile tapi dari BE belum ada
     }
-
-
-    const getActiveUser = async () => {
-        const token = getToken();
-        const response = await axios.get(BASE_API_URL + 'user', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        console.log(response)
-        setUser(response.data.user)
-    }
-
     return (
 
         <WorkspaceContextProvider>

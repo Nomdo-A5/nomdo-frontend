@@ -33,38 +33,13 @@ const Board = () => {
     const [error, setError] = useState(null)
     const [boardInfoError, setBoardInfoError] = useState(null)
     const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
-    const { boards, setBoards, boardInfo, GetBoardInformation } = useContext(BoardContext)
+    const { boards, setBoards } = useContext(BoardContext)
     const { workspace_id } = useParams()
     const { state } = useLocation()
     const history = useHistory();
-    const context = useContext(BoardContext)
     const { confirm } = Modal
-    const [isEditFormVisible, setIsEditFormVisible] = useState(false)
-    const [editedBoard, setEditedBoard] = useState([])
-
-
-    const GetBoard = async () => {
-        console.log("INI FUNGSI GET BOARD")
-        try {
-            const response = await axios.get(BASE_API_URL + 'boards', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                },
-                params: {
-                    'workspace_id': `${workspace_id}`
-                }
-            })
-            setBoards(response.data.boards)
-            setError(null)
-        } catch (err) {
-            console.log(err)
-            setError(err)
-        }
-    }
 
     useEffect(() => {
-        GetBoard()
-        GetWorkspaceById(workspace_id)
     }, [])
 
     const GetErrorView = () => {
@@ -90,7 +65,7 @@ const Board = () => {
                 id: $id
             }
         });
-
+        setBoards(prev => prev.filter(brd => brd.id !== $id))
         console.log(response)
     }
 
@@ -111,86 +86,7 @@ const Board = () => {
         });
     }
 
-    function showEditBoardForm(board) {
-        setEditedBoard(board)
-        setIsEditFormVisible(true)
-    }
-
-    const EditBoardForm = ({ visible, editedBoard, onCreate, onCancel }) => {
-        const [form] = Form.useForm();
-        return (
-            <Modal
-                width={340}
-                style={{ textAlign: "center" }}
-                visible={visible}
-                title="Edit Board"
-                okText="Save Changes"
-                cancelText="Cancel"
-                centered={true}
-                onCancel={onCancel}
-                onOk={() => {
-                    form
-                        .validateFields()
-                        .then((values) => {
-                            form.resetFields();
-                            onCreate(values);
-                        })
-                        .catch((info) => {
-                            console.log('Validate Failed:', info);
-                        });
-                }}
-            >
-                <Form
-                    form={form}
-                    layout="vertical"
-                    name="form_in_modal"
-
-                >
-                    <Form.Item
-                        name="board_name"
-                        rules={[
-                            {
-                                required: false,
-                                message: 'Please input the new workspace name!',
-                            },
-                        ]}
-                    >
-                        <div className="workspace-name-and-logo">
-                            <div className="workspace-logo">
-                                <MailOutlined />
-                            </div>
-                            <div className="workspace-name-and-input">
-                                <div className="workspace-name">
-                                    Board Name
-                                </div>
-                                <div className="form-input-workspace-name">
-                                    <Input placeholder={editedBoard.board_name} style={{ borderRadius: "10px 10px 10px 10px" }} />
-                                </div>
-                            </div>
-                        </div>
-                    </Form.Item>
-                    <Form.Item
-                        name="description"
-                        initialValue={editedBoard.board_description}
-                        className="collection-create-form_last-form-item" >
-                        <div className="workspace-name-and-logo">
-                            <div className="workspace-logo">
-                                <FileOutlined />
-                            </div>
-                            <div className="workspace-name-and-input">
-                                <div className="workspace-name">
-                                    Description
-                                </div>
-                                <div className="form-input-workspace-name">
-                                    <Input.TextArea style={{ borderRadius: "10px 10px 10px 10px" }} placeholder={editedBoard.board_description} />
-                                </div>
-                            </div>
-                        </div>
-                    </Form.Item>
-                </Form>
-            </Modal>
-        );
-    };
+    
     const menuEdit = (board) => (
         <Menu>
             <Menu.Item key="edit">

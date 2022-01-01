@@ -145,9 +145,6 @@ export default function TaskOnBoard(props) {
                             </div>
                             <div className="see-more-button">
                                 <div className="see-more">
-                                    {/* <Button type="link" onClick= {() => showDetailModal(task)}style={{ fontStyle: "italic", color: "#4ABDAC" }}>
-                                        See
-                                    </Button> */}
                                     <ClickedTask task={task} />
                                 </div>
                             </div>
