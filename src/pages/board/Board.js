@@ -86,7 +86,7 @@ const Board = () => {
     
     const menuEdit = (board) => (
         <Menu>
-            <Menu.Item key="edit">
+            <Menu.Item key="edit" onClick={() => showDeleteConfirm(board.id)}>
                 <div className='edit-board-at-board'>
                     <div className='edit-board-at-board-1'>
                         <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
@@ -108,6 +108,7 @@ const Board = () => {
                 </div>
             </Menu.Item>
         </Menu>
+        
     );
 
     const GetBoardView = () => {
