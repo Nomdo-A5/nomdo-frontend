@@ -86,14 +86,14 @@ const Board = () => {
     
     const menuEdit = (board) => (
         <Menu>
-            <Menu.Item key="edit" onClick={() => showDeleteConfirm(board.id)}>
+            <Menu.Item key="edit" >
                 <div className='edit-board-at-board'>
                     <div className='edit-board-at-board-1'>
                         <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
                     </div>
                     <div className='edit-board-at-board-1'>
-                        Edit board
-                        {/* <EditBoardModal editedBoard={board} /> */}
+                        {/* Edit board */}
+                        <EditBoardModal editedBoard={board} />
                     </div>
                 </div>
             </Menu.Item>

@@ -59,6 +59,11 @@ const Sidebar = () => {
     setActiveWorkspace(workspace)
     history.push(`/workspace/${workspace.id}/dashboards`)
   }
+
+  function handleReport(workspace){
+    setActiveWorkspace(workspace)
+    history.push(`/report/${workspace.id}`)
+  }
   return (
       <Sider width={200} className="site-layout-background" style={{
         overflow: 'auto',
@@ -88,7 +93,7 @@ const Sidebar = () => {
               <Menu.Item key={"board " + w.id} onClick={() => handleBoard(w)}>
                 <span>Board</span>
               </Menu.Item>
-              <Menu.Item key={"report " + w.id} onClick={() => history.push(`/report/${w.id}`,)} >
+              <Menu.Item key={"report " + w.id} onClick={() => handleReport(w)} >
                 <span>Money Report</span>                
               </Menu.Item>
               <Menu.Item key={"delete " + w.id} onClick={() => {
