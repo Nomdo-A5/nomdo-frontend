@@ -21,7 +21,7 @@ const Sidebar = () => {
   const token = getToken()
   const {setWorkspace, setActiveWorkspace, GetMember, GetTaskOverview} = useContext(WorkspaceContext)
   const {GetBoards} = useContext(BoardContext)
-  const {GetBalanceOverview} = useContext(BalanceContext)
+  const {GetBalanceOverview, GetReportBalance} = useContext(BalanceContext)
 
   function showDeleteConfirm($id) {
     confirm({
@@ -67,6 +67,8 @@ const Sidebar = () => {
 
   function handleReport(workspace){
     setActiveWorkspace(workspace)
+    GetBalanceOverview(workspace.id)
+    GetReportBalance(workspace.id)
     history.push(`/report/${workspace.id}`)
   }
   return (
