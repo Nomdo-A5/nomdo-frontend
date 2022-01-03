@@ -39,11 +39,7 @@ const Dashboard = () => {
     const { workspace_id } = useParams()
     const [overview, setOverview] = useState([])
     const token = getToken()
-    const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
-    const [taskOverview, setTaskOverview] = useState([])
-    const [members, setMembers] = useState([])
-
-
+    const { workspaceMembers,workspaceTaskOverview } = useContext(WorkspaceContext)
 
     const GetOverview = async () => {
         const response = await axios.get(BASE_API_URL + 'report/overview', {
@@ -62,35 +58,8 @@ const Dashboard = () => {
         setIsModalVisible(true);
     };
 
-    const GetTaskOverview = async () => {
-        const response = await axios.get(BASE_API_URL + 'workspace/task-information', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setTaskOverview(response.data)
-    }
-
-    const GetMember = async () => {
-        const response = await axios.get(BASE_API_URL + 'workspace/member', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setMembers(response.data.member)
-    }
     useEffect(() => {
         GetOverview()
-        GetTaskOverview()
-        GetMember()
     }, [])
     return (
 
@@ -132,7 +101,7 @@ const Dashboard = () => {
                                             className="imagez" src={TaskDone} height={75} alt=""
                                         />
                                         <div className="value-at-overview">
-                                            {taskOverview.task_done}
+                                            {workspaceTaskOverview.task_done}
                                         </div>
                                         <div className="value-text-overview">
                                             Completed Task
@@ -144,7 +113,7 @@ const Dashboard = () => {
                                             className="imagez" src={TaskUndone} height={75} alt=""
                                         />
                                         <div className="value-at-overview">
-                                            {taskOverview.task_count - taskOverview.task_done}
+                                            {workspaceTaskOverview.task_count - workspaceTaskOverview.task_done}
                                         </div>
                                         <div className="value-text-overview">
                                             Unfinished Task
@@ -267,7 +236,7 @@ const Dashboard = () => {
                                         Team Members
                                     </div>
                                 </div>
-                                {members.map(member => (
+                                {workspaceMembers.map(member => (
                                     <div className="members-name-and-logo">
                                         <div className="team-member">
                                             <img

@@ -18,7 +18,7 @@ const Sidebar = () => {
   const { confirm } = Modal;
   const context = useContext(WorkspaceContext)
   const token = getToken()
-  const {setWorkspace, setActiveWorkspace} = useContext(WorkspaceContext)
+  const {setWorkspace, setActiveWorkspace, GetMember, GetTaskOverview} = useContext(WorkspaceContext)
   const {GetBoards} = useContext(BoardContext)
 
   function showDeleteConfirm($id) {
@@ -57,6 +57,8 @@ const Sidebar = () => {
 
   function handleDashboard(workspace){
     setActiveWorkspace(workspace)
+    GetMember(workspace.id)
+    GetTaskOverview(workspace.id)
     history.push(`/workspace/${workspace.id}/dashboards`)
   }
 
