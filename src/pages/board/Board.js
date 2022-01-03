@@ -19,7 +19,7 @@ import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { Menu, Dropdown, Form } from 'antd';
 import { BoardContext } from '../../context/BoardContext';
-import EditBoardModal from '../../components/editBoardModal/EditBoardModal';
+import EditBoardModals from '../../components/editBoardModals/EditBoardModals';
 import { MailOutlined, ExclamationCircleOutlined, FileOutlined } from '@ant-design/icons';
 
 function refreshPage() {
@@ -92,8 +92,11 @@ const Board = () => {
                         <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
                     </div>
                     <div className='edit-board-at-board-1'>
-                        {/* Edit board */}
-                        <EditBoardModal editedBoard={board} />
+
+                        {/*Edit board*/}
+                        {/* <EditBoardModal editedBoard={board} /> */}
+                        <EditBoardModals editedBoard={board} />
+
                     </div>
                 </div>
             </Menu.Item>
