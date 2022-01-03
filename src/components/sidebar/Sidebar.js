@@ -9,6 +9,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import "./Sidebar.css";
 import { BoardContext } from "../../context/BoardContext";
+import { BalanceContext } from "../../context/BalanceContext";
 const { SubMenu } = Menu;
 const {  Sider } = Layout;
 
@@ -18,8 +19,9 @@ const Sidebar = () => {
   const { confirm } = Modal;
   const context = useContext(WorkspaceContext)
   const token = getToken()
-  const {setWorkspace, setActiveWorkspace} = useContext(WorkspaceContext)
+  const {setWorkspace, setActiveWorkspace, GetMember, GetTaskOverview} = useContext(WorkspaceContext)
   const {GetBoards} = useContext(BoardContext)
+  const {GetBalanceOverview, GetReportBalance} = useContext(BalanceContext)
 
   function showDeleteConfirm($id) {
     confirm({
@@ -57,7 +59,17 @@ const Sidebar = () => {
 
   function handleDashboard(workspace){
     setActiveWorkspace(workspace)
+    GetMember(workspace.id)
+    GetTaskOverview(workspace.id)
+    GetBalanceOverview(workspace.id)
     history.push(`/workspace/${workspace.id}/dashboards`)
+  }
+
+  function handleReport(workspace){
+    setActiveWorkspace(workspace)
+    GetBalanceOverview(workspace.id)
+    GetReportBalance(workspace.id)
+    history.push(`/report/${workspace.id}`)
   }
   return (
       <Sider width={200} className="site-layout-background" style={{
@@ -88,7 +100,7 @@ const Sidebar = () => {
               <Menu.Item key={"board " + w.id} onClick={() => handleBoard(w)}>
                 <span>Board</span>
               </Menu.Item>
-              <Menu.Item key={"report " + w.id} onClick={() => history.push(`/report/${w.id}`,)} >
+              <Menu.Item key={"report " + w.id} onClick={() => handleReport(w)} >
                 <span>Money Report</span>                
               </Menu.Item>
               <Menu.Item key={"delete " + w.id} onClick={() => {

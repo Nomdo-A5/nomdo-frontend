@@ -10,9 +10,11 @@ export const WorkspaceContextProvider = (props) => {
 
     const [workspace, setWorkspace] = useState([]);
     const [activeWorkspace, setActiveWorkspace] = useState("");
+    const [workspaceMembers, setWorkspacemembers] = useState([]);
+    const [workspaceTaskOverview, setWorkspaceTaskOverview] = useState([])
     const token = getToken();
 
-    const GetWorkspace = async () => {       
+    const GetWorkspace = async () => {
         const response = await axios.get(BASE_API_URL + 'workspace', {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -22,7 +24,7 @@ export const WorkspaceContextProvider = (props) => {
     };
 
     const GetWorkspaceById = async ($id) => {
-        const response = await axios.get(BASE_API_URL+'workspace',{
+        const response = await axios.get(BASE_API_URL + 'workspace', {
             headers: {
                 'Authorization': `Bearer ${token}`
             },
@@ -30,11 +32,11 @@ export const WorkspaceContextProvider = (props) => {
                 'id': $id
             }
         })
-        setActiveWorkspace(response.data)        
+        setActiveWorkspace(response.data)
     }
 
     const GetBoardInformation = async ($id) => {
-        const response = await axios.get(BASE_API_URL+'workspace/board-information',{
+        const response = await axios.get(BASE_API_URL + 'workspace/board-information', {
             headers: {
                 'Authorization': `Bearer ${token}`
             },
@@ -42,20 +44,50 @@ export const WorkspaceContextProvider = (props) => {
                 'id': $id
             }
         })
-        console.log(response)
     }
+
+    const GetMember = async ($id) => {
+        const response = await axios.get(BASE_API_URL + 'workspace/member', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            params: {
+                'workspace_id': $id
+            }
+        })
+        setWorkspacemembers(response.data.member)
+    }
+
+    const GetTaskOverview = async ($id) => {
+        const response = await axios.get(BASE_API_URL + 'workspace/task-information', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            params: {
+                'workspace_id': $id
+            }
+        })
+        setWorkspaceTaskOverview(response.data)
+    }
+
 
     useEffect(() => {
         GetWorkspace()
     }, [])
 
     return <WorkspaceContext.Provider value={{
-        workspace, 
+        workspace,
         setWorkspace,
         activeWorkspace,
         setActiveWorkspace,
         GetWorkspaceById,
-        GetBoardInformation
+        GetBoardInformation,
+        workspaceMembers, 
+        setWorkspacemembers,
+        GetMember,
+        workspaceTaskOverview, 
+        setWorkspaceTaskOverview,
+        GetTaskOverview
     }}>
         {props.children}
     </WorkspaceContext.Provider>

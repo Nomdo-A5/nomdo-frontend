@@ -20,6 +20,7 @@ import Outcome from "../../components/reportOutcome/ReportOutcome";
 import Overview from "../../components/reportOverview/ReportOverview";
 import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useContext } from 'react';
+import { BalanceContext } from '../../context/BalanceContext';
 
 function refreshPage() {
     window.location.reload(true);
@@ -36,6 +37,7 @@ const Report = () => {
     const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
     const [isEditFormVisible, setIsEditFormVisible] = useState(false)
     const [editedBalance, setEditedBalance] = useState([])
+    const { reportBalance, setReportBalance, balanceOverview } = useContext(BalanceContext)
 
 
     const GetReport = async () => {
@@ -48,19 +50,6 @@ const Report = () => {
             }
         })
         setReports(response.data.balance)
-    }
-
-    const GetReportOverview = async () => {
-        const response = await axios.get(BASE_API_URL + 'report/overview', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setOverview(response.data)
     }
 
     const EditBalanceForm = ({ editedBalance, visible, onCreate, onCancel }) => {
@@ -225,7 +214,6 @@ const Report = () => {
     }
 
     const deleteBalance = async ($id) => {
-        console.log("TOKENN " + token)
         const response = await axios.delete(BASE_API_URL + 'balance', {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -234,7 +222,7 @@ const Report = () => {
                 id: $id
             }
         });
-
+        setReportBalance(prev => prev.filter(balance => balance.id !== $id))
         console.log(response)
     }
 
@@ -360,33 +348,28 @@ const Report = () => {
         });
     }
 
-    useEffect(() => {
-        GetReport()
-        GetReportOverview()
-        GetWorkspaceById(workspace_id)
-    }, [])
 
     return (
-        <div style={{backgroundColor:"white"}}>
-            <div className="report-title" style={{backgroundColor:"white"}}>
+        <div style={{ backgroundColor: "white" }}>
+            <div className="report-title" style={{ backgroundColor: "white" }}>
                 <PageTitle />
             </div>
             <div className="report-images">
                 <div className="report-images-component">
-                    <Income income={overview.income_balance} />
+                    <Income income={balanceOverview.income_balance} />
                 </div>
                 <div className="report-images-component">
-                    <Outcome outcome={overview.outcome_balance} />
+                    <Outcome outcome={balanceOverview.outcome_balance} />
                 </div>
                 <div className="report-images-component">
-                    <Overview total={overview.total_balance} />
+                    <Overview total={balanceOverview.total_balance} />
                 </div>
             </div>
             <div className="report-table">
 
                 <Table
                     columns={columns}
-                    dataSource={reports}
+                    dataSource={reportBalance}
                     size="small"
                 />
                 <EditBalanceForm

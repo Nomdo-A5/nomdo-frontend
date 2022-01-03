@@ -25,6 +25,7 @@ import TaskUndone from './TaskUndone.svg'
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
+import { BalanceContext } from '../../context/BalanceContext';
 
 
 function refreshPage() {
@@ -39,59 +40,15 @@ const Dashboard = () => {
     const { workspace_id } = useParams()
     const [overview, setOverview] = useState([])
     const token = getToken()
-    const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
-    const [taskOverview, setTaskOverview] = useState([])
-    const [members, setMembers] = useState([])
+    const { workspaceMembers,workspaceTaskOverview } = useContext(WorkspaceContext)
+    const {balanceOverview} = useContext(BalanceContext)
 
-
-
-    const GetOverview = async () => {
-        const response = await axios.get(BASE_API_URL + 'report/overview', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setOverview(response.data)
-    }
+    
 
     const showModal = () => {
         setIsModalVisible(true);
     };
 
-    const GetTaskOverview = async () => {
-        const response = await axios.get(BASE_API_URL + 'workspace/task-information', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setTaskOverview(response.data)
-    }
-
-    const GetMember = async () => {
-        const response = await axios.get(BASE_API_URL + 'workspace/member', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setMembers(response.data.member)
-    }
-    useEffect(() => {
-        GetOverview()
-        GetTaskOverview()
-        GetMember()
-    }, [])
     return (
 
         <Layout className="main-layout" style={{ backgroundColor: "white" }}>
@@ -132,7 +89,7 @@ const Dashboard = () => {
                                             className="imagez" src={TaskDone} height={75} alt=""
                                         />
                                         <div className="value-at-overview">
-                                            {taskOverview.task_done}
+                                            {workspaceTaskOverview.task_done}
                                         </div>
                                         <div className="value-text-overview">
                                             Completed Task
@@ -144,7 +101,7 @@ const Dashboard = () => {
                                             className="imagez" src={TaskUndone} height={75} alt=""
                                         />
                                         <div className="value-at-overview">
-                                            {taskOverview.task_count - taskOverview.task_done}
+                                            {workspaceTaskOverview.task_count - workspaceTaskOverview.task_done}
                                         </div>
                                         <div className="value-text-overview">
                                             Unfinished Task
@@ -185,7 +142,7 @@ const Dashboard = () => {
                                             className="imagez" src={IncomeStairs} height={75} alt=""
                                         />
                                         <div className="value-at-overview">
-                                            {new Intl.NumberFormat('ID').format(overview.income_balance)}
+                                            {new Intl.NumberFormat('ID').format(balanceOverview.income_balance)}
                                         </div>
                                         <div className="value-text-overview">
                                             Income
@@ -197,7 +154,7 @@ const Dashboard = () => {
                                             className="imagez" src={OutcomeStairs} height={75} alt=""
                                         />
                                         <div className="value-at-overview">
-                                            {new Intl.NumberFormat('ID').format(overview.outcome_balance)}
+                                            {new Intl.NumberFormat('ID').format(balanceOverview.outcome_balance)}
                                         </div>
                                         <div className="value-text-overview">
                                             Outcome
@@ -267,7 +224,7 @@ const Dashboard = () => {
                                         Team Members
                                     </div>
                                 </div>
-                                {members.map(member => (
+                                {workspaceMembers.map(member => (
                                     <div className="members-name-and-logo">
                                         <div className="team-member">
                                             <img

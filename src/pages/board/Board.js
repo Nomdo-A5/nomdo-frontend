@@ -86,15 +86,17 @@ const Board = () => {
     
     const menuEdit = (board) => (
         <Menu>
-            <Menu.Item key="edit">
+            <Menu.Item key="edit" >
                 <div className='edit-board-at-board'>
                     <div className='edit-board-at-board-1'>
                         <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
                     </div>
                     <div className='edit-board-at-board-1'>
+
                         {/*Edit board*/}
                         {/* <EditBoardModal editedBoard={board} /> */}
                         <EditBoardModals editedBoard={board} />
+
                     </div>
                 </div>
             </Menu.Item>
@@ -109,6 +111,7 @@ const Board = () => {
                 </div>
             </Menu.Item>
         </Menu>
+        
     );
 
     const GetBoardView = () => {
