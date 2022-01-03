@@ -3,7 +3,7 @@ import { Button, Card, Empty, Space, Checkbox, Layout, Modal, Row, Input, Form }
 import { ClockCircleOutlined, MailOutlined, FileOutlined } from '@ant-design/icons'
 import { WorkspaceContext } from "../../context/WorkspaceContext";
 import { BrowserRouter as Router, Route, Link, useHistory, useParams } from "react-router-dom";
-import './EditBoardModal.css';
+import './EditBoardModals.css';
 import axios from 'axios';
 import { FiEdit } from 'react-icons/fi';
 import { BASE_API_URL } from '../../constants/urls';
@@ -118,10 +118,7 @@ const EditBoardModals = (props) => {
     };
     const showModal = () => {
         setIsModalVisible(true);
-    };    
-    useEffect(() => {
-        GetWorkspaceById(workspace_id)
-    }, [])
+    };
     return (
         <div className="layout-title-dashboard">
             <div className="workspace-title-dashboard-1">
