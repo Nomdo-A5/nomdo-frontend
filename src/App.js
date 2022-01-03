@@ -12,6 +12,7 @@ import { WorkspaceContextProvider } from "./context/WorkspaceContext";
 import { BoardContextProvider } from "./context/BoardContext";
 import DefaultPage from "./pages/defaultPage/DefaultPage"
 import { UserContextProvider } from "./context/UserContext";
+import { BalanceContextProvider } from "./context/BalanceContext";
 const App = () => {
   //document.title = 'Nomdo'
   return (
@@ -19,34 +20,37 @@ const App = () => {
       <UserContextProvider>
         <WorkspaceContextProvider>
           <BoardContextProvider>
-            <Router>
-              <Switch>
-                {APP_ROUTE.map((val) => (
-                  <PublicRoute
-                    key={val.name}
-                    path={val.path}
-                    exact={val.exact}
-                    component={val.component}
-                    restricted={val.restricted}
-                  />
-                ))}
-                <Route exact path={["/home", "/member", "/workspace", "/workspace/*", "/BoardExtended", "/userprofile", "/usersetting", "/report/*"]}>
-                  <DefaultPage>
-                    <Switch>
-                      {DEFAULT_ROUTE.map((val) => (
-                        <PrivateRoute
-                          key={val.name}
-                          path={val.path}
-                          exact={val.exact}
-                          component={val.component}
-                          private={val.private}
-                        />
-                      ))}
-                    </Switch>
-                  </DefaultPage>
-                </Route>
-              </Switch>
-            </Router>
+            <BalanceContextProvider>
+              <Router>
+                <Switch>
+                  {APP_ROUTE.map((val) => (
+                    <PublicRoute
+                      key={val.name}
+                      path={val.path}
+                      exact={val.exact}
+                      component={val.component}
+                      restricted={val.restricted}
+                    />
+                  ))}
+                  <Route exact path={["/home", "/member", "/workspace", "/workspace/*", "/BoardExtended", "/userprofile", "/usersetting", "/report/*"]}>
+                    <DefaultPage>
+                      <Switch>
+                        {DEFAULT_ROUTE.map((val) => (
+                          <PrivateRoute
+                            key={val.name}
+                            path={val.path}
+                            exact={val.exact}
+                            component={val.component}
+                            private={val.private}
+                          />
+                        ))}
+                      </Switch>
+                    </DefaultPage>
+                  </Route>
+                </Switch>
+              </Router>
+            </BalanceContextProvider>
+
           </BoardContextProvider>
         </WorkspaceContextProvider>
       </UserContextProvider>

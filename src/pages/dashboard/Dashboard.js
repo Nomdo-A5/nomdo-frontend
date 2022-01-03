@@ -25,6 +25,7 @@ import TaskUndone from './TaskUndone.svg'
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
+import { BalanceContext } from '../../context/BalanceContext';
 
 
 function refreshPage() {
@@ -40,27 +41,14 @@ const Dashboard = () => {
     const [overview, setOverview] = useState([])
     const token = getToken()
     const { workspaceMembers,workspaceTaskOverview } = useContext(WorkspaceContext)
+    const {balanceOverview} = useContext(BalanceContext)
 
-    const GetOverview = async () => {
-        const response = await axios.get(BASE_API_URL + 'report/overview', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setOverview(response.data)
-    }
+    
 
     const showModal = () => {
         setIsModalVisible(true);
     };
 
-    useEffect(() => {
-        GetOverview()
-    }, [])
     return (
 
         <Layout className="main-layout" style={{ backgroundColor: "white" }}>
@@ -154,7 +142,7 @@ const Dashboard = () => {
                                             className="imagez" src={IncomeStairs} height={75} alt=""
                                         />
                                         <div className="value-at-overview">
-                                            {new Intl.NumberFormat('ID').format(overview.income_balance)}
+                                            {new Intl.NumberFormat('ID').format(balanceOverview.income_balance)}
                                         </div>
                                         <div className="value-text-overview">
                                             Income
@@ -166,7 +154,7 @@ const Dashboard = () => {
                                             className="imagez" src={OutcomeStairs} height={75} alt=""
                                         />
                                         <div className="value-at-overview">
-                                            {new Intl.NumberFormat('ID').format(overview.outcome_balance)}
+                                            {new Intl.NumberFormat('ID').format(balanceOverview.outcome_balance)}
                                         </div>
                                         <div className="value-text-overview">
                                             Outcome

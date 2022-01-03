@@ -9,6 +9,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import "./Sidebar.css";
 import { BoardContext } from "../../context/BoardContext";
+import { BalanceContext } from "../../context/BalanceContext";
 const { SubMenu } = Menu;
 const {  Sider } = Layout;
 
@@ -20,6 +21,7 @@ const Sidebar = () => {
   const token = getToken()
   const {setWorkspace, setActiveWorkspace, GetMember, GetTaskOverview} = useContext(WorkspaceContext)
   const {GetBoards} = useContext(BoardContext)
+  const {GetBalanceOverview} = useContext(BalanceContext)
 
   function showDeleteConfirm($id) {
     confirm({
@@ -59,6 +61,7 @@ const Sidebar = () => {
     setActiveWorkspace(workspace)
     GetMember(workspace.id)
     GetTaskOverview(workspace.id)
+    GetBalanceOverview(workspace.id)
     history.push(`/workspace/${workspace.id}/dashboards`)
   }
 
