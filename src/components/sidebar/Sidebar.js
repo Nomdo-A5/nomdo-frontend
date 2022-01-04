@@ -54,6 +54,7 @@ const Sidebar = () => {
   function handleBoard(workspace){
     setActiveWorkspace(workspace)
     GetBoards(workspace.id)
+    GetMember(workspace.id)
     history.push(`/workspace/${workspace.id}/boards`)
   }
 
