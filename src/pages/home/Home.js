@@ -34,62 +34,61 @@ const Home = () => {
     const context = useContext(WorkspaceContext)
     const { workspace_id } = useParams()
     const [overview, setOverview] = useState([]);
-    const {user} = useContext(UserContext)
+    const { user } = useContext(UserContext)
     const token = getToken()
-    const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
+    const { activeWorkspace, GetWorkspaceById, workspace } = useContext(WorkspaceContext)
     const [taskOverview, setTaskOverview] = useState([])
     const [members, setMembers] = useState([])
 
 
 
-    const GetOverview = async () => {
-        const response = await axios.get(BASE_API_URL + 'report/overview', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setOverview(response.data)
-    }
+    // const GetOverview = async () => {
+    //     const response = await axios.get(BASE_API_URL + 'report/overview', {
+    //         headers: {
+    //             'Authorization': `Bearer ${token}`
+    //         },
+    //         params: {
+    //             'workspace_id': `${workspace_id}`
+    //         }
+    //     })
+    //     console.log(response)
+    //     setOverview(response.data)
+    // }
 
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
+    // const showModal = () => {
+    //     setIsModalVisible(true);
+    // };
 
-    const GetTaskOverview = async () => {
-        const response = await axios.get(BASE_API_URL + 'workspace/task-information', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setTaskOverview(response.data)
-    }
+    // const GetTaskOverview = async () => {
+    //     const response = await axios.get(BASE_API_URL + 'workspace/task-information', {
+    //         headers: {
+    //             'Authorization': `Bearer ${token}`
+    //         },
+    //         params: {
+    //             'workspace_id': `${workspace_id}`
+    //         }
+    //     })
+    //     console.log(response)
+    //     setTaskOverview(response.data)
+    // }
 
-    const GetMember = async () => {
-        const response = await axios.get(BASE_API_URL + 'workspace/member', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setMembers(response.data.member)
-    }
-    useEffect(() => {
-        GetOverview()
-        GetWorkspaceById(workspace_id)
-        GetTaskOverview()
-        GetMember()
-    }, [])
+    // const GetMember = async () => {
+    //     const response = await axios.get(BASE_API_URL + 'workspace/member', {
+    //         headers: {
+    //             'Authorization': `Bearer ${token}`
+    //         },
+    //         params: {
+    //             'workspace_id': `${workspace_id}`
+    //         }
+    //     })
+    //     console.log(response)
+    //     setMembers(response.data.member)
+    // }
+    // useEffect(() => {
+    //     GetOverview()
+    //     GetTaskOverview()
+    //     GetMember()
+    // }, [])
 
     return (
         <div className="main-container">
@@ -173,72 +172,30 @@ const Home = () => {
                                 Your Workspaces
                             </div>
                             <div className="workspace-container-at-dashboard">
-                                <Row style={{ width: "260px", height: "60px", display: "flex", margin: "auto", backgroundColor: "#FFFFFF", marginBottom: "10px", borderRadius: "10px 10px 10px 10px" }}>
-                                    <Col span={5} className="photo-container" style={{ margin: "auto" }}>
-                                        <BiUserCircle style={{ fontSize: "48px" }} />
-                                    </Col>
-                                    <Col span={12} style={{ margin: "auto" }}>
-                                        <Row>
-                                            <div className="name-container-dashboard">
-                                                Nomdo
+                                {context.workspace.slice(0,3).map(w=> (
+                                    <Row style={{ width: "260px", height: "60px", display: "flex", margin: "auto", backgroundColor: "#FFFFFF", marginBottom: "10px", borderRadius: "10px 10px 10px 10px" }}>
+                                        <Col span={5} className="photo-container" style={{ margin: "auto" }}>
+                                            <Avatar>{w.workspace_name.charAt(0).toUpperCase()}</Avatar>
+                                        </Col>
+                                        <Col span={12} style={{ margin: "auto" }}>
+                                            <Row>
+                                                <div className="name-container-dashboard">
+                                                    <span>{w.workspace_name}</span>
+                                                </div>
+                                            </Row>
+                                            <Row>
+                                                <div className="member-container-dashboard">
+                                                    {w.workspace_description}
+                                                </div>
+                                            </Row>
+                                        </Col>
+                                        <Col span={7} style={{ margin: "auto" }}>
+                                            <div className="details-button">
+                                                Details
                                             </div>
-                                        </Row>
-                                        <Row>
-                                            <div className="member-container-dashboard">
-                                                6 members
-                                            </div>
-                                        </Row>
-                                    </Col>
-                                    <Col span={7} style={{ margin: "auto" }}>
-                                        <div className="details-button">
-                                            Details
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <Row style={{ width: "260px", height: "60px", display: "flex", margin: "auto", backgroundColor: "#FFFFFF", marginBottom: "10px", borderRadius: "10px 10px 10px 10px" }}>
-                                    <Col span={5} className="photo-container" style={{ margin: "auto" }}>
-                                        <BiUserCircle style={{ fontSize: "48px" }} />
-                                    </Col>
-                                    <Col span={12} style={{ margin: "auto" }}>
-                                        <Row>
-                                            <div className="name-container-dashboard">
-                                                Nomdo
-                                            </div>
-                                        </Row>
-                                        <Row>
-                                            <div className="member-container-dashboard">
-                                                6 members
-                                            </div>
-                                        </Row>
-                                    </Col>
-                                    <Col span={7} style={{ margin: "auto" }}>
-                                        <div className="details-button">
-                                            Details
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <Row style={{ width: "260px", height: "60px", display: "flex", margin: "auto", backgroundColor: "#FFFFFF", marginBottom: "10px", borderRadius: "10px 10px 10px 10px" }}>
-                                    <Col span={5} className="photo-container" style={{ margin: "auto" }}>
-                                        <BiUserCircle style={{ fontSize: "48px" }} />
-                                    </Col>
-                                    <Col span={12} style={{ margin: "auto" }}>
-                                        <Row>
-                                            <div className="name-container-dashboard">
-                                                Nomdo
-                                            </div>
-                                        </Row>
-                                        <Row>
-                                            <div className="member-container-dashboard">
-                                                6 members
-                                            </div>
-                                        </Row>
-                                    </Col>
-                                    <Col span={7} style={{ margin: "auto" }}>
-                                        <div className="details-button">
-                                            Details
-                                        </div>
-                                    </Col>
-                                </Row>
+                                        </Col>
+                                    </Row>
+                                ))}
                             </div>
                         </div>
                     </Card>
