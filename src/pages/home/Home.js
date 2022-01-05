@@ -173,18 +173,27 @@ const Home = () => {
                             </div>
                             <div className="workspace-container-at-dashboard">
                                 {context.workspace.slice(0,3).map(w=> (
-                                    <Row style={{ width: "260px", height: "60px", display: "flex", margin: "auto", backgroundColor: "#FFFFFF", marginBottom: "10px", borderRadius: "10px 10px 10px 10px" }}>
+                                    <Row style={{ width: "260px", height: "auto", display: "flex", margin: "auto", backgroundColor: "#FFFFFF", marginBottom: "10px", borderRadius: "10px 10px 10px 10px" }}>
                                         <Col span={5} className="photo-container" style={{ margin: "auto" }}>
                                             <Avatar>{w.workspace_name.charAt(0).toUpperCase()}</Avatar>
                                         </Col>
                                         <Col span={12} style={{ margin: "auto" }}>
                                             <Row>
-                                                <div className="name-container-dashboard">
+                                                <div className="name-container-dashboard"
+                                                    style={{
+                                                        marginTop: "10px"
+                                                    }}
+                                                >
                                                     <span>{w.workspace_name}</span>
                                                 </div>
                                             </Row>
                                             <Row>
-                                                <div className="member-container-dashboard">
+                                                <div className="member-container-dashboard"
+                                                    style={{
+                                                        marginBottom: "10px",
+                                                        textAlign: "left"
+                                                    }}
+                                                >
                                                     {w.workspace_description}
                                                 </div>
                                             </Row>
@@ -208,7 +217,7 @@ const Home = () => {
                     <Card
                         style={{
                             width: "90%",
-                            height: "100%",
+                            height: "auto",
                             borderRadius: "18px",
                             display: "flex",
                             justifyContent: "left",

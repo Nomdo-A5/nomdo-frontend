@@ -4,7 +4,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import Draggable from 'react-draggable';
 
 import { Select, Input, Form } from 'antd';
-import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
+import { ClockCircleOutlined, MailOutlined, FileOutlined } from '@ant-design/icons'
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import '../floatingBoard/FloatingBoard.css';
@@ -74,41 +74,35 @@ const NewBoardForm = ({ visible, onCreate, onCancel }) => {
                         </div>
                     </div>
                 </Form.Item>
-
-                <div className="balance-name-and-logo">
-                    <div className="balance-name-and-input">
-                        <div className="balance-name">
-
+                <Form.Item
+                    name="workspace_id"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please select workspace!',
+                        },
+                    ]}
+                    className="new-board-form_last-form-item"
+                    style={{
+                        width: "240px"
+                    }}
+                >
+                    <div className="workspace-name-and-logo">
+                        <div className="workspace-logo">
+                            <FileOutlined />
                         </div>
-                        <div className="dropdown-items">
-                            <Form.Item
-                                name="workspace_id"
-                                label="Workspace Name"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please select workspace!',
-                                    },
-                                ]}
-                                className="new-board-form_last-form-item"
-                                style={{
-                                    width: "240px"
-                                }}
-                            >
-                                <Select placeholder="Select Workspace">
-                                    {context.workspace.map(w =>
-                                        (<Option value={w.id}>{w.workspace_name}</Option>)
-                                    )}
-                                </Select>
-                            </Form.Item>
-
+                        <div className="workspace-name-and-input">
+                            <div className="workspace-name">
+                                Description
+                            </div>
                         </div>
-
                     </div>
-                </div>
-
-
-
+                    <Select style={{ marginLeft: "30px"}} placeholder="Select Workspace">
+                        {context.workspace.map(w =>
+                            (<Option value={w.id}>{w.workspace_name}</Option>)
+                        )}
+                    </Select>
+                </Form.Item>
             </Form>
         </Modal>
 

@@ -8,6 +8,7 @@ import { getToken } from '../../utils/authentication';
 import { ClickedTask } from "../clickedTask/ClickedTask";
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import EditTaskModals from '../editTaskModals/EditTaskModals';
 import EditTask from '../editTask/EditTask';
 
 export default function TaskOnBoard(props) {
@@ -47,7 +48,9 @@ export default function TaskOnBoard(props) {
                         <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
                     </div>
                     <div className='edit-board-at-board-1'>
-                        <EditTask editedTask ={task} />
+                        {/*<EditTaskModal editedBoard={task} />*/}
+                        {/*<EditTaskModals editedTask={task} />*/}
+                        <EditTask editedTask={task} />
                     </div>
                 </div>
             </Menu.Item>
