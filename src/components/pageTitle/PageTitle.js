@@ -91,7 +91,7 @@ const EditWorkspaceForm = ({ visible, workspace, onCreate, onCancel }) => {
                 <Form.Item
                     name="description"
                     initialValue={workspace.workspace_description}
-                    className="collection-create-form_last-form-item" >
+                    className="edit-workspace-form_last-form-item" >
                     <div className="balance-name-and-logo">
                         <div className="balance-name-and-input">
                             <div className="balance-name">
@@ -111,7 +111,7 @@ const PageTitle = () => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const token = getToken()
-    const { activeWorkspace,setActiveWorkspace} = useContext(WorkspaceContext)
+    const { activeWorkspace,setActiveWorkspace, setWorkspace} = useContext(WorkspaceContext)
   
 
     const handleOk = async (values) => {
@@ -126,6 +126,17 @@ const PageTitle = () => {
                 },
             });
         setActiveWorkspace(response.data.workspace)
+        setWorkspace(ws => ws.map(w => {
+            if (w.id === activeWorkspace.id){
+                console.log("harusnya diganti")
+                // modify terserah
+                return activeWorkspace
+            }
+            else{
+
+                return w
+            }
+        }))
         setIsModalVisible(false);
 
     };

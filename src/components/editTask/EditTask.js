@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, Card, Empty, Space, Checkbox, Layout, Modal, Row, Input, Form } from 'antd';
+import { Button, Card, Empty, Space, DatePicker, Modal, Select, Input, Form } from 'antd';
 import { ClockCircleOutlined, MailOutlined } from '@ant-design/icons'
 import { WorkspaceContext } from "../../context/WorkspaceContext";
 import { BrowserRouter as Router, Route, Link, useHistory, useParams } from "react-router-dom";
@@ -10,16 +10,17 @@ import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
 import { ClickedTask } from "../clickedTask/ClickedTask";
 
-
-
-const EditTask = ({ visible, workspace, onCreate, onCancel }) => {
+const EditTaskForm = ({ visible, task, onCreate, onCancel }) => {
     const [form] = Form.useForm();
+    const { workspaceMembers } = useContext(WorkspaceContext)
+    const { Option } = Select;
+
     return (
         <Modal
             width={340}
-            style={{ textAlign: "center" }}
+            style={{ textAFlign: "center" }}
             visible={visible}
-            title="Edit Workspace"
+            title="Edit Task"
             okText="Save Changes"
             cancelText="Cancel"
             centered={true}
@@ -43,152 +44,134 @@ const EditTask = ({ visible, workspace, onCreate, onCancel }) => {
 
             >
                 <Form.Item
-                    name="workspace_name"
+                    name="task_name"
+                    label="Task name"
+                    initialValue={task.task_name}
                     rules={[
                         {
-                            required: false,
-                            message: 'Please input the new workspace name!',
+                            required: true,
+                            message: 'Please input the new task name!',
                         },
                     ]}
-                    initialValue={workspace.workspace_name}
                 >
-                    <div className="workspace-name-and-logo">
-                        <div className="workspace-logo">
-                            <MailOutlined />
-                        </div>
-                        <div className="workspace-name-and-input">
-                            <div className="workspace-name">
-                                Workspace Name
-                            </div>
-                            <div className="form-input-workspace-name">
-                                <Input placeholder={workspace.workspace_name} style={{ borderRadius: "10px 10px 10px 10px" }} />
+                    <div className="task-name-and-input">
+
+                        <div className="input-area">
+                            <div className="form-input-task-name">
+                                <Input placeholder={task.task_name} style={{ borderRadius: "10px 10px 10px 10px" }} />
                             </div>
                         </div>
                     </div>
                 </Form.Item>
                 <Form.Item
-                    name="description"
-                    initialValue={workspace.workspace_description}
-                    className="collection-create-form_last-form-item" >
-                    <div className="balance-name-and-logo">
-                        <div className="balance-name-and-input">
-                            <div className="balance-name">
-                                Description
-                            </div>
-                            <div className="form-input-balance-name">
-                                <Input.TextArea style={{ borderRadius: "10px 10px 10px 10px" }} placeholder={workspace.workspace_description} />
+                    name="task_description"
+                    label="Task Desciption"
+                    initialValue={task.task_description}
+                >
+                    <div className="description-name-and-input">
+                        <div className="input-area">
+                            <div className="form-input-task-name">
+                                <Input.TextArea placeholder={task.task_description} style={{ borderRadius: "10px 10px 10px 10px" }} />
                             </div>
                         </div>
                     </div>
+
+                </Form.Item>
+                <Form.Item
+                    name="date"
+                    label="Date"
+                >
+
+                    <DatePicker placeholder={task.due_date} style={{ width: "270px", borderRadius: "10px 10px 10px 10px" }} />
+
+                </Form.Item>
+                <Form.Item
+                    name="member_id"
+                    label="Assigned Member"
+                    rules={[
+                        {
+                            required: false,
+                            message: 'Please select assigned member!',
+                        },
+                    ]}
+
+                >
+                    <Select
+                        style={{ width: 280, paddingLeft: "10px" }}
+                        placeholder="Select members">
+                        {workspaceMembers.map((member) => (
+                            <Option value={member.id}>{member.name}</Option>
+                        ))}
+
+                    </Select>
+
                 </Form.Item>
             </Form>
         </Modal>
     );
 };
-const PageTitle = () => {
+const EditTask = (props) => {
 
-    const { Sider } = Layout;
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const context = useContext(WorkspaceContext)
     const { workspace_id } = useParams()
-    const [overview, setOverview] = useState([])
     const token = getToken()
     const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
-    const [taskOverview, setTaskOverview] = useState([])
-    const [members, setMembers] = useState([])
-    const [form] = Form.useForm()
+
+    const [date, setDate] = useState("")
+
     const handleOk = async (values) => {
-        const response = await axios.patch(BASE_API_URL + 'workspace', {
-            id:activeWorkspace.id,
-            workspace_name: values.workspace_name,
-            workspace_description: values.description
-        },
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                },
-            });
+
+        if (values.date === undefined) {
+            setDate(props.editedTask.due_date)
+        } else {
+            const dateInput = new Date(values.date);
+            setDate((dateInput.getYear() + 1900) + "-" + (dateInput.getMonth() + 1) + "-" + dateInput.getDate())
+        }
+
+
+        // const response = await axios.patch(BASE_API_URL + 'workspace', {
+        //     id:activeWorkspace.id,
+        //     workspace_name: values.workspace_name,
+        //     workspace_description: values.description
+        // },
+        //     {
+        //         headers: {
+        //             'Authorization': `Bearer ${token}`
+        //         },
+        //     });
         console.log(values)
-        console.log(response)
-        setIsModalVisible(false);
-
-    };
-
-    const handleCancel = () => {
+        // console.log(response)
         setIsModalVisible(false);
     };
 
-    const GetOverview = async () => {
-        const response = await axios.get(BASE_API_URL + 'report/overview', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setOverview(response.data)
-    }
 
     const showModal = () => {
         setIsModalVisible(true);
     };
 
-    const GetTaskOverview = async () => {
-        const response = await axios.get(BASE_API_URL + 'workspace/task-information', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setTaskOverview(response.data)
-    }
-
-    const GetMember = async () => {
-        const response = await axios.get(BASE_API_URL + 'workspace/member', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            params: {
-                'workspace_id': `${workspace_id}`
-            }
-        })
-        console.log(response)
-        setMembers(response.data.member)
-    }
-    useEffect(() => {
-        GetOverview()
-        GetWorkspaceById(workspace_id)
-        GetTaskOverview()
-        GetMember()
-    }, [])
     return (
         <div className="layout-title-dashboard">
             <div className="workspace-title-dashboard-1">
-                <div className="workspace-title-dashboard-1-1">
+                {/* <div className="workspace-title-dashboard-1-1">
                     {activeWorkspace.workspace_name}
-                </div>
+                </div> */}
                 <div className="workspace-title-dashboard-1-2">
                     <Button
                         type="link"
                         onClick={showModal}
                         style={{
-                            color: "#4ABDAC",
+                            backgroundColor: "none",
+                            color: "black",
                             marginTop: "auto",
                             marginBottom: "auto"
                         }}
                     >
-                        <FiEdit
-                            style={{ fontSize: "16px" }} />
+                        Edit task
                     </Button>
                 </div>
-                <EditTask
+                <EditTaskForm
                     visible={isModalVisible}
-                    workspace={activeWorkspace}
+                    task={props.editedTask}
                     onCreate={handleOk}
                     onCancel={() => { setIsModalVisible(false) }}
                 />
@@ -198,4 +181,4 @@ const PageTitle = () => {
     );
 }
 
-export default PageTitle;
+export default EditTask;

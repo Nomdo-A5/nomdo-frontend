@@ -8,7 +8,7 @@ import axios from 'axios';
 import { FiEdit } from 'react-icons/fi';
 import { BASE_API_URL } from '../../constants/urls';
 import { getToken } from '../../utils/authentication';
-import { ClickedTask } from "../clickedTask/ClickedTask";
+import { BoardContext } from '../../context/BoardContext';
 
 const EditBoardModal = ({ visible, editedBoard, onCreate, onCancel }) => {
     const [form] = Form.useForm();
@@ -88,21 +88,13 @@ const EditBoardModal = ({ visible, editedBoard, onCreate, onCancel }) => {
 };
 const EditBoardModals = (props) => {
 
-    const { Sider } = Layout;
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const context = useContext(WorkspaceContext)
-    const { workspace_id } = useParams()
-    const [overview, setOverview] = useState([])
     const token = getToken()
-    const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
-    const [taskOverview, setTaskOverview] = useState([])
-    const [members, setMembers] = useState([])
-    const [form] = Form.useForm()
-    
-    
+    const { boards, setBoards } = useContext(BoardContext)
+
     const handleOk = async (values) => {
         const response = await axios.patch(BASE_API_URL + 'boards', {
-            id:props.editedBoard.id,
+            id: props.editedBoard.id,
             board_name: values.board_name,
             board_description: values.description
         },
@@ -112,7 +104,19 @@ const EditBoardModals = (props) => {
                 },
             });
         console.log(values)
-        // console.log(response)
+        console.log(response)
+        setBoards(boards => boards.map(bd => {
+            if (bd.id === props.editedBoard.id) {
+                bd.board_name = values.board_name
+                bd.board_description = values.description
+                // modify terserah
+                return bd
+            }
+            else {
+                return bd
+            }
+        }))
+        // setBoards
         setIsModalVisible(false);
 
     };
