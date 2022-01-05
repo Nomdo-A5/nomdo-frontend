@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 import { useState, useEffect, useContext } from 'react';
 
 import { Card, Row, Col, Input, Form } from 'antd';
-import { ClockCircleOutlined, MailOutlined, UserOutlined, CopyOutlined } from '@ant-design/icons'
+import { QrcodeOutlined, MailOutlined, UserOutlined, CopyOutlined } from '@ant-design/icons'
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import '../joinWorkspace/JoinWorkspace.css';
@@ -68,7 +68,7 @@ const JoinWorkspaceForm = ({ visible, onCreate, onCancel }) => {
                             className="join-workspace-form_last-form-item" >
                             <div className="join-name-and-logo">
                                 <div className="workspace-logo">
-                                    <MailOutlined />
+                                    <QrcodeOutlined />
                                 </div>
                                 <div className="join-name-and-input">
                                     <div className="workspace-name">

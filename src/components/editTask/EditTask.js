@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, Empty, Space, DatePicker, Modal, Select, Input, Form } from 'antd';
-import { ClockCircleOutlined, MailOutlined } from '@ant-design/icons'
+import { ClockCircleOutlined, MailOutlined, FileOutlined, UserOutlined, CalendarOutlined } from '@ant-design/icons'
 import { WorkspaceContext } from "../../context/WorkspaceContext";
 import { BrowserRouter as Router, Route, Link, useHistory, useParams } from "react-router-dom";
 import './EditTask.css';
@@ -18,7 +18,7 @@ const EditTaskForm = ({ visible, task, onCreate, onCancel }) => {
     return (
         <Modal
             width={340}
-            style={{ textAFlign: "center" }}
+            style={{ textAlign: "center" }}
             visible={visible}
             title="Edit Task"
             okText="Save Changes"
@@ -45,19 +45,23 @@ const EditTaskForm = ({ visible, task, onCreate, onCancel }) => {
             >
                 <Form.Item
                     name="task_name"
-                    label="Task name"
                     initialValue={task.task_name}
                     rules={[
                         {
-                            required: true,
+                            required: false,
                             message: 'Please input the new task name!',
                         },
                     ]}
                 >
-                    <div className="task-name-and-input">
-
-                        <div className="input-area">
-                            <div className="form-input-task-name">
+                    <div className="workspace-name-and-logo">
+                        <div className="workspace-logo">
+                            <MailOutlined />
+                        </div>
+                        <div className="workspace-name-and-input">
+                            <div className="workspace-name">
+                                Task Name
+                            </div>
+                            <div className="form-input-workspace-title">
                                 <Input placeholder={task.task_name} style={{ borderRadius: "10px 10px 10px 10px" }} />
                             </div>
                         </div>
@@ -65,12 +69,17 @@ const EditTaskForm = ({ visible, task, onCreate, onCancel }) => {
                 </Form.Item>
                 <Form.Item
                     name="task_description"
-                    label="Task Desciption"
                     initialValue={task.task_description}
                 >
-                    <div className="description-name-and-input">
-                        <div className="input-area">
-                            <div className="form-input-task-name">
+                    <div className="workspace-name-and-logo">
+                        <div className="workspace-logo">
+                            <FileOutlined />
+                        </div>
+                        <div className="workspace-name-and-input">
+                            <div className="workspace-name">
+                                Task Description
+                            </div>
+                            <div className="form-input-workspace-title">
                                 <Input.TextArea placeholder={task.task_description} style={{ borderRadius: "10px 10px 10px 10px" }} />
                             </div>
                         </div>
@@ -79,15 +88,22 @@ const EditTaskForm = ({ visible, task, onCreate, onCancel }) => {
                 </Form.Item>
                 <Form.Item
                     name="date"
-                    label="Date"
                 >
-
-                    <DatePicker placeholder={task.due_date} style={{ width: "270px", borderRadius: "10px 10px 10px 10px" }} />
+                    <div className="workspace-name-and-logo">
+                        <div className="workspace-logo">
+                            <CalendarOutlined />
+                        </div>
+                        <div className="workspace-name-and-input">
+                            <div className="workspace-name">
+                                Date
+                            </div>
+                        </div>
+                    </div>
+                    <DatePicker placeholder={task.due_date} style={{ width: "240px", marginLeft: "10px", borderRadius: "10px 10px 10px 10px" }} />
 
                 </Form.Item>
                 <Form.Item
                     name="member_id"
-                    label="Assigned Member"
                     rules={[
                         {
                             required: false,
@@ -96,8 +112,18 @@ const EditTaskForm = ({ visible, task, onCreate, onCancel }) => {
                     ]}
 
                 >
+                    <div className="workspace-name-and-logo">
+                        <div className="workspace-logo">
+                            <UserOutlined />
+                        </div>
+                        <div className="workspace-name-and-input">
+                            <div className="workspace-name">
+                                Assigned Member
+                            </div>
+                        </div>
+                    </div>
                     <Select
-                        style={{ width: 280, paddingLeft: "10px" }}
+                        style={{ width: 250, paddingLeft: "10px" }}
                         placeholder="Select members">
                         {workspaceMembers.map((member) => (
                             <Option value={member.id}>{member.name}</Option>

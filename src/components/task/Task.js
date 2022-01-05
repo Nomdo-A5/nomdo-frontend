@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
-import EditTaskModal from '../../components/editTaskModal/EditTaskModal';
+//import EditTaskModal from '../../components/editTaskModal/EditTaskModal';
 
 import axios from 'axios';
 import { BASE_API_URL } from '../../constants/urls';
@@ -39,7 +39,7 @@ export default function Task (props) {
                     <AiOutlineEdit style={{fontSize:"large", marginRight:"10px", margin: "auto"}}/>
                 </div>
                 <div className='edit-task-at-task-2'>
-                    <EditTaskModal/>
+                    {/*<EditTaskModal/>*/}
                 </div>
             </div>
           </Menu.Item>

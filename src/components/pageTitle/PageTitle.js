@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, Empty, Space, Checkbox, Layout, Modal, Row, Input, Form } from 'antd';
-import { ClockCircleOutlined, MailOutlined, QrcodeOutlined } from '@ant-design/icons'
+import { ClockCircleOutlined, MailOutlined, QrcodeOutlined, FileOutlined } from '@ant-design/icons'
 import { WorkspaceContext } from "../../context/WorkspaceContext";
 import { BrowserRouter as Router, Route, Link, useHistory, useParams } from "react-router-dom";
 import './PageTitle.css';
@@ -92,9 +92,12 @@ const EditWorkspaceForm = ({ visible, workspace, onCreate, onCancel }) => {
                     name="description"
                     initialValue={workspace.workspace_description}
                     className="edit-workspace-form_last-form-item" >
-                    <div className="balance-name-and-logo">
-                        <div className="balance-name-and-input">
-                            <div className="balance-name">
+                    <div className="workspace-name-and-logo">
+                        <div className="workspace-logo">
+                            <FileOutlined />
+                        </div>
+                        <div className="workspace-name-and-input">
+                            <div className="workspace-name">
                                 Description
                             </div>
                             <div className="form-input-balance-name">

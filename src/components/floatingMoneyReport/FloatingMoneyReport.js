@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button, Tooltip, Modal } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { CalendarOutlined, PlusOutlined } from '@ant-design/icons';
 import Draggable from 'react-draggable';
 import { BsWallet2 } from 'react-icons/bs';
 import { useState, useContext } from 'react';
 
 import { Form, Card, Row, Col, Input, Select, DatePicker, Upload } from 'antd';
-import { ClockCircleOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
+import { ClockCircleOutlined, MailOutlined, TagsOutlined, DatabaseOutlined, HistoryOutlined, FileOutlined, DollarCircleOutlined } from '@ant-design/icons'
 import { BsPencilSquare } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import '../floatingMoneyReport/FloatingMoneyReport.css';
@@ -75,11 +75,8 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
             >
                 <div>
                     <Row className="row-test-1">
-                        <div className="workspace-name-and-input">
-                            <div className="input-area-drop-down">
                                 <Form.Item
                                     name="workspace_id"
-                                    label="Workspace name"
                                     rules={[
                                         {
                                             required: true,
@@ -88,8 +85,18 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                                     ]}
 
                                 >
+                                    <div className="workspace-name-and-logo">
+                                        <div className="workspace-logo">
+                                            <MailOutlined />
+                                        </div>
+                                        <div className="workspace-name-and-input">
+                                            <div className="workspace-name">
+                                                Workspace Name
+                                            </div>
+                                        </div>
+                                    </div>
                                     <Select
-                                        style={{ width: 270 }}
+                                        style={{ marginLeft: "30px", width: 240 }}
                                         placeholder="Select your workspace"
                                     >
                                         {context.workspace.map(w =>
@@ -98,18 +105,22 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                                     </Select>
 
                                 </Form.Item>
-                            </div>
-                        </div>
                     </Row>
                     <Row className="row-test">
                         <Form.Item
                             name="balance_description"
-                            label="Desciption"
                         >
-                            <div className="description-name-and-input">
-
-                                <div className="form-input-description-name">
-                                    <Input.TextArea placeholder="Description" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <FileOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                        Description
+                                    </div>
+                                    <div className="form-input-description-name">
+                                        <Input.TextArea placeholder="Description" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                    </div>
                                 </div>
                             </div>
                         </Form.Item>
@@ -117,19 +128,27 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                     </Row>
                     <Form.Item
                         name="date"
-                        label="Date"
                         rules={[
                             {
                                 required: true,
                                 message: 'Please input the date!',
                             },
                         ]}>
-                        <DatePicker style={{ width: "270px", borderRadius: "10px 10px 10px 10px" }}/>
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <CalendarOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                        Date
+                                    </div>
+                                </div>
+                            </div>
+                            <DatePicker style={{ marginLeft: "10px", width: "240px", borderRadius: "10px 10px 10px 10px" }}/>
                     </Form.Item>
                     <Row>
                         <Form.Item
                             name="nominal"
-                            label="Nominal"
                             rules={[
                                 {
                                     required: true,
@@ -137,103 +156,114 @@ const NewBalanceForm = ({ visible, onCreate, onCancel }) => {
                                 },
                             ]}
                         >
-                            <div className="nominal-name-and-input">
-                                <div className="form-input-nominal-name">
-                                    <Input placeholder="Nominal" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <DollarCircleOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                        Nominal
+                                    </div>
+                                    <div className="form-input-nominal-name">
+                                        <Input placeholder="Nominal" style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                    </div>
                                 </div>
                             </div>
                         </Form.Item>
 
                     </Row>
                     <Row>
-                        <div className="tipe-name-and-input">
-                            <div className="input-area-drop-down">
-                                <Form.Item
-                                    name="is_income"
-                                    label="Type"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please select type!',
-                                        },
-                                    ]}
-
-                                >
-                                    <Select
-                                        style={{ width: 270 }}
-                                        placeholder="Select Type"
-                                    >
-
-                                        <Option value='1'>income</Option>
-                                        <Option value='0'>outcome</Option>
-
-                                    </Select>
-
-                                </Form.Item>
+                        <Form.Item
+                            name="is_income"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please select type!',
+                                },
+                            ]}
+                        >
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <DatabaseOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                        Type
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <Select
+                                style={{ marginLeft: "30px", width: 240 }}
+                                placeholder="Select Type"
+                            >
+                                <Option value='1'>income</Option>
+                                <Option value='0'>outcome</Option>
+                            </Select>
+                        </Form.Item>
                     </Row>
                     <Row>
-                        <div className="status-name-and-input">
-                            <div className="input-area-drop-down">
-                                <Form.Item
-                                    name="status"
-                                    label="Status"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please select status!',
-                                        },
-                                    ]}
-
-                                >
-                                    <Select
-                                        style={{ width: 270 }}
-                                        placeholder="Select Status"
-                                    >
-
-                                        <Option value='Planned'>Planned</Option>
-                                        <Option value='Done'>Done</Option>
-
-                                    </Select>
-
-                                </Form.Item>
+                        <Form.Item
+                            name="status"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please select status!',
+                                },
+                            ]}
+                        >
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <HistoryOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                        Status
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <Select
+                                style={{ marginLeft: "30px", width: 240 }}
+                                placeholder="Select Status"
+                            >
+                                <Option value='Planned'>Planned</Option>
+                                <Option value='Done'>Done</Option>
+                            </Select>
+                        </Form.Item>
                     </Row>
                     <Row>
-                        <div className="proof-name-and-input">
-                            <div className="proof-area-drop-down">
-                                <Form.Item
-                                    name="transaction_note"
-                                    label="Transaction Notes"
-                                    valuePropName="fileList"
-                                    getValueFromEvent={getFile}
-
-                                    className="new-balance-form_last-form-item"
-                                >
-
-
-                                    <Upload>
-                                        <Button 
-                                            style={{ 
-                                                width: "270px", borderRadius: "10px 10px 10px 10px" 
-                                            }} 
-                                            icon={
-                                                <UploadOutlined 
-                                                    style={{ 
-                                                        margin: "auto"
-                                                    }}
-                                                />
-                                            }
-                                        >
-                                            Click to upload
-                                        </Button>
-                                    </Upload>
-
-                                </Form.Item>
+                        <Form.Item
+                            name="transaction_note"
+                            valuePropName="fileList"
+                            getValueFromEvent={getFile}
+                            className="new-balance-form_last-form-item"
+                        >
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <TagsOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                        Transaction Notes
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <Upload>
+                                <Button 
+                                    style={{ 
+                                        marginLeft: "30px", width: "240px", borderRadius: "10px 10px 10px 10px" 
+                                    }} 
+                                    icon={
+                                <UploadOutlined 
+                                    style={{ 
+                                        margin: "auto"
+                                    }}
+                                        />
+                                    }
+                                >
+                                    Click to upload
+                                </Button>
+                            </Upload>
+                        </Form.Item>
                     </Row>
                 </div>
             </Form>
