@@ -111,12 +111,12 @@ const PageTitle = () => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const token = getToken()
-    const { activeWorkspace,setActiveWorkspace, setWorkspace} = useContext(WorkspaceContext)
-  
+    const { activeWorkspace, setActiveWorkspace, setWorkspace } = useContext(WorkspaceContext)
+
 
     const handleOk = async (values) => {
         const response = await axios.patch(BASE_API_URL + 'workspace', {
-            id:activeWorkspace.id,
+            id: activeWorkspace.id,
             workspace_name: values.workspace_name,
             workspace_description: values.description
         },
@@ -127,12 +127,12 @@ const PageTitle = () => {
             });
         setActiveWorkspace(response.data.workspace)
         setWorkspace(ws => ws.map(w => {
-            if (w.id === activeWorkspace.id){
+            if (w.id === activeWorkspace.id) {
                 console.log("harusnya diganti")
                 // modify terserah
                 return activeWorkspace
             }
-            else{
+            else {
 
                 return w
             }
@@ -145,7 +145,7 @@ const PageTitle = () => {
     };
 
     return (
-        <div className="layout-title-dashboard" style={{ backgroundColor: "white"}}>
+        <div className="layout-title-dashboard" style={{ backgroundColor: "white" }}>
             <div className="workspace-title-dashboard-1">
                 <div className="workspace-title-dashboard-1-1">
                     {activeWorkspace.workspace_name}

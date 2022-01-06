@@ -222,8 +222,8 @@ export const FloatingTask = () => {
 
     const onCreate = async (values) => {
         const dateInput = new Date(values.date);
-        const date = (dateInput.getYear() + 1900) + "-" + dateInput.getMonth() + "-" + dateInput.getDate()
-
+        const date = (dateInput.getYear() + 1900) + "-" + (dateInput.getMonth()+1) + "-" + dateInput.getDate()
+        console.log(date)
         const response = await axios.post(BASE_API_URL + 'task', {
             workspace_id: values.workspace_id,
             board_id: values.board_id,

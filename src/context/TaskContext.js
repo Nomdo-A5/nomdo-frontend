@@ -17,9 +17,10 @@ export const TaskContextProvider = (props) => {
                 'board_id': $board_id
             }
         })
-        setTasks((previous) => {
-            return [...previous, response.data.task]
-        })
+        // setTasks((previous) => {
+        //     return [...previous, response.data.task]
+        // })
+        setTasks(response.data.task)
     }
 
     return <TaskContext.Provider value={{

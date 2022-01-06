@@ -54,6 +54,7 @@ export const BoardContextProvider = (props) => {
                 'id': $id
             }
         })
+        console.log(response)
         setActiveBoard(response.data.boards)
     }
 

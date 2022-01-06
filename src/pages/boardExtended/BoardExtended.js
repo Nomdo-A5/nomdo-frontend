@@ -37,7 +37,6 @@ const BoardExtended = () => {
     }, [])
 
     return (
-
         <Layout style={{ backgroundColor: "white" }}>
             <div className="main-layout" style={{ backgroundColor: "white" }}>
                 <div className="layout-title">
@@ -65,7 +64,6 @@ const BoardExtended = () => {
                 </div>
             </div>
         </Layout>
-
     );
 }
 
