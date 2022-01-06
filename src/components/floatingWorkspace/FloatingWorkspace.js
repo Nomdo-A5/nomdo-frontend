@@ -3,7 +3,7 @@ import { Button, Modal } from 'antd';
 import { useState, useContext } from 'react';
 
 import { Input, Form } from 'antd';
-import { MailOutlined } from '@ant-design/icons'
+import { MailOutlined, FileOutlined } from '@ant-design/icons'
 import '../floatingWorkspace/FloatingWorkspace.css';
 import { BASE_API_URL } from "../../constants/urls";
 import axios from "axios";
@@ -71,9 +71,12 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
                 <Form.Item
                     name="description"
                     className="collection-create-form_last-form-item" >
-                    <div className="balance-name-and-logo">
-                        <div className="balance-name-and-input">
-                            <div className="balance-name">
+                    <div className="workspace-name-and-logo">
+                        <div className="workspace-logo">
+                            <FileOutlined />
+                        </div>
+                        <div className="workspace-name-and-input">
+                            <div className="workspace-name">
                                 Description
                             </div>
                             <div className="form-input-balance-name">

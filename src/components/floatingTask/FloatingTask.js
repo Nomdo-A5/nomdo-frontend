@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 import { useState, useContext } from 'react';
 
 import { Card, Row, Col, Input, Select, Form, DatePicker } from 'antd';
-import { FormOutlined, ClockCircleOutlined, MailOutlined, UserOutlined, CopyOutlined } from '@ant-design/icons'
+import { FileOutlined, CalendarOutlined, MailOutlined, UserOutlined, TeamOutlined, CopyOutlined } from '@ant-design/icons'
 import { BsListTask, BsPeople } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import '../floatingTask/FloatingTask.css';
@@ -88,62 +88,63 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
             >
                 <div>
                     <Row>
-                        <div className="workspace-name-and-input">
-
-                            <div className="input-area-drop-down">
-                                <Form.Item
-                                    name="workspace_id"
-                                    label="Workspace Name"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please select workspace!',
-                                        },
-                                    ]}
-
-                                >
-                                    <Select
-                                        style={{ width: 270 }}
-                                        placeholder="Select your workspace"
-                                        onSelect={(value, event) => handleSelectedWorkspace(value, event)}>
-                                        {context.workspace.map(w =>
-                                            (<Option value={w.id}>{w.workspace_name}</Option>)
-                                        )}
-                                    </Select>
-
-                                </Form.Item>
-
+                        <Form.Item
+                            name="workspace_id"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please select workspace!',
+                                },
+                            ]}
+                        >
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <MailOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                         Workspace Name
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="board-name-and-input">
-
-                            <div className="input-area-drop-down">
-                                <Form.Item
-                                    name="board_id"
-                                    label="Board name"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please select board!',
-                                        },
-                                    ]}
-
-                                >
-                                    <Select
-                                        style={{ width: 270 }}
-                                        placeholder="Select your board">
-                                        {boards.map((board) => (
-                                            <Option value={board.id}>{board.board_name}</Option>
-                                        ))}
-
-                                    </Select>
-
-                                </Form.Item>
+                            <Select
+                                style={{ marginLeft: "30px", width: 240 }}
+                                placeholder="Select your workspace"
+                                onSelect={(value, event) => handleSelectedWorkspace(value, event)}>
+                                {context.workspace.map(w =>
+                                    (<Option value={w.id}>{w.workspace_name}</Option>)
+                                )}
+                            </Select>
+                        </Form.Item>
+                        <Form.Item
+                            name="board_id"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please select board!',
+                                },
+                            ]}
+                        >
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <MailOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                        Board Name
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <Select
+                                style={{ marginLeft: "30px", width: 240 }}
+                                placeholder="Select your board">
+                                {boards.map((board) => (
+                                    <Option value={board.id}>{board.board_name}</Option>
+                                ))}
+                            </Select>
+                        </Form.Item>
                         <Form.Item
                             name="task_name"
-                            label="Task name"
                             rules={[
                                 {
                                     required: true,
@@ -151,9 +152,14 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                                 },
                             ]}
                         >
-                            <div className="task-name-and-input">
-
-                                <div className="input-area">
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <MailOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                        Task Name
+                                    </div>
                                     <div className="form-input-task-name">
                                         <Input placeholder="Add Task Name" style={{ borderRadius: "10px 10px 10px 10px" }} />
                                     </div>
@@ -162,11 +168,16 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                         </Form.Item>
                         <Form.Item
                             name="task_description"
-                            label="Task Desciption"
                             className="new-task-form_last-form-item"
                         >
-                            <div className="description-name-and-input">
-                                <div className="input-area">
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <FileOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                        Task Description
+                                    </div>
                                     <div className="form-input-task-name">
                                         <Input.TextArea placeholder="Add Description" style={{ borderRadius: "10px 10px 10px 10px" }} />
                                     </div>
@@ -176,20 +187,28 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                         </Form.Item>
                         <Form.Item
                             name="date"
-                            label="Date"
                             rules={[
                                 {
                                     required: true,
                                     message: 'Please input the date!'
                                 },
-                            ]}>
-
-                            <DatePicker style={{ width: "270px", borderRadius: "10px 10px 10px 10px" }} />
+                            ]}
+                        >
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <CalendarOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                        Date
+                                    </div>
+                                </div>
+                            </div>
+                            <DatePicker style={{ marginLeft:"30px", width: "240px", borderRadius: "10px 10px 10px 10px" }} />
 
                         </Form.Item>
                         <Form.Item
                             name="member_id"
-                            label="Assigned Member"
                             rules={[
                                 {
                                     required: false,
@@ -198,9 +217,19 @@ const NewTaskForm = ({ visible, onCreate, onCancel }) => {
                             ]}
 
                         >
+                            <div className="workspace-name-and-logo">
+                                <div className="workspace-logo">
+                                    <TeamOutlined />
+                                </div>
+                                <div className="workspace-name-and-input">
+                                    <div className="workspace-name">
+                                        Assigned Member
+                                    </div>
+                                </div>
+                            </div>
                             <Select
-                                style={{ width: 280, paddingLeft: "10px" }}
-                                placeholder="Select members">
+                                style={{ marginLeft: "30px", width: 240 }}
+                                placeholder="Select Members">
                                 {members.map((member) => (
                                     <Option value={member.id}>{member.name}</Option>
                                 ))}

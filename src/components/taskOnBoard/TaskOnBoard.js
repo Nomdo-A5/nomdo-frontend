@@ -8,10 +8,10 @@ import { getToken } from '../../utils/authentication';
 import { ClickedTask } from "../clickedTask/ClickedTask";
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
-// import EditTask from '../editTask/EditTask';
-import { useLocation , useParams} from 'react-router-dom'
 
-import { WorkspaceContext } from "../../context/WorkspaceContext";
+// import EditTaskModals from '../editTaskModals/EditTaskModals';
+// import EditTask from '../editTask/EditTask';
+
 
 export default function TaskOnBoard(props) {
 
@@ -231,6 +231,7 @@ export default function TaskOnBoard(props) {
                         <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
                     </div>
                     <div className='edit-board-at-board-1'>
+
                         <EditTask editedTask={task} />
                     </div>
                 </div>

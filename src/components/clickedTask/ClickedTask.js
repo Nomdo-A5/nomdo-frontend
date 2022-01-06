@@ -59,44 +59,67 @@ export const ClickedTask = (props) => {
                 visible={isModalVisible}
                 onOk={handleOk} onCancel={handleCancel}
                 style={{ textAlign: "center", fontWeigh: "Bold" }}
-                okText="Save" width={520}>
+                okText="OK" width={400}
+                footer={[]}
+                >
 
                 <div>
-                    <Row>
+                    <Row style={{ display:"flex", justifyContent: "center", marginBottom: "20px"}}>
                         <div className="task-name-top">
                             {props.task.task_name}
                         </div>
                     </Row>
-                    <Row>
-                        <Col span={12}>
-                            <div className="description-name">
-                                {props.task.task_description}
-                            </div>
-                        </Col>
-                        <Col span={12}>
-                            <div className="due-date-and-input">
-                                <div className="due-date">
-                                    Due {props.task.due_date}
+                    <Row style={{ marginBottom: "20px"}}>
+                        <Col span={24}>
+                            <Row style={{ display: "flex", justifyContent: "center", fontStyle: "italic", color: "#8F959D"}}>
+                                <div className="description-title">
+                                    Task Description
                                 </div>
-                            </div>
+                            </Row>
+                            <Row style={{ display: "flex", justifyContent: "center", fontSize: "large"}}>
+                                <div className="description-text">
+                                    {props.task.task_description}
+                                </div>
+                            </Row>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row style={{ marginBottom: "20px"}}>
+                        <Col span={24}>
+                            <Row style={{ display: "flex", justifyContent: "center", fontStyle: "italic", color: "#8F959D"}}>
+                                <div className="due-date-and-input">
+                                    <div className="due-date">
+                                        Due Date
+                                    </div>
+                                </div>
+                            </Row>
+                            <Row style={{ display: "flex", justifyContent: "center", fontSize: "large"}}>
+                                <div className="due-date-and-input">
+                                    <div className="due-date">
+                                        {props.task.due_date}
+                                    </div>
+                                </div>
+                            </Row>
+                        </Col>
+                    </Row>
+                    <Row style={{ display: "flex", justifyContent: "center", fontStyle: "italic", color: "#8F959D"}}>
                         <div className="due-date">
                             Members
                         </div>
                     </Row>
-                    <Row>
+                    <Row style={{ display: "flex", justifyContent: "center"}}>
                         {members.map((member) => (
-                            <div>
+                            <div style={{ display: "flex", flexDirection: "row"}}>
                                 <Popover content={member.name} placement="bottom" >
                                     <Avatar style={{
-                                        color: '#f56a00',
-                                        backgroundColor: '#4abdac',
+                                        color: '#F9F9F9',
+                                        backgroundColor: '#4ABDAC',
                                     }}>
                                         {member.name.charAt(0).toUpperCase()}
                                     </Avatar>
                                 </Popover>
+                                {/*<div style={{margin: "auto", marginLeft: "10px", fontSize: "large"}}>
+                                    {member.name}
+                                </div>*/}
                             </div>
 
                         ))}
