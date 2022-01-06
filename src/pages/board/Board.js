@@ -28,12 +28,9 @@ function refreshPage() {
 
 const Board = () => {
 
-    const { Sider } = Layout;
     const token = getToken();
-    const [error, setError] = useState(null)
-    const [boardInfoError, setBoardInfoError] = useState(null)
-    const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
-    const { boards, setBoards } = useContext(BoardContext)
+    const { activeWorkspace} = useContext(WorkspaceContext)
+    const { boards, setBoards, isBoardEmpty } = useContext(BoardContext)
     const { workspace_id } = useParams()
     const { state } = useLocation()
     const history = useHistory();
@@ -163,7 +160,7 @@ const Board = () => {
 
         <Layout style={{ backgroundColor: "white" }}>
 
-            {error ? <GetErrorView /> : <GetBoardView />
+            {isBoardEmpty ? <GetErrorView /> : <GetBoardView />
             }
         </Layout>
 
