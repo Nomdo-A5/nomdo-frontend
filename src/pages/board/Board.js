@@ -28,12 +28,9 @@ function refreshPage() {
 
 const Board = () => {
 
-    const { Sider } = Layout;
     const token = getToken();
-    const [error, setError] = useState(null)
-    const [boardInfoError, setBoardInfoError] = useState(null)
-    const { activeWorkspace, GetWorkspaceById } = useContext(WorkspaceContext)
-    const { boards, setBoards } = useContext(BoardContext)
+    const { activeWorkspace} = useContext(WorkspaceContext)
+    const { boards, setBoards, isBoardEmpty, setActiveBoard } = useContext(BoardContext)
     const { workspace_id } = useParams()
     const { state } = useLocation()
     const history = useHistory();
@@ -114,6 +111,11 @@ const Board = () => {
         
     );
 
+    const handleSeeAll = (board) => {
+        setActiveBoard(board)
+        history.push("/workspace/${workspace_id}/boards/${board.id}/tasks")
+    }
+
     const GetBoardView = () => {
         return (
             <div>
@@ -148,7 +150,7 @@ const Board = () => {
                                 </div>
                             </div>
                             <div className="see-all">
-                                <Link to={{ pathname: `/workspace/${workspace_id}/boards/${board.id}/tasks`, state: { board_id: board.id } }} onClick={() => history.push("/workspace/${workspace_id}/boards/${board.id}/tasks")} >
+                                <Link to={{ pathname: `/workspace/${workspace_id}/boards/${board.id}/tasks`, state: { board_id: board.id } }} onClick={() => handleSeeAll(board)} >
                                     See all
                                 </Link>
                             </div>
@@ -163,7 +165,7 @@ const Board = () => {
 
         <Layout style={{ backgroundColor: "white" }}>
 
-            {error ? <GetErrorView /> : <GetBoardView />
+            {isBoardEmpty ? <GetErrorView /> : <GetBoardView />
             }
         </Layout>
 

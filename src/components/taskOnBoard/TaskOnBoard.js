@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Card, Empty, Space, Checkbox,  Dropdown, Menu, Modal } from 'antd';
+import React, { useEffect, useState , useContext} from 'react'
+import { Card, Empty, Space, Checkbox, Dropdown, Menu, Modal,Form,DatePicker, Select,Input, Button } from 'antd';
 import { ClockCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import './TaskOnBoard.css';
 import axios from 'axios';
@@ -8,8 +8,10 @@ import { getToken } from '../../utils/authentication';
 import { ClickedTask } from "../clickedTask/ClickedTask";
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
-import EditTaskModals from '../editTaskModals/EditTaskModals';
-import EditTask from '../editTask/EditTask';
+
+// import EditTaskModals from '../editTaskModals/EditTaskModals';
+// import EditTask from '../editTask/EditTask';
+
 
 export default function TaskOnBoard(props) {
 
@@ -18,6 +20,7 @@ export default function TaskOnBoard(props) {
     const [editedTask, setEditedTask] = useState([])
     const [isEditModalVisible, setIsEditModalVisible] = useState(false)
     const { confirm } = Modal
+    const [location, setLocation] = useState("")
 
     const GetTask = async ($board_id) => {
         const response = await axios.get(BASE_API_URL + 'task', {
@@ -35,12 +38,192 @@ export default function TaskOnBoard(props) {
         console.log(`checked = ${e.target.checked}`);
     }
 
+    function HeaderView() {
+        setLocation((window.location.pathname).split("/")[(window.location.pathname).split("/").length - 1])
+    }
+
+    const EditTask = (props) => {
+        const [isModalVisible, setIsModalVisible] = useState(false);
+        const token = getToken()    
+        const [date, setDate] = useState("")
+    
+        const handleOk = async (values) => {
+    
+            if (values.date === undefined) {
+                setDate(props.editedTask.due_date)
+            } else {
+                const dateInput = new Date(values.date);
+                setDate((dateInput.getYear() + 1900) + "-" + (dateInput.getMonth() + 1) + "-" + dateInput.getDate())
+            }
+            const response = await axios.patch(BASE_API_URL + 'task', {
+                id:props.editedTask.id,
+                task_name: values.task_name,
+                task_description: values.task_description,
+                due_date:date,
+                is_done:props.editedTask.is_done
+            },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                });
+            console.log(response)
+            setTasks(task => task.map(ts => {
+                if (ts.id === props.editedTask.id) {
+                    ts.task_name = values.task_name
+                    ts.task_description = values.task_description
+                    ts.is_done = props.editedTask.is_done
+                    // modify terserah
+                    return ts
+                }
+                else {
+                    return ts
+                }
+            }))
+            setIsModalVisible(false);
+        };
+    
+    
+        const showModal = () => {
+            setIsModalVisible(true);
+        };
+    
+        return (
+            <div className="layout-title-dashboard">
+                <div className="workspace-title-dashboard-1">
+                    <div className="workspace-title-dashboard-1-2">
+                        <Button
+                            type="link"
+                            onClick={showModal}
+                            style={{
+                                backgroundColor: "none",
+                                color: "black",
+                                marginTop: "auto",
+                                marginBottom: "auto"
+                            }}
+                        >
+                            Edit task
+                        </Button>
+                    </div>
+                    <EditTaskForm
+                        visible={isModalVisible}
+                        task={props.editedTask}
+                        onCreate={handleOk}
+                        onCancel={() => { setIsModalVisible(false) }}
+                    />
+    
+                </div>
+            </div >
+        );
+    }
+    
+    const EditTaskForm = ({ visible, task, onCreate, onCancel }) => {
+        const [form] = Form.useForm();
+        const { workspaceMembers } = useContext(WorkspaceContext)
+        const { Option } = Select;
+    
+        return (
+            <Modal
+                width={340}
+                style={{ textAFlign: "center" }}
+                visible={visible}
+                title="Edit Task"
+                okText="Save Changes"
+                cancelText="Cancel"
+                centered={true}
+                onCancel={onCancel}
+                onOk={() => {
+                    form
+                        .validateFields()
+                        .then((values) => {
+                            form.resetFields();
+                            onCreate(values);
+                        })
+                        .catch((info) => {
+                            console.log('Validate Failed:', info);
+                        });
+                }}
+            >
+                <Form
+                    form={form}
+                    layout="vertical"
+                    name="form_in_modal"
+    
+                >
+                    <Form.Item
+                        name="task_name"
+                        label="Task name"
+                        initialValue={task.task_name}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input the new task name!',
+                            },
+                        ]}
+                    >
+                        <div className="task-name-and-input">
+    
+                            <div className="input-area">
+                                <div className="form-input-task-name">
+                                    <Input placeholder={task.task_name} style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                </div>
+                            </div>
+                        </div>
+                    </Form.Item>
+                    <Form.Item
+                        name="task_description"
+                        label="Task Desciption"
+                        initialValue={task.task_description}
+                    >
+                        <div className="description-name-and-input">
+                            <div className="input-area">
+                                <div className="form-input-task-name">
+                                    <Input.TextArea placeholder={task.task_description} style={{ borderRadius: "10px 10px 10px 10px" }} />
+                                </div>
+                            </div>
+                        </div>
+    
+                    </Form.Item>
+                    <Form.Item
+                        name="date"
+                        label="Date"
+                    >
+    
+                        <DatePicker placeholder={task.due_date} style={{ width: "270px", borderRadius: "10px 10px 10px 10px" }} />
+    
+                    </Form.Item>
+                    <Form.Item
+                        name="member_id"
+                        label="Assigned Member"
+                        rules={[
+                            {
+                                required: false,
+                                message: 'Please select assigned member!',
+                            },
+                        ]}
+    
+                    >
+                        <Select
+                            style={{ width: 280, paddingLeft: "10px" }}
+                            placeholder="Select members">
+                            {workspaceMembers.map((member) => (
+                                <Option value={member.id}>{member.name}</Option>
+                            ))}
+    
+                        </Select>
+    
+                    </Form.Item>
+                </Form>
+            </Modal>
+        );
+    };
+
     useEffect(() => {
+        HeaderView()
         GetTask(props.board_id)
     }, [])
-    
+
     const menuEdit = (task) => (
-      
         <Menu>
             <Menu.Item key="edit" onClick={() => showEditForm(task.id)}>
                 <div className='edit-board-at-board'>
@@ -48,8 +231,7 @@ export default function TaskOnBoard(props) {
                         <AiOutlineEdit style={{ fontSize: "large", marginRight: "10px", margin: "auto" }} />
                     </div>
                     <div className='edit-board-at-board-1'>
-                        {/*<EditTaskModal editedBoard={task} />*/}
-                        {/*<EditTaskModals editedTask={task} />*/}
+
                         <EditTask editedTask={task} />
                     </div>
                 </div>
@@ -93,11 +275,10 @@ export default function TaskOnBoard(props) {
                 id: $id
             }
         });
-
-        console.log(response)
+        setTasks(prev => prev.filter(tsk => tsk.id !== $id))
     }
 
-    function showEditForm(task){
+    function showEditForm(task) {
         setEditedTask(task)
         setIsEditModalVisible(true)
     }
@@ -123,18 +304,23 @@ export default function TaskOnBoard(props) {
                         <div className="checkbox-name-title">
                             <div className="checkbox-and-name">
                                 <div className="checkbox-logo">
-                                    <Checkbox defaultChecked={task.is_done === 0 ? false : true} onChange={onChange} />
-
+                                    {location === "tasks" ?
+                                        <Checkbox defaultChecked={task.is_done === 0 ? false : true} onChange={onChange} /> :
+                                        <span></span>
+                                    }
                                 </div>
                                 <div className="task-title">
                                     {task.task_name}
                                 </div>
                                 <div>
-                                    <Dropdown overlay={menuEdit(task)} trigger={['click']}>
-                                        <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                                            <BiDotsVerticalRounded style={{ color: "#969CA3", fontSize: "large" }} />
-                                        </a>
-                                    </Dropdown>
+                                    {location === "tasks" ?
+                                        <Dropdown overlay={menuEdit(task)} trigger={['click']}>
+                                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                                <BiDotsVerticalRounded style={{ color: "#969CA3", fontSize: "large" }} />
+                                            </a>
+                                        </Dropdown> :
+                                        <span></span>
+                                    }
                                 </div>
                             </div>
                             <div className="on-where-information">
