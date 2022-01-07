@@ -95,7 +95,7 @@ const DefaultPage = (props) => {
             <Layout>
                 <Header
                     style={{ 
-                        backgroundColor: "#4ABDAC"
+                        backgroundColor: "#4ABDAC",
                     }}
                 >
                     <NavbarMain/>
@@ -108,9 +108,11 @@ const DefaultPage = (props) => {
                         {props.children}
                     </Content>
                 </Layout>
+                {/*
                 <div className="floating-button-component">
                     <FloatingButton />
                 </div>
+                */}
             </Layout>
         </WorkspaceContextProvider>
     );

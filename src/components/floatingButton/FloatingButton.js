@@ -38,12 +38,12 @@ export const FloatingButton = () => {
     return (
             <div>
             <Tooltip title="">
-                <Button variant="success" onClick={showModal} shape="circle" icon={<PlusOutlined style={{ color: "#FFFFFF" }} />} size="large" style={{ background: '#4ABDAC' }} />
+                <Button variant="dark" onClick={showModal} shape="box" icon={<PlusOutlined style={{ color: "#FFFFFF" }} />} size="medium" style={{ backgroundImage: "linear-gradient(#0DF8D5, #0D685B)", borderRadius: "10px 10px 10px 10px" }} />
             </Tooltip>
-            <Modal centered width={690} title="" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
-            footer={[
-                
-            ]}>
+            <Modal 
+                centered width={690} title="" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
+                footer={[]}
+            >
                 <div className="floating-form-1">
                     <div className="floating-form-box"><FloatingWorkspace /></div>
                     <div className="floating-form-box"><FloatingBoard /></div>

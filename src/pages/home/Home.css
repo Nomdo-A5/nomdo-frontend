@@ -19,7 +19,12 @@
 .row-1-right-col{
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: 5%;
+}
+
+.floating-button-home-container{
+}
+
+.floating-button-home-component{
 }
 
 .row-1-right-col-cont-1{
@@ -118,15 +123,27 @@
 }
 
 .overview-title{
-    margin: 0.2em;
+    width: 95%;
+    display: flex;
     text-align: left;
+    align-items: center;
+    padding-left: 10px;
     font-weight: bold;
     font-size: large;
+    height: 50px;
 }
 
 .workspace-container-at-dashboard{
     display: flex;
     flex-direction: column;
+}
+
+.overview-card-outer-workspace-left{
+    width: 95%;
+}
+
+.overview-card-outer-workspace-right{
+    width: 95%;
 }
 
 .name-and-members{

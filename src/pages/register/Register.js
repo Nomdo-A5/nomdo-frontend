@@ -71,6 +71,7 @@ const Register = () => {
       }, (error) => {
         shortPassword();
         console.log(error);
+        console.log("What?");
       });
   };
 
