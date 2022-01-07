@@ -164,6 +164,7 @@ const Dashboard = () => {
                             </div>
                         </Card>
                     </div>
+                    {/*
                     <div className="dashboard-bottom">
                         <div className="layout-main-left-title">
                             Incoming Task
@@ -193,6 +194,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
+                    */}
                 </div>
                 <div className="layout-main-right" style={{ backgroundColor: "white" }}>
                     <div className="layout-main-left-title">

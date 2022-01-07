@@ -7,6 +7,7 @@ import { TiArrowSortedDown } from 'react-icons/ti';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { getToken, logout } from "../utils/authentication";
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import { FloatingButton } from "../components/floatingButton/FloatingButton";
 
 import { Menu, Button, message, Space, Tooltip, Dropdown, Row, Col, Layout } from 'antd';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
@@ -50,13 +51,19 @@ const { Header, Content, Sider, Footer } = Layout;
       >
         <Row
           style={{ 
-            width: "90%"
+            width: "92%",
+            backgroundColor: "#4ABDAC"
           }}
         >
-          <Col style={{ backgroundColor: "#4ABDAC"}} span={6}>
+          <Col style={{ backgroundColor: "#4ABDAC"}} span={3}>
             <Link to="/">
               <img src={LogoImage} alt="" width="100px" height="auto" className='nomdo-logo'/>
             </Link>
+          </Col>
+          <Col style={{ backgroundColor: "#4ABDAC", display: "flex", justifyContent: "left" }} span={3}>
+            <div className="floating-button-new-component">
+                <FloatingButton />
+            </div>
           </Col>
           <Col 
             style={{ 
